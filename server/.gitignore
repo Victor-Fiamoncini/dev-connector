@@ -1,0 +1,15 @@
+.idea/
+.vscode/
+node_modules/
+build/
+coverage/
+
+temp/uploads/*
+
+env.js
+*.env
+*.DS_Store
+*.sqlite
+*.lock
+
+yarn-error.log

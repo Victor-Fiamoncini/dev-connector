@@ -1,0 +1,10 @@
+{
+	"watch": ["src"],
+	"ext": "js",
+	"execMap": {
+		"js": "sucrase-node"
+	},
+	"ignore": [
+    "test"
+  ]
+}
