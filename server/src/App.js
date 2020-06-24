@@ -3,15 +3,16 @@ import helmet from 'helmet'
 import cors from 'cors'
 import morgan from 'morgan'
 
-// import './app/database'
-// import routes from './routes'
-// import { error } from './app/middlewares'
+import mongo from './app/config/mongoose'
+import routes from './routes'
+import { error } from './app/middlewares'
 
 export default class App {
 	constructor() {
 		this.express = express()
 
 		this.configs()
+		this.database()
 		this.middlewares()
 		this.routes()
 	}
@@ -22,6 +23,10 @@ export default class App {
 
 	configs() {
 		this.express.disable('x-powered-by')
+	}
+
+	async database() {
+		await mongo()
 	}
 
 	middlewares() {
@@ -39,7 +44,7 @@ export default class App {
 	}
 
 	routes() {
-		// this.express.use(routes)
-		// this.express.use(error)
+		this.express.use(routes)
+		this.express.use(error)
 	}
 }
