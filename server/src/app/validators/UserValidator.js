@@ -17,8 +17,8 @@ class UserValidator {
 			name: Joi.string().min(2).required(),
 			email: Joi.string().email().required(),
 			currentPassword: Joi.string().min(6).required(),
-			password: Joi.string().min(6).required(),
-			confirmPassword: Joi.string().min(6).valid(Joi.ref('password')),
+			newPassword: Joi.string().min(6).required(),
+			confirmNewPassword: Joi.string().min(6).valid(Joi.ref('newPassword')),
 		})
 
 		await validate(res, next, req.body, schema)
