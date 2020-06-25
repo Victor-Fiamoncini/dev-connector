@@ -29,4 +29,22 @@ router.post(
 	middlewares.async(controllers.UserController.store)
 )
 
+/**
+ * Private routes
+ */
+router.use(middlewares.auth)
+
+/**
+ * Private profiles
+ */
+router.get(
+	'/profiles/me',
+	middlewares.async(controllers.ProfileController.show)
+)
+router.post(
+	'/profiles',
+	validators.ProfileValidator.updateOrStore,
+	middlewares.async(controllers.ProfileController.store)
+)
+
 export default router
