@@ -6,7 +6,7 @@ import actions from '../../store/ducks/session/actions'
 export default function Login() {
 	const dispatch = useDispatch()
 
-	dispatch(actions.userRegister('victor', 'victor@email.com', '123456'))
+	dispatch(actions.userStore('victor', 'victor@email.com', '123456'))
 
 	return <div>Login</div>
 }
