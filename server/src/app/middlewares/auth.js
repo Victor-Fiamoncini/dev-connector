@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken'
+import { verify } from 'jsonwebtoken'
 
 export default (req, res, next) => {
 	const { authorization } = req.headers
@@ -20,7 +20,7 @@ export default (req, res, next) => {
 	}
 
 	try {
-		const { id } = jwt.verify(token, process.env.JWT_AUTH_SECRET)
+		const { id } = verify(token, process.env.JWT_AUTH_SECRET)
 
 		req.userId = String(id)
 		return next()

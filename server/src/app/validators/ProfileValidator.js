@@ -11,9 +11,22 @@ class ProfileValidator {
 			skills: Joi.string().required(),
 			bio: Joi.string(),
 			githubusername: Joi.string(),
-			experience: Joi.array(),
 			education: Joi.array(),
 			social: Joi.object(),
+		})
+
+		await validate(res, next, req.body, schema)
+	}
+
+	async storeExperience(req, res, next) {
+		const schema = Joi.object().keys({
+			title: Joi.string().required(),
+			company: Joi.string().required(),
+			location: Joi.string(),
+			from: Joi.date().required(),
+			to: Joi.date(),
+			current: Joi.boolean().required(),
+			description: Joi.string(),
 		})
 
 		await validate(res, next, req.body, schema)

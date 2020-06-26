@@ -30,6 +30,15 @@ router.post(
 )
 
 /**
+ * Public profiles
+ */
+router.get('/profiles', middlewares.async(controllers.ProfileController.index))
+router.get(
+	'/profiles/:id',
+	middlewares.async(controllers.ProfileController.show)
+)
+
+/**
  * Private routes
  */
 router.use(middlewares.auth)
@@ -37,14 +46,27 @@ router.use(middlewares.auth)
 /**
  * Private profiles
  */
-router.get(
-	'/profiles/me',
-	middlewares.async(controllers.ProfileController.show)
-)
 router.post(
 	'/profiles',
 	validators.ProfileValidator.updateOrStore,
 	middlewares.async(controllers.ProfileController.store)
+)
+router.get(
+	'/profiles/user/me',
+	middlewares.async(controllers.ProfileController.getUserProfile)
+)
+router.delete(
+	'/profiles',
+	middlewares.async(controllers.ProfileController.destroy)
+)
+router.put(
+	'/profiles/experience',
+	validators.ProfileValidator.storeExperience,
+	middlewares.async(controllers.ProfileController.storeExperience)
+)
+router.delete(
+	'/profiles/experience/:id',
+	middlewares.async(controllers.ProfileController.destroyExperience)
 )
 
 export default router

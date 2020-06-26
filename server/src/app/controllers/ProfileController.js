@@ -1,13 +1,20 @@
 import { Profile, User } from '../models'
 
 class ProfileController {
-	async index(req, res) {}
+	async index(req, res) {
+		const profiles = await Profile.find().populate('user', ['name', 'avatar'])
+
+		if (!profiles) {
+			return res.status(404).json({ error: 'Profiles not found' })
+		}
+
+		return res.status(200).json(profiles)
+	}
 
 	async show(req, res) {
-		const profile = await Profile.findOne({ user: req.userId }).populate(
-			'User',
-			['name', 'avatar']
-		)
+		const profile = await Profile.findOne({
+			user: req.params.id,
+		}).populate('user', ['name', 'avatar'])
 
 		if (!profile) {
 			return res.status(404).json({ error: 'Profile not found' })
@@ -43,9 +50,74 @@ class ProfileController {
 		return res.status(201).json(profile)
 	}
 
-	async update(req, res) {}
+	async destroy(req, res) {
+		await Profile.findOneAndDelete({ user: req.userId })
+		await User.findOneAndRemove({ _id: req.userId })
 
-	async destroy(req, res) {}
+		return res.status(200).json({ success: 'User, profile and posts deleted' })
+	}
+
+	async getUserProfile(req, res) {
+		const profile = await Profile.findOne({
+			user: req.userId,
+		}).populate('user', ['name', 'avatar'])
+
+		if (!profile) {
+			return res.status(404).json({ error: 'Profile not found' })
+		}
+
+		return res.status(200).json(profile)
+	}
+
+	async storeExperience(req, res) {
+		const {
+			title,
+			company,
+			location,
+			from,
+			to,
+			current,
+			description,
+		} = req.body
+
+		const profile = await Profile.findOne({ user: req.userId })
+
+		if (!profile) {
+			return res.status(404).json({ error: 'Profile not found' })
+		}
+
+		profile.experience.unshift({
+			title,
+			company,
+			location,
+			from,
+			to,
+			current,
+			description,
+		})
+
+		await profile.save()
+
+		return res.status(200).json(profile)
+	}
+
+	async destroyExperience(req, res) {
+		const profile = await Profile.findOne({ user: req.userId })
+
+		if (!profile) {
+			return res.status(404).json({ error: 'Profile not found' })
+		}
+
+		const indexToRemove = profile.experience
+			.map(experience => experience.id)
+			.indexOf(req.params.id)
+
+		profile.experience.splice(indexToRemove, 1)
+
+		await profile.save()
+
+		return res.status(200).json({ success: 'Experience deleted successfully' })
+	}
 }
 
 export default new ProfileController()
