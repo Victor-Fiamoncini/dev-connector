@@ -3,9 +3,7 @@ import Types from './types'
 
 import { getToken, setToken, removeToken } from '../../../utils/token'
 
-export default function reducer(state = initialState, action) {
-	const { payload, type } = action
-
+export default function reducer(state = initialState, { payload, type }) {
 	switch (type) {
 		case Types.USER_STORE:
 			setToken(payload.token)
@@ -31,6 +29,6 @@ export default function reducer(state = initialState, action) {
 			}
 
 		default:
-			return initialState
+			return state
 	}
 }

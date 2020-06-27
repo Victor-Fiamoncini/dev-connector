@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { FaUser } from 'react-icons/fa'
 
-import { userStore } from '../../store/ducks/session/actions'
+import { userStore } from '../../../store/ducks/session/actions'
 
 export default function Register() {
 	const dispatch = useDispatch()

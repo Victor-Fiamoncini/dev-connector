@@ -1,0 +1,7 @@
+export default {
+	SET_ALERT: '@alert/SET_ALERT',
+	ASYNC_SET_ALERT: '@alert/ASYNC_SET_ALERT',
+
+	REMOVE_ALERT: '@alert/REMOVE_ALERT',
+	ASYNC_REMOVE_ALERT: '@alert/ASYNC_REMOVE_ALERT',
+}

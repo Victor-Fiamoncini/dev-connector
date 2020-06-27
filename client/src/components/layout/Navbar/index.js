@@ -2,10 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaCode } from 'react-icons/fa'
 
+import './style.scss'
+
 export default function Navbar() {
 	return (
 		<nav className="navbar bg-dark">
-			<h1>
+			<h1 className="navbar-title">
 				<Link to="/">
 					<FaCode /> DevConnector
 				</Link>
