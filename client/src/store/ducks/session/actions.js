@@ -20,3 +20,7 @@ export const userLogin = (email, password) => ({
 		password,
 	},
 })
+
+export const userLogout = () => ({
+	type: SessionTypes.ASYNC_USER_LOGOUT,
+})

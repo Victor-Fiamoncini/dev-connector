@@ -29,6 +29,7 @@ export default function reducer(state = initialState, { payload, type }) {
 		case SessionTypes.USER_STORE_ERROR:
 		case SessionTypes.LOAD_SESSION_ERROR:
 		case SessionTypes.USER_LOGIN_ERROR:
+		case SessionTypes.USER_LOGOUT:
 			auth.removeToken()
 
 			return {

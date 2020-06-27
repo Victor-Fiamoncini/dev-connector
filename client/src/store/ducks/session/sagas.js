@@ -76,10 +76,15 @@ export function* asyncLoadSession() {
 	}
 }
 
+export function* asyncUserLogout() {
+	yield put({ type: SessionTypes.USER_LOGOUT })
+}
+
 export default function* root() {
 	yield all([
 		takeLatest(SessionTypes.ASYNC_USER_STORE, asyncUserStore),
 		takeEvery(SessionTypes.ASYNC_LOAD_SESSION, asyncLoadSession),
 		takeLatest(SessionTypes.ASYNC_USER_LOGIN, asyncUserLogin),
+		takeEvery(SessionTypes.ASYNC_USER_LOGOUT, asyncUserLogout),
 	])
 }
