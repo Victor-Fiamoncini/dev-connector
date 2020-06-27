@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { FaUser } from 'react-icons/fa'
 
 import { userStore } from '../../../store/ducks/session/actions'
+import { setAlert } from '../../../store/ducks/alert/actions'
 
 export default function Register() {
 	const dispatch = useDispatch()
@@ -27,7 +28,7 @@ export default function Register() {
 		event.preventDefault()
 
 		if (password !== confirmPassword) {
-			console.log('passwords dont match')
+			dispatch(setAlert('Passwords do not match', 'danger'))
 		} else {
 			dispatch(userStore(name, email, password))
 		}
