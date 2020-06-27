@@ -3,7 +3,7 @@ import SessionTypes from './types'
 
 import * as auth from '../../../utils/token'
 
-export default function reducer(state = initialState, { payload, type }) {
+export default (state = initialState, { payload, type }) => {
 	switch (type) {
 		case SessionTypes.USER_STORE:
 		case SessionTypes.USER_LOGIN:

@@ -481,3 +481,12 @@ button {
 			padding: 0.3rem 0.4rem;
 	}
 }
+.icon-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.icon-link svg {
+	margin-right: 6px;
+}
+

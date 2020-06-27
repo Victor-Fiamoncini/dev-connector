@@ -1,9 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { FaCode, FaSignOutAlt } from 'react-icons/fa'
+import { FaCode, FaSignOutAlt, FaUser } from 'react-icons/fa'
 
-import './style.scss'
 import { userLogout } from '../../../store/ducks/session/actions'
 
 export default function Navbar() {
@@ -17,7 +16,7 @@ export default function Navbar() {
 	return (
 		<nav className="navbar bg-dark">
 			<h1>
-				<Link to="/" className="icon-link">
+				<Link to={isAuthenticated ? '/home' : '/'} className="icon-link">
 					<FaCode /> DevConnector
 				</Link>
 			</h1>
@@ -25,9 +24,18 @@ export default function Navbar() {
 				<>
 					{isAuthenticated ? (
 						<ul>
-							<Link to="/" className="icon-link" onClick={handleLogoutClick}>
-								<FaSignOutAlt /> Logout
-							</Link>
+							<li>
+								<Link to="/home" className="icon-link">
+									<FaUser />
+									<span className="hide-sm">Dashboard</span>
+								</Link>
+							</li>
+							<li>
+								<Link to="/" className="icon-link" onClick={handleLogoutClick}>
+									<FaSignOutAlt />
+									<span className="hide-sm">Logout</span>
+								</Link>
+							</li>
 						</ul>
 					) : (
 						<ul>

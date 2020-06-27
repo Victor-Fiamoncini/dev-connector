@@ -1,0 +1,5 @@
+export default {
+	GET_PROFILE: '@profile/GET_PROFILE',
+	ASYNC_GET_PROFILE: '@profile/ASYNC_GET_PROFILE',
+	GET_PROFILE_ERROR: '@profile/GET_PROFILE_ERROR',
+}

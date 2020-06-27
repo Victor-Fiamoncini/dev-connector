@@ -1,18 +1,20 @@
 import initialState from './state'
-import AlertTypes from './types'
+import ProfileTypes from './types'
 
 export default (state = initialState, { payload, type }) => {
 	switch (type) {
-		case AlertTypes.SET_ALERT:
+		case ProfileTypes.GET_PROFILE:
 			return {
 				...state,
-				alerts: [...state.alerts, payload],
+				profile: payload,
+				loading: false,
 			}
 
-		case AlertTypes.REMOVE_ALERT:
+		case ProfileTypes.GET_PROFILE_ERROR:
 			return {
 				...state,
-				alerts: state.alerts.filter(alert => alert.id !== payload),
+				error: payload,
+				loading: false,
 			}
 
 		default:
