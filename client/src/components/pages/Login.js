@@ -1,12 +1,8 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-
-import actions from '../../store/ducks/session/actions'
+// import { useDispatch } from 'react-redux'
 
 export default function Login() {
-	const dispatch = useDispatch()
-
-	dispatch(actions.userStore('victor', 'victor@email.com', '123456'))
+	// const dispatch = useDispatch()
 
 	return <div>Login</div>
 }
