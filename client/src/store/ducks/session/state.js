@@ -1,7 +1,8 @@
+import * as auth from '../../../utils/token'
+
 export default {
 	user: {},
-	token: null,
+	token: auth.getToken(),
 	isAuthenticated: false,
 	loading: false,
-	errors: [],
 }

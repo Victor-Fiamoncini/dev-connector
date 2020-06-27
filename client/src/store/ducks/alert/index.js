@@ -1,15 +1,15 @@
 import initialState from './state'
-import Types from './types'
+import AlertTypes from './types'
 
 export default function reducer(state = initialState, { payload, type }) {
 	switch (type) {
-		case Types.SET_ALERT:
+		case AlertTypes.SET_ALERT:
 			return {
 				...state,
 				alerts: [...state.alerts, payload],
 			}
 
-		case Types.REMOVE_ALERT:
+		case AlertTypes.REMOVE_ALERT:
 			return {
 				...state,
 				alerts: state.alerts.filter(alert => alert.id !== payload),

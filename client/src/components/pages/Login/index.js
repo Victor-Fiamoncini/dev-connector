@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { FaUser } from 'react-icons/fa'
 
-import { userStore } from '../../../store/ducks/session/actions'
+import { userLogin } from '../../../store/ducks/session/actions'
 
 export default function Register() {
 	const dispatch = useDispatch()
@@ -24,7 +24,7 @@ export default function Register() {
 	function handleFormSubmit(event) {
 		event.preventDefault()
 
-		dispatch(userStore('', email, password))
+		dispatch(userLogin(email, password))
 	}
 
 	return (

@@ -1,7 +1,7 @@
-import Types from './types'
+import AlertTypes from './types'
 
 export const setAlert = (message, type) => ({
-	type: Types.ASYNC_SET_ALERT,
+	type: AlertTypes.ASYNC_SET_ALERT,
 	payload: {
 		message,
 		type,

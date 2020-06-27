@@ -1,23 +1,35 @@
 import initialState from './state'
-import Types from './types'
+import SessionTypes from './types'
 
-import { getToken, setToken, removeToken } from '../../../utils/token'
+import * as auth from '../../../utils/token'
 
 export default function reducer(state = initialState, { payload, type }) {
 	switch (type) {
-		case Types.USER_STORE:
-			setToken(payload.token)
+		case SessionTypes.USER_STORE:
+		case SessionTypes.USER_LOGIN:
+			auth.setToken(payload.token)
 
 			return {
 				...state,
 				user: payload.user,
-				token: getToken(),
+				token: auth.getToken(),
+				isAuthenticated: true,
 				loading: false,
-				errors: [],
 			}
 
-		case Types.USER_STORE_ERROR:
-			removeToken()
+		case SessionTypes.LOAD_SESSION:
+			return {
+				...state,
+				user: payload,
+				token: auth.getToken(),
+				isAuthenticated: true,
+				loading: false,
+			}
+
+		case SessionTypes.USER_STORE_ERROR:
+		case SessionTypes.LOAD_SESSION_ERROR:
+		case SessionTypes.USER_LOGIN_ERROR:
+			auth.removeToken()
 
 			return {
 				...state,
@@ -25,7 +37,6 @@ export default function reducer(state = initialState, { payload, type }) {
 				token: null,
 				isAuthenticated: false,
 				loading: false,
-				errors: payload,
 			}
 
 		default:
