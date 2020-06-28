@@ -36,7 +36,7 @@ export default function Register() {
 		}
 	}
 	if (isAuthenticated) {
-		return <Redirect to="/home" />
+		return <Redirect to="/dashboard" />
 	} else {
 		return (
 			<section className="container">

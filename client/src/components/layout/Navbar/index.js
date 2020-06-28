@@ -16,7 +16,7 @@ export default function Navbar() {
 	return (
 		<nav className="navbar bg-dark">
 			<h1>
-				<Link to={isAuthenticated ? '/home' : '/'} className="icon-link">
+				<Link to={isAuthenticated ? '/dashboard' : '/'} className="icon-link">
 					<FaCode /> DevConnector
 				</Link>
 			</h1>
@@ -25,7 +25,7 @@ export default function Navbar() {
 					{isAuthenticated ? (
 						<ul>
 							<li>
-								<Link to="/home" className="icon-link">
+								<Link to="/dashboard" className="icon-link">
 									<FaUser />
 									<span className="hide-sm">Dashboard</span>
 								</Link>

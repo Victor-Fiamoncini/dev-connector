@@ -17,6 +17,20 @@ export default (state = initialState, { payload, type }) => {
 				loading: false,
 			}
 
+		case ProfileTypes.CLEAR_PROFILE:
+			return {
+				...state,
+				profile: {},
+				repos: [],
+				loading: false,
+			}
+
+		case ProfileTypes.SET_LOADING:
+			return {
+				...state,
+				loading: true,
+			}
+
 		default:
 			return state
 	}

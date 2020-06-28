@@ -1,19 +1,21 @@
-import SessionTypes from './types'
+import ProfileTypes from './types'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 
 import api from '../../../services/api'
 
 export function* asyncGetProfile() {
+	yield put({ type: ProfileTypes.SET_LOADING })
+
 	try {
 		const { data } = yield call(api.get, '/profiles/user/me')
 
 		yield put({
-			type: SessionTypes.GET_PROFILE,
+			type: ProfileTypes.GET_PROFILE,
 			payload: data,
 		})
 	} catch (err) {
 		yield put({
-			type: SessionTypes.GET_PROFILE_ERROR,
+			type: ProfileTypes.GET_PROFILE_ERROR,
 			payload: {
 				message: err.response.data.error,
 				status: err.response.status,
@@ -23,5 +25,5 @@ export function* asyncGetProfile() {
 }
 
 export default function* root() {
-	yield all([takeLatest(SessionTypes.ASYNC_GET_PROFILE, asyncGetProfile)])
+	yield all([takeLatest(ProfileTypes.ASYNC_GET_PROFILE, asyncGetProfile)])
 }

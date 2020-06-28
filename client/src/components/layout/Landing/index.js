@@ -6,7 +6,7 @@ export default function Landing() {
 	const { isAuthenticated } = useSelector(state => state.session)
 
 	if (isAuthenticated) {
-		return <Redirect to="/home" />
+		return <Redirect to="/dashboard" />
 	} else {
 		return (
 			<section className="landing">

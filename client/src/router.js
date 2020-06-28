@@ -6,7 +6,7 @@ import Login from './components/pages/Login'
 import Register from './components/pages/Register'
 import Navbar from './components/layout/Navbar'
 import Landing from './components/layout/Landing'
-import Home from './components/pages/Home'
+import Dashboard from './components/pages/Dashboard'
 
 export default function Router() {
 	return (
@@ -16,7 +16,7 @@ export default function Router() {
 				<Route exact path="/" component={Landing} />
 				<Route exact path="/register" component={Register} />
 				<Route exact path="/login" component={Login} />
-				<PrivateRoute exact path="/home" component={Home} />
+				<PrivateRoute exact path="/dashboard" component={Dashboard} />
 			</Switch>
 		</BrowserRouter>
 	)

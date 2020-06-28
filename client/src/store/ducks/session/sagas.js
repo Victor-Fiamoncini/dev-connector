@@ -3,7 +3,9 @@ import { all, call, put, takeLatest, takeEvery } from 'redux-saga/effects'
 
 import * as auth from '../../../utils/token'
 import api from '../../../services/api'
+
 import AlertTypes from '../alert/types'
+import ProfileTypes from '../profile/types'
 
 export function* asyncUserStore({ payload }) {
 	const { name, email, password } = payload
@@ -77,6 +79,7 @@ export function* asyncLoadSession() {
 }
 
 export function* asyncUserLogout() {
+	yield put({ type: ProfileTypes.CLEAR_PROFILE })
 	yield put({ type: SessionTypes.USER_LOGOUT })
 }
 
