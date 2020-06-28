@@ -5,6 +5,7 @@ import { FaUser } from 'react-icons/fa'
 
 import Spinner from '../../layout/Spinner'
 import Alert from '../../layout/Alert'
+import DashboardActions from '../../layout/DashboardActions'
 import { getProfile } from '../../../store/ducks/profile/actions'
 
 export default function Dashboard() {
@@ -34,7 +35,7 @@ export default function Dashboard() {
 					</Link>
 				</>
 			) : (
-				<></>
+				<DashboardActions />
 			)}
 		</section>
 	)

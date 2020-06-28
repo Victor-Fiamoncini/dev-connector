@@ -469,7 +469,6 @@ button {
 	}
 	.dash-buttons a {
 			display: block;
-			width: 100%;
 			margin-bottom: 0.2rem;
 	}
 	.post {
@@ -487,5 +486,8 @@ button {
 }
 .icon-link svg {
 	margin-right: 6px;
+}
+.dash-buttons {
+	display: flex;
 }
 

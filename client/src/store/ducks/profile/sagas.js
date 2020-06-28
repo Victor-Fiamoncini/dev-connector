@@ -2,7 +2,6 @@ import ProfileTypes from './types'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 
 import api from '../../../services/api'
-
 import AlertTypes from '../alert/types'
 
 export function* asyncGetProfile() {
@@ -10,6 +9,12 @@ export function* asyncGetProfile() {
 
 	try {
 		const { data } = yield call(api.get, '/profiles/user/me')
+
+		if (data.skills.length > 0) {
+			data.skills = data.skills.join(', ')
+		} else {
+			data.skills = ''
+		}
 
 		yield put({
 			type: ProfileTypes.GET_PROFILE,
@@ -26,7 +31,7 @@ export function* asyncGetProfile() {
 	}
 }
 
-export function* asyncStoreProfile({ payload }) {
+export function* asyncStoreOrUpdateProfile({ payload }) {
 	const { formData, history } = payload
 
 	try {
@@ -44,12 +49,8 @@ export function* asyncStoreProfile({ payload }) {
 			},
 		})
 
-		console.log(data)
-
 		history.push('/dashboard')
 	} catch (err) {
-		console.log(err.response)
-
 		yield put({
 			type: ProfileTypes.STORE_PROFILE_ERROR,
 			payload: {
@@ -63,6 +64,6 @@ export function* asyncStoreProfile({ payload }) {
 export default function* root() {
 	yield all([
 		takeLatest(ProfileTypes.ASYNC_GET_PROFILE, asyncGetProfile),
-		takeLatest(ProfileTypes.ASYNC_STORE_PROFILE, asyncStoreProfile),
+		takeLatest(ProfileTypes.ASYNC_STORE_PROFILE, asyncStoreOrUpdateProfile),
 	])
 }

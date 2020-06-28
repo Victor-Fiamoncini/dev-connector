@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import {
 	FaUser,
@@ -12,11 +12,15 @@ import {
 
 import Alert from '../../layout/Alert'
 import { setAlert } from '../../../store/ducks/alert/actions'
-import { storeOrUpdateProfile } from '../../../store/ducks/profile/actions'
+import {
+	storeOrUpdateProfile,
+	getProfile,
+} from '../../../store/ducks/profile/actions'
 
-export default function CreateProfile() {
+export default function EditProfile() {
 	const dispatch = useDispatch()
 	const history = useHistory()
+	const { profile } = useSelector(state => state.profile)
 
 	const [socialInputs, setSocialInputs] = useState(false)
 	const [formData, setFormData] = useState({
@@ -89,10 +93,29 @@ export default function CreateProfile() {
 		}
 	}
 
+	useEffect(() => {
+		dispatch(getProfile())
+
+		setFormData({
+			company: profile.company,
+			website: profile.website,
+			location: profile.location,
+			status: profile.status,
+			skills: profile.skills,
+			githubusername: profile.githubusername,
+			bio: profile.bio,
+			twitter: profile.social.twitter,
+			facebook: profile.social.facebook,
+			linkedin: profile.social.linkedin,
+			youtube: profile.social.youtube,
+			instagram: profile.social.instagram,
+		})
+	}, [])
+
 	return (
 		<section className="container">
 			<Alert />
-			<h1 className="large text-primary">Create Your Profile</h1>
+			<h1 className="large text-primary">Edit Your Profile</h1>
 			<p className="lead">
 				<FaUser /> Let&apos;s get some information to make your profile stand
 				out
@@ -197,7 +220,7 @@ export default function CreateProfile() {
 						className="btn btn-light"
 						onClick={handleToggleSocialLinks}
 					>
-						Add Social Network Links
+						Edit Social Network Links
 					</button>
 					<span>Optional</span>
 				</div>
