@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { FaUser } from 'react-icons/fa'
 
 import Spinner from '../../layout/Spinner'
+import Alert from '../../layout/Alert'
 import { getProfile } from '../../../store/ducks/profile/actions'
 
 export default function Dashboard() {
@@ -16,15 +17,16 @@ export default function Dashboard() {
 		dispatch(getProfile())
 	}, [])
 
-	return loading || !profile ? (
+	return loading && !profile ? (
 		<Spinner loading={loading} />
 	) : (
 		<section className="container">
+			<Alert />
 			<h1 className="large text-primary">Dashboard</h1>
 			<p className="lead">
 				<FaUser /> Welcome {user && user.name}
 			</p>
-			{profile ? (
+			{!profile ? (
 				<>
 					<p>You have not yet setup a profile, please add some info</p>
 					<Link to="/create-profile" className="btn btn-primary my-1">
@@ -32,7 +34,7 @@ export default function Dashboard() {
 					</Link>
 				</>
 			) : (
-				<>hasnot</>
+				<></>
 			)}
 		</section>
 	)

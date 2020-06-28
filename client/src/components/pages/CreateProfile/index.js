@@ -1,8 +1,24 @@
 import React, { useState } from 'react'
-import { FaUser } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
+import {
+	FaUser,
+	FaTwitter,
+	FaFacebook,
+	FaLinkedin,
+	FaInstagram,
+	FaYoutube,
+} from 'react-icons/fa'
+
+import Alert from '../../layout/Alert'
+import { setAlert } from '../../../store/ducks/alert/actions'
+import { storeProfile } from '../../../store/ducks/profile/actions'
 
 export default function CreateProfile() {
+	const dispatch = useDispatch()
+	const history = useHistory()
+
+	const [socialInputs, setSocialInputs] = useState(false)
 	const [formData, setFormData] = useState({
 		company: '',
 		website: '',
@@ -33,6 +49,10 @@ export default function CreateProfile() {
 		instagram,
 	} = formData
 
+	function handleToggleSocialLinks() {
+		setSocialInputs(!socialInputs)
+	}
+
 	function handleInputChange(event) {
 		const { name, value } = event.target
 
@@ -42,20 +62,50 @@ export default function CreateProfile() {
 	function handleFormSubmit(event) {
 		event.preventDefault()
 
-		// dispatch(userLogin(email, password))
+		if (!skills || !status) {
+			dispatch(setAlert('Please, fill all required fields', 'danger'))
+		} else {
+			dispatch(
+				storeProfile(
+					{
+						company,
+						website,
+						location,
+						status,
+						skills,
+						githubusername,
+						bio,
+						social: {
+							twitter,
+							facebook,
+							linkedin,
+							youtube,
+							instagram,
+						},
+					},
+					history
+				)
+			)
+		}
 	}
 
 	return (
 		<section className="container">
+			<Alert />
 			<h1 className="large text-primary">Create Your Profile</h1>
 			<p className="lead">
-				<FaUser />
-				Let&apos;s get some information to make your profile stand out
+				<FaUser /> Let&apos;s get some information to make your profile stand
+				out
 			</p>
 			<small>* = required field</small>
-			<form className="form">
+			<form className="form" onSubmit={handleFormSubmit}>
 				<div className="form-group">
-					<select name="status" value={status} onChange={handleInputChange}>
+					<select
+						name="status"
+						required
+						value={status}
+						onChange={handleInputChange}
+					>
 						<option value="0">* Select Professional Status</option>
 						<option value="Developer">Developer</option>
 						<option value="Junior Developer">Junior Developer</option>
@@ -103,7 +153,7 @@ export default function CreateProfile() {
 						onChange={handleInputChange}
 					/>
 					<small className="form-text">
-						City & state suggested (eg. Boston, MA)
+						City and state suggested (eg. Boston, MA)
 					</small>
 				</div>
 				<div className="form-group">
@@ -111,6 +161,7 @@ export default function CreateProfile() {
 						type="text"
 						placeholder="* Skills"
 						name="skills"
+						required
 						value={skills}
 						onChange={handleInputChange}
 					/>
@@ -133,7 +184,7 @@ export default function CreateProfile() {
 				</div>
 				<div className="form-group">
 					<textarea
-						placeholder="A short bio of yourself"
+						placeholder="Bio"
 						name="bio"
 						value={bio}
 						onChange={handleInputChange}
@@ -141,32 +192,72 @@ export default function CreateProfile() {
 					<small className="form-text">Tell us a little about yourself</small>
 				</div>
 				<div className="my-2">
-					<button type="button" className="btn btn-light">
+					<button
+						type="button"
+						className="btn btn-light"
+						onClick={handleToggleSocialLinks}
+					>
 						Add Social Network Links
 					</button>
 					<span>Optional</span>
 				</div>
-				<div className="form-group social-input">
-					<i className="fab fa-twitter fa-2x"></i>
-					<input type="text" placeholder="Twitter URL" name="twitter" />
-				</div>
-				<div className="form-group social-input">
-					<i className="fab fa-facebook fa-2x"></i>
-					<input type="text" placeholder="Facebook URL" name="facebook" />
-				</div>
-				<div className="form-group social-input">
-					<i className="fab fa-youtube fa-2x"></i>
-					<input type="text" placeholder="YouTube URL" name="youtube" />
-				</div>
-				<div className="form-group social-input">
-					<i className="fab fa-linkedin fa-2x"></i>
-					<input type="text" placeholder="Linkedin URL" name="linkedin" />
-				</div>
-				<div className="form-group social-input">
-					<i className="fab fa-instagram fa-2x"></i>
-					<input type="text" placeholder="Instagram URL" name="instagram" />
-				</div>
-				<input type="submit" className="btn btn-primary my-1" />
+				{socialInputs && (
+					<>
+						<div className="form-group social-input">
+							<FaTwitter size={30} />
+							<input
+								type="text"
+								placeholder="Twitter URL"
+								name="twitter"
+								value={twitter}
+								onChange={handleInputChange}
+							/>
+						</div>
+						<div className="form-group social-input">
+							<FaFacebook size={30} />
+							<input
+								type="text"
+								placeholder="Facebook URL"
+								name="facebook"
+								value={facebook}
+								onChange={handleInputChange}
+							/>
+						</div>
+						<div className="form-group social-input">
+							<FaYoutube size={30} />
+							<input
+								type="text"
+								placeholder="YouTube URL"
+								name="youtube"
+								value={youtube}
+								onChange={handleInputChange}
+							/>
+						</div>
+						<div className="form-group social-input">
+							<FaLinkedin size={30} />
+							<input
+								type="text"
+								placeholder="Linkedin URL"
+								name="linkedin"
+								value={linkedin}
+								onChange={handleInputChange}
+							/>
+						</div>
+						<div className="form-group social-input">
+							<FaInstagram size={30} />
+							<input
+								type="text"
+								placeholder="Instagram URL"
+								name="instagram"
+								value={instagram}
+								onChange={handleInputChange}
+							/>
+						</div>
+					</>
+				)}
+				<button type="submit" className="btn btn-primary my-1">
+					Save Profile
+				</button>
 				<Link to="/dashboard" className="btn btn-light my-1">
 					Go Back
 				</Link>

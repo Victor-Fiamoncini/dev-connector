@@ -1,5 +1,5 @@
 export default {
-	profile: {},
+	profile: null,
 	profiles: [],
 	repos: [],
 	loading: false,

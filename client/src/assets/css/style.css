@@ -12,7 +12,7 @@
 	outline-color: var(--primary-color);
 }
 body {
-	font-family: Raleway, sans-serif;
+	font-family: Raleway, Arial, sans-serif !important;
 	font-size: 1rem;
 	line-height: 1.6;
 	background-color: #fff;
@@ -21,17 +21,11 @@ body {
 body::-webkit-scrollbar {
   width: 10px;
 }
-
 body::-webkit-scrollbar-track {
   background: #fafafa;
 }
-
 body::-webkit-scrollbar-thumb {
   background: var(--primary-color);
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: var(--dark-color);
 }
 a {
 	color: var(--primary-color);
@@ -235,17 +229,22 @@ img {
 	padding: 0.4rem;
 	font-size: 1.2rem;
 	border: 1px solid #ccc;
+	font-family: Raleway, Arial, sans-serif !important;
 }
 .form input[type="submit"],
+select {
+	cursor: pointer;
+}
 button {
 	font: inherit;
 }
 .form .social-input {
 	display: flex;
+	align-items: center;
 }
-.form .social-input i {
-	padding: 0.5rem;
-	width: 4rem;
+.form .social-input svg {
+	display: inline-block;
+	margin-right: 10px;
 }
 .form .social-input i.fa-twitter {
 	color: #38a1f3;

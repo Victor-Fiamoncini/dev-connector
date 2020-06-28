@@ -20,7 +20,7 @@ export default (state = initialState, { payload, type }) => {
 		case ProfileTypes.CLEAR_PROFILE:
 			return {
 				...state,
-				profile: {},
+				profile: null,
 				repos: [],
 				loading: false,
 			}
