@@ -9,3 +9,11 @@ export const storeOrUpdateProfile = (formData, history) => ({
 		history,
 	},
 })
+
+export const storeExperience = (formData, history) => ({
+	type: ProfileTypes.ASYNC_STORE_EXPERIENCE,
+	payload: {
+		formData,
+		history,
+	},
+})

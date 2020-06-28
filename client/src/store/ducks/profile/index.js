@@ -4,6 +4,9 @@ import ProfileTypes from './types'
 export default (state = initialState, { payload, type }) => {
 	switch (type) {
 		case ProfileTypes.GET_PROFILE:
+		case ProfileTypes.STORE_PROFILE:
+		case ProfileTypes.STORE_EXPERIENCE:
+		case ProfileTypes.STORE_EDUCATION:
 			return {
 				...state,
 				profile: payload,
@@ -11,6 +14,9 @@ export default (state = initialState, { payload, type }) => {
 			}
 
 		case ProfileTypes.GET_PROFILE_ERROR:
+		case ProfileTypes.STORE_PROFILE_ERROR:
+		case ProfileTypes.STORE_EXPERIENCE_ERROR:
+		case ProfileTypes.STORE_EDUCATION_ERROR:
 			return {
 				...state,
 				error: payload,
