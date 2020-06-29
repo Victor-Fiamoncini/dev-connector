@@ -68,5 +68,14 @@ router.delete(
 	'/profiles/experience/:id',
 	middlewares.async(controllers.ProfileController.destroyExperience)
 )
+router.put(
+	'/profiles/education',
+	validators.ProfileValidator.storeEducation,
+	middlewares.async(controllers.ProfileController.storeEducation)
+)
+router.delete(
+	'/profiles/education/:id',
+	middlewares.async(controllers.ProfileController.destroyEducation)
+)
 
 export default router

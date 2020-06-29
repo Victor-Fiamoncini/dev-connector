@@ -118,6 +118,56 @@ class ProfileController {
 
 		return res.status(200).json({ success: 'Experience deleted successfully' })
 	}
+
+	async storeEducation(req, res) {
+		const {
+			school,
+			degree,
+			fieldofstudy,
+			from,
+			to,
+			current,
+			description,
+		} = req.body
+
+		const profile = await Profile.findOne({ user: req.userId })
+
+		if (!profile) {
+			return res.status(404).json({ error: 'Profile not found' })
+		}
+
+		profile.education.unshift({
+			school,
+			degree,
+			fieldofstudy,
+			from,
+			to,
+			current,
+			description,
+		})
+
+		await profile.save()
+
+		return res.status(200).json(profile)
+	}
+
+	async destroyEducation(req, res) {
+		const profile = await Profile.findOne({ user: req.userId })
+
+		if (!profile) {
+			return res.status(404).json({ error: 'Profile not found' })
+		}
+
+		const indexToRemove = profile.education
+			.map(education => education.id)
+			.indexOf(req.params.id)
+
+		profile.education.splice(indexToRemove, 1)
+
+		await profile.save()
+
+		return res.status(200).json({ success: 'Education deleted successfully' })
+	}
 }
 
 export default new ProfileController()
