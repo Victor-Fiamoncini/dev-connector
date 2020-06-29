@@ -39,6 +39,14 @@ router.get(
 )
 
 /**
+ * Other public routes
+ */
+router.get(
+	'/github/:username',
+	middlewares.async(controllers.ProfileController.getUserRepos)
+)
+
+/**
  * Private routes
  */
 router.use(middlewares.auth)

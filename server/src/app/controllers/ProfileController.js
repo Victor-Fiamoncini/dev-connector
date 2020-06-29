@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { Profile, User } from '../models'
 
 class ProfileController {
@@ -112,8 +113,11 @@ class ProfileController {
 			.map(experience => experience.id)
 			.indexOf(req.params.id)
 
-		profile.experience.splice(indexToRemove, 1)
+		if (indexToRemove === -1 || indexToRemove === null) {
+			return res.status(404).json({ error: 'Experience not found' })
+		}
 
+		profile.experience.splice(indexToRemove, 1)
 		await profile.save()
 
 		return res.status(200).json({ success: 'Experience deleted successfully' })
@@ -162,11 +166,25 @@ class ProfileController {
 			.map(education => education.id)
 			.indexOf(req.params.id)
 
-		profile.education.splice(indexToRemove, 1)
+		if (indexToRemove === -1 || indexToRemove === null) {
+			return res.status(404).json({ error: 'Education not found' })
+		}
 
+		profile.education.splice(indexToRemove, 1)
 		await profile.save()
 
 		return res.status(200).json({ success: 'Education deleted successfully' })
+	}
+
+	async getUserRepos(req, res) {
+		const { username } = req.params
+		const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env
+
+		const { data } = await axios.get(
+			`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${GITHUB_CLIENT_ID}&client_secret=${GITHUB_CLIENT_SECRET}`
+		)
+
+		return res.status(200).json(data)
 	}
 }
 
