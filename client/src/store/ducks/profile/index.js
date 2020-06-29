@@ -5,11 +5,29 @@ export default (state = initialState, { payload, type }) => {
 	switch (type) {
 		case ProfileTypes.GET_PROFILE:
 		case ProfileTypes.STORE_PROFILE:
-		case ProfileTypes.STORE_EXPERIENCE:
-		case ProfileTypes.STORE_EDUCATION:
 			return {
 				...state,
 				profile: payload,
+				loading: false,
+			}
+
+		case ProfileTypes.STORE_EXPERIENCE:
+			return {
+				...state,
+				profile: {
+					...state.profile,
+					experience: payload,
+				},
+				loading: false,
+			}
+
+		case ProfileTypes.STORE_EDUCATION:
+			return {
+				...state,
+				profile: {
+					...state.profile,
+					education: payload,
+				},
 				loading: false,
 			}
 
