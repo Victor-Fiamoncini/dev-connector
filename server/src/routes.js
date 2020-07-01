@@ -100,5 +100,13 @@ router.delete(
 	'/posts/:id',
 	middlewares.async(controllers.PostController.destroy)
 )
+router.put(
+	'/posts/like/:id',
+	middlewares.async(controllers.PostController.like)
+)
+router.put(
+	'/posts/unlike/:id',
+	middlewares.async(controllers.PostController.unlike)
+)
 
 export default router

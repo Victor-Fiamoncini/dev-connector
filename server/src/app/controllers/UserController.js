@@ -1,9 +1,7 @@
 import { User } from '../models'
-import gravatar from 'gravatar'
+import { url } from 'gravatar'
 
 class UserController {
-	async show(req, res) {}
-
 	async store(req, res) {
 		const { name, email, password } = req.body
 
@@ -12,7 +10,7 @@ class UserController {
 			return res.status(400).json({ error: 'User already exists' })
 		}
 
-		const avatar = gravatar.url(email, {
+		const avatar = url(email, {
 			s: '200',
 			r: 'pg',
 			d: 'mm',
@@ -26,10 +24,6 @@ class UserController {
 			token: user.getSignedJwtToken(),
 		})
 	}
-
-	async update(req, res) {}
-
-	async destroy(req, res) {}
 }
 
 export default new UserController()
