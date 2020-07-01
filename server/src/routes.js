@@ -86,4 +86,19 @@ router.delete(
 	middlewares.async(controllers.ProfileController.destroyEducation)
 )
 
+/**
+ * Private posts
+ */
+router.get('/posts', middlewares.async(controllers.PostController.index))
+router.get('/posts/:id', middlewares.async(controllers.PostController.show))
+router.post(
+	'/posts',
+	validators.PostValidator.store,
+	middlewares.async(controllers.PostController.store)
+)
+router.delete(
+	'/posts/:id',
+	middlewares.async(controllers.PostController.destroy)
+)
+
 export default router

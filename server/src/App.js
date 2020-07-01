@@ -34,7 +34,7 @@ export default class App {
 
 		if (NODE_ENV === 'production') {
 			this.express.use(cors({ origin: CLIENT_HOST }))
-		} else if (NODE_ENV === 'development' || NODE_ENV === 'test') {
+		} else {
 			this.express.use(cors({ origin: '*' }))
 		}
 

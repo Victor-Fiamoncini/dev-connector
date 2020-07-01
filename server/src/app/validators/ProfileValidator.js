@@ -24,7 +24,7 @@ class ProfileValidator {
 			location: Joi.string().allow('', null).default(''),
 			from: Joi.date().required(),
 			to: Joi.date().allow('', null).default(''),
-			current: Joi.boolean().required(),
+			current: Joi.boolean().default(false),
 			description: Joi.string().allow('', null).default(''),
 		})
 

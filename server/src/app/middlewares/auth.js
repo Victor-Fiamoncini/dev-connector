@@ -4,19 +4,19 @@ export default (req, res, next) => {
 	const { authorization } = req.headers
 
 	if (!authorization) {
-		return res.status(401).json({ error: 'no authorization provided' })
+		return res.status(401).json({ error: 'No authorization provided' })
 	}
 
 	const parts = authorization.split(' ')
 
 	if (parts.length !== 2) {
-		return res.status(401).json({ error: 'invalid token' })
+		return res.status(401).json({ error: 'Invalid token' })
 	}
 
 	const [scheme, token] = parts
 
 	if (!/^Bearer$/i.test(scheme)) {
-		return res.status(401).json({ error: 'invalid token' })
+		return res.status(401).json({ error: 'Invalid token' })
 	}
 
 	try {
@@ -25,6 +25,6 @@ export default (req, res, next) => {
 		req.userId = String(id)
 		return next()
 	} catch (err) {
-		return res.status(401).json({ error: 'unauthorized' })
+		return res.status(401).json({ error: 'Unauthorized' })
 	}
 }

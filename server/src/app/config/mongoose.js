@@ -11,8 +11,9 @@ export default async () => {
 			useFindAndModify: false,
 		})
 
-		console.log('Connected to mongodb')
+		console.log('Connected to mongodb ')
 	} catch (err) {
-		console.log('Error to connect mongodb')
+		console.log('Error to connect in mongodb')
+		process.exit(1)
 	}
 }
