@@ -7,7 +7,7 @@ import {
 	FaSignInAlt,
 	FaUser,
 	FaUserPlus,
-	FaUsers,
+	FaIdCard,
 } from 'react-icons/fa'
 
 import { userLogout } from '../../../store/ducks/session/actions'
@@ -39,6 +39,12 @@ export default function Navbar() {
 									</Link>
 								</li>
 								<li>
+									<Link to="/profiles" className="icon-link">
+										<FaIdCard />
+										<span className="hide-sm">Developers</span>
+									</Link>
+								</li>
+								<li>
 									<Link
 										to="/"
 										className="icon-link"
@@ -52,21 +58,21 @@ export default function Navbar() {
 						) : (
 							<ul>
 								<li>
-									<Link to="/" className="icon-link">
-										<FaUsers />
-										<span>Developers</span>
-									</Link>
-								</li>
-								<li>
-									<Link to="/register" className="icon-link">
-										<FaUserPlus />
-										<span>Register</span>
+									<Link to="/profiles" className="icon-link">
+										<FaIdCard />
+										<span className="hide-sm">Developers</span>
 									</Link>
 								</li>
 								<li>
 									<Link to="/login" className="icon-link">
 										<FaSignInAlt />
 										<span>Login</span>
+									</Link>
+								</li>
+								<li>
+									<Link to="/register" className="icon-link">
+										<FaUserPlus />
+										<span>Register</span>
 									</Link>
 								</li>
 							</ul>

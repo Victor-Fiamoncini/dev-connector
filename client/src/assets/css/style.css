@@ -494,4 +494,7 @@ button {
 .dash-buttons {
 	display: flex;
 }
-
+.text-left {
+	text-align: left;
+	justify-content: flex-start;
+}

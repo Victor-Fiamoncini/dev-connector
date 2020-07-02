@@ -11,6 +11,7 @@ import CreateProfile from './components/pages/CreateProfile'
 import EditProfile from './components/pages/EditProfile'
 import AddExperience from './components/pages/AddExperience'
 import AddEducation from './components/pages/AddEducation'
+import Profiles from './components/pages/Profiles'
 
 const Router = () => (
 	<BrowserRouter>
@@ -24,6 +25,7 @@ const Router = () => (
 			<PrivateRoute exact path="/edit-profile" component={EditProfile} />
 			<PrivateRoute exact path="/add-experience" component={AddExperience} />
 			<PrivateRoute exact path="/add-education" component={AddEducation} />
+			<Route exact path="/profiles" component={Profiles} />
 		</Switch>
 	</BrowserRouter>
 )
