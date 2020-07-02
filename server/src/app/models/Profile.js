@@ -112,4 +112,22 @@ const ProfileSchema = new Schema(
 	}
 )
 
+ProfileSchema.post('find', function (profiles, next) {
+	profiles = profiles.map(profile => {
+		if (profile.skills.length) {
+			profile.skills = profile.skills.join(', ')
+		}
+	})
+
+	return next()
+})
+
+ProfileSchema.post('findOne', function (profile, next) {
+	if (profile.skills.length) {
+		profile.skills = profile.skills.join(', ')
+	}
+
+	return next()
+})
+
 export default model('Profile', ProfileSchema)
