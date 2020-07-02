@@ -3,6 +3,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects'
 
 import api from '../../../services/api'
 import AlertTypes from '../alert/types'
+import SessionTypes from '../session/types'
 
 export function* asyncGetProfile() {
 	yield put({ type: ProfileTypes.SET_LOADING })
@@ -112,11 +113,86 @@ export function* asyncStoreEducation({ payload }) {
 	}
 }
 
+export function* asyncDestroyExperience({ payload }) {
+	const { id } = payload
+
+	try {
+		yield call(api.delete, `/profiles/experience/${id}`)
+
+		yield put({ type: ProfileTypes.DESTROY_EXPERIENCE, payload: id })
+		yield put({
+			type: AlertTypes.ASYNC_SET_ALERT,
+			payload: { message: 'Experience deleted!', type: 'success' },
+		})
+	} catch (err) {
+		yield put({
+			type: AlertTypes.ASYNC_SET_ALERT,
+			payload: { message: 'Failed to delete experience', type: 'danger' },
+		})
+		yield put({
+			type: ProfileTypes.DESTROY_EXPERIENCE_ERROR,
+			payload: {
+				message: err.response.data.error,
+				status: err.response.status,
+			},
+		})
+	}
+}
+
+export function* asyncDestroyEducation({ payload }) {
+	const { id } = payload
+
+	try {
+		yield call(api.delete, `/profiles/education/${id}`)
+
+		yield put({ type: ProfileTypes.DESTROY_EDUCATION, payload: id })
+		yield put({
+			type: AlertTypes.ASYNC_SET_ALERT,
+			payload: { message: 'Education deleted!', type: 'success' },
+		})
+	} catch (err) {
+		yield put({
+			type: AlertTypes.ASYNC_SET_ALERT,
+			payload: { message: 'Failed to delete education', type: 'danger' },
+		})
+		yield put({
+			type: ProfileTypes.DESTROY_EDUCATION_ERROR,
+			payload: {
+				message: err.response.data.error,
+				status: err.response.status,
+			},
+		})
+	}
+}
+
+export function* asyncDestroyAccount() {
+	if (window.confirm('Are you sure? This can NOT be undone')) {
+		try {
+			yield call(api.delete, '/profiles')
+
+			yield put({ type: ProfileTypes.CLEAR_PROFILE })
+			yield put({ type: SessionTypes.USER_LOGOUT })
+			yield put({
+				type: AlertTypes.ASYNC_SET_ALERT,
+				payload: { message: 'Your account has been deleted', type: 'success' },
+			})
+		} catch (err) {
+			yield put({
+				type: AlertTypes.ASYNC_SET_ALERT,
+				payload: { message: 'Failed to delete your account', type: 'danger' },
+			})
+		}
+	}
+}
+
 export default function* root() {
 	yield all([
 		takeLatest(ProfileTypes.ASYNC_GET_PROFILE, asyncGetProfile),
 		takeLatest(ProfileTypes.ASYNC_STORE_PROFILE, asyncStoreOrUpdateProfile),
 		takeLatest(ProfileTypes.ASYNC_STORE_EXPERIENCE, asyncStoreExperience),
 		takeLatest(ProfileTypes.ASYNC_STORE_EDUCATION, asyncStoreEducation),
+		takeLatest(ProfileTypes.ASYNC_DESTROY_EXPERIENCE, asyncDestroyExperience),
+		takeLatest(ProfileTypes.ASYNC_DESTROY_EDUCATION, asyncDestroyEducation),
+		takeLatest(ProfileTypes.ASYNC_DESTROY_ACCOUNT, asyncDestroyAccount),
 	])
 }

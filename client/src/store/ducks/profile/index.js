@@ -31,10 +31,36 @@ export default (state = initialState, { payload, type }) => {
 				loading: false,
 			}
 
+		case ProfileTypes.DESTROY_EXPERIENCE:
+			return {
+				...state,
+				profile: {
+					...state.profile,
+					experience: state.profile.experience.filter(
+						experience => experience._id !== payload
+					),
+				},
+				loading: false,
+			}
+
+		case ProfileTypes.DESTROY_EDUCATION:
+			return {
+				...state,
+				profile: {
+					...state.profile,
+					education: state.profile.education.filter(
+						education => education._id !== payload
+					),
+				},
+				loading: false,
+			}
+
 		case ProfileTypes.GET_PROFILE_ERROR:
 		case ProfileTypes.STORE_PROFILE_ERROR:
 		case ProfileTypes.STORE_EXPERIENCE_ERROR:
 		case ProfileTypes.STORE_EDUCATION_ERROR:
+		case ProfileTypes.DESTROY_EXPERIENCE_ERROR:
+		case ProfileTypes.DESTROY_EDUCATION_ERROR:
 			return {
 				...state,
 				error: payload,

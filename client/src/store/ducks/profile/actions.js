@@ -25,3 +25,21 @@ export const storeEducation = (formData, history) => ({
 		history,
 	},
 })
+
+export const destroyExperience = id => ({
+	type: ProfileTypes.ASYNC_DESTROY_EXPERIENCE,
+	payload: {
+		id,
+	},
+})
+
+export const destroyEducation = id => ({
+	type: ProfileTypes.ASYNC_DESTROY_EDUCATION,
+	payload: {
+		id,
+	},
+})
+
+export const destroyAccount = () => ({
+	type: ProfileTypes.ASYNC_DESTROY_ACCOUNT,
+})

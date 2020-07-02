@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { FaUser } from 'react-icons/fa'
+import { FaUser, FaUserMinus } from 'react-icons/fa'
 
 import Spinner from '../../layout/Spinner'
 import Alert from '../../layout/Alert'
@@ -9,13 +9,20 @@ import DashboardActions from '../../layout/DashboardActions'
 import Experiences from '../../layout/Experiences'
 import Educations from '../../layout/Educations'
 
-import { getProfile } from '../../../store/ducks/profile/actions'
+import {
+	getProfile,
+	destroyAccount,
+} from '../../../store/ducks/profile/actions'
 
 export default function Dashboard() {
 	const dispatch = useDispatch()
 
 	const { user } = useSelector(state => state.session)
 	const { loading, profile } = useSelector(state => state.profile)
+
+	function handleButtonClick() {
+		dispatch(destroyAccount())
+	}
 
 	useEffect(() => {
 		dispatch(getProfile())
@@ -42,6 +49,15 @@ export default function Dashboard() {
 					<DashboardActions />
 					<Experiences experiences={profile.experience} />
 					<Educations educations={profile.education} />
+					<div className="my-2">
+						<h2 className="my-2">Account Options</h2>
+						<button
+							className="btn btn-danger icon-link"
+							onClick={handleButtonClick}
+						>
+							<FaUserMinus /> Delete My Account
+						</button>
+					</div>
 				</>
 			)}
 		</section>
