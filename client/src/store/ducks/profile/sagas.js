@@ -4,7 +4,6 @@ import { all, call, put, takeLatest } from 'redux-saga/effects'
 import api from '../../../services/api'
 import AlertTypes from '../alert/types'
 import SessionTypes from '../session/types'
-import { getGithubRepos } from './actions'
 
 export function* asyncGetProfile() {
 	yield put({ type: ProfileTypes.SET_LOADING })
@@ -12,7 +11,7 @@ export function* asyncGetProfile() {
 	try {
 		const { data } = yield call(api.get, '/profiles/user/me')
 
-		if (data.skills.length > 0) {
+		if (data.skills.length || typeof data.skills === Array) {
 			data.skills = data.skills.join(', ')
 		} else {
 			data.skills = ''
@@ -32,6 +31,10 @@ export function* asyncGetProfile() {
 
 export function* asyncStoreOrUpdateProfile({ payload }) {
 	const { formData, history } = payload
+
+	if (Array.isArray(formData.skills)) {
+		formData.skills = formData.skills.join(', ')
+	}
 
 	try {
 		const { data } = yield call(api.post, '/profiles', formData)
@@ -199,7 +202,17 @@ export function* asyncGetProfiles() {
 	try {
 		const { data } = yield call(api.get, '/profiles')
 
-		yield put({ type: ProfileTypes.GET_PROFILES, payload: data })
+		const serializedProfiles = data.map(profile => {
+			if (profile.skills.length || typeof profile.skills === Array) {
+				profile.skills = profile.skills.join(', ')
+			} else {
+				profile.skills = ''
+			}
+
+			return profile
+		})
+
+		yield put({ type: ProfileTypes.GET_PROFILES, payload: serializedProfiles })
 	} catch (err) {
 		yield put({
 			type: ProfileTypes.GET_PROFILES_ERROR,

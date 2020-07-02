@@ -110,7 +110,7 @@ export default function EditProfile() {
 			youtube: profile.social.youtube,
 			instagram: profile.social.instagram,
 		})
-	}, [])
+	}, [getProfile])
 
 	return (
 		<section className="container">
