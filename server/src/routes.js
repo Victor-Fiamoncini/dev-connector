@@ -108,5 +108,14 @@ router.put(
 	'/posts/unlike/:id',
 	middlewares.async(controllers.PostController.unlike)
 )
+router.post(
+	'/posts/comment/:id',
+	validators.PostValidator.storeComment,
+	middlewares.async(controllers.PostController.comment)
+)
+router.delete(
+	'/posts/comment/:id/:comment_id',
+	middlewares.async(controllers.PostController.destroyComment)
+)
 
 export default router
