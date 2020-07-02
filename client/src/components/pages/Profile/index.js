@@ -7,6 +7,8 @@ import { getProfileById } from '../../../store/ducks/profile/actions'
 import Spinner from '../../layout/Spinner'
 import ProfileTop from './ProfileTop'
 import ProfileAbout from './ProfileAbout'
+import ProfileExperience from './ProfileExperience'
+import ProfileEducation from './ProfileEducation'
 
 export default function Profile() {
 	const dispatch = useDispatch()
@@ -50,6 +52,25 @@ export default function Profile() {
 							skills={profile.skills}
 							user={profile.user}
 						/>
+						{profile.experience.length > 0 && (
+							<div className="profile-exp bg-white p-2">
+								<h2 className="text-primary">Experience</h2>
+								{profile.experience.map(experience => (
+									<ProfileExperience
+										key={experience._id}
+										experience={experience}
+									/>
+								))}
+							</div>
+						)}
+						{profile.education.length > 0 && (
+							<div className="profile-edu bg-white p-2">
+								<h2 className="text-primary">Education</h2>
+								{profile.education.map(education => (
+									<ProfileEducation key={education._id} education={education} />
+								))}
+							</div>
+						)}
 					</div>
 				</section>
 			)}

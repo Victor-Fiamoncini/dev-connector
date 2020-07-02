@@ -14,8 +14,8 @@ const ProfileAbout = ({ bio, skills, user }) => (
 		<h2 className="text-primary">Skill Set</h2>
 		{skills.length && (
 			<div className="skills">
-				{skills.map((skill, index) => (
-					<div key={index} className="p-1">
+				{skills[0].split(',').map((skill, index) => (
+					<div key={index} className="p-1 icon-link">
 						<FaCheck /> {skill}
 					</div>
 				))}
