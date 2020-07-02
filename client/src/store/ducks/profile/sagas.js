@@ -4,6 +4,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects'
 import api from '../../../services/api'
 import AlertTypes from '../alert/types'
 import SessionTypes from '../session/types'
+import { getGithubRepos } from './actions'
 
 export function* asyncGetProfile() {
 	yield put({ type: ProfileTypes.SET_LOADING })
@@ -181,7 +182,70 @@ export function* asyncDestroyAccount() {
 				type: AlertTypes.ASYNC_SET_ALERT,
 				payload: { message: 'Failed to delete your account', type: 'danger' },
 			})
+			yield put({
+				type: ProfileTypes.DESTROY_ACCOUNT_ERROR,
+				payload: {
+					message: err.response.data.error,
+					status: err.response.status,
+				},
+			})
 		}
+	}
+}
+
+export function* asyncGetProfiles() {
+	yield put({ type: ProfileTypes.SET_LOADING })
+
+	try {
+		const { data } = yield call(api.get, '/profiles')
+
+		yield put({ type: ProfileTypes.GET_PROFILES, payload: data })
+	} catch (err) {
+		yield put({
+			type: ProfileTypes.GET_PROFILES_ERROR,
+			payload: {
+				message: err.response.data.error,
+				status: err.response.status,
+			},
+		})
+	}
+}
+
+export function* asyncGetProfileById({ payload }) {
+	const { id } = payload
+	yield put({ type: ProfileTypes.SET_LOADING })
+
+	try {
+		const { data } = yield call(api.get, `/profiles/${id}`)
+
+		yield put({ type: ProfileTypes.GET_PROFILE, payload: data })
+	} catch (err) {
+		yield put({
+			type: ProfileTypes.GET_PROFILE_ERROR,
+			payload: {
+				message: err.response.data.error,
+				status: err.response.status,
+			},
+		})
+	}
+}
+
+export function* asyncGetGithubRepos({ payload }) {
+	const { username } = payload
+	yield put({ type: ProfileTypes.SET_LOADING })
+
+	try {
+		const { data } = yield call(api.get, `/github/${username}`)
+
+		yield put({ type: ProfileTypes.GET_PROFILE, payload: data })
+	} catch (err) {
+		yield put({
+			type: ProfileTypes.GET_REPOS_ERROR,
+			payload: {
+				message: err.response.data.error,
+				status: err.response.status,
+			},
+		})
 	}
 }
 
@@ -194,5 +258,8 @@ export default function* root() {
 		takeLatest(ProfileTypes.ASYNC_DESTROY_EXPERIENCE, asyncDestroyExperience),
 		takeLatest(ProfileTypes.ASYNC_DESTROY_EDUCATION, asyncDestroyEducation),
 		takeLatest(ProfileTypes.ASYNC_DESTROY_ACCOUNT, asyncDestroyAccount),
+		takeLatest(ProfileTypes.ASYNC_GET_PROFILES, asyncGetProfiles),
+		takeLatest(ProfileTypes.ASYNC_GET_PROFILE_BY_ID, asyncGetProfileById),
+		takeLatest(ProfileTypes.ASYNC_GET_REPOS, asyncGetGithubRepos),
 	])
 }

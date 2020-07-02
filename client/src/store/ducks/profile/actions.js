@@ -28,18 +28,26 @@ export const storeEducation = (formData, history) => ({
 
 export const destroyExperience = id => ({
 	type: ProfileTypes.ASYNC_DESTROY_EXPERIENCE,
-	payload: {
-		id,
-	},
+	payload: { id },
 })
 
 export const destroyEducation = id => ({
 	type: ProfileTypes.ASYNC_DESTROY_EDUCATION,
-	payload: {
-		id,
-	},
+	payload: { id },
 })
 
 export const destroyAccount = () => ({
 	type: ProfileTypes.ASYNC_DESTROY_ACCOUNT,
+})
+
+export const getProfiles = () => ({ type: ProfileTypes.ASYNC_GET_PROFILES })
+
+export const getProfileById = id => ({
+	type: ProfileTypes.ASYNC_GET_PROFILE_BY_ID,
+	payload: { id },
+})
+
+export const getGithubRepos = username => ({
+	type: ProfileTypes.ASYNC_GET_REPOS,
+	payload: { username },
 })
