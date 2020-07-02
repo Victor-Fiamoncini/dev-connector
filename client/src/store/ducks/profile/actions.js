@@ -17,3 +17,11 @@ export const storeExperience = (formData, history) => ({
 		history,
 	},
 })
+
+export const storeEducation = (formData, history) => ({
+	type: ProfileTypes.ASYNC_STORE_EDUCATION,
+	payload: {
+		formData,
+		history,
+	},
+})

@@ -25,7 +25,7 @@ export function* asyncUserStore({ payload }) {
 		yield put({
 			type: AlertTypes.ASYNC_SET_ALERT,
 			payload: {
-				message: err.response.data.error,
+				message: 'Invalid credentials provided',
 				type: 'danger',
 			},
 		})
@@ -50,7 +50,7 @@ export function* asyncUserLogin({ payload }) {
 		yield put({
 			type: AlertTypes.ASYNC_SET_ALERT,
 			payload: {
-				message: err.response.data.error,
+				message: 'Invalid credentials provided',
 				type: 'danger',
 			},
 		})
@@ -66,10 +66,7 @@ export function* asyncLoadSession() {
 		try {
 			const { data } = yield call(api.get, '/sessions')
 
-			yield put({
-				type: SessionTypes.LOAD_SESSION,
-				payload: data,
-			})
+			yield put({ type: SessionTypes.LOAD_SESSION, payload: data })
 		} catch (err) {
 			yield put({ type: SessionTypes.LOAD_SESSION_ERROR })
 		}

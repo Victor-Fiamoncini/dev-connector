@@ -6,6 +6,9 @@ import { FaUser } from 'react-icons/fa'
 import Spinner from '../../layout/Spinner'
 import Alert from '../../layout/Alert'
 import DashboardActions from '../../layout/DashboardActions'
+import Experiences from '../../layout/Experiences'
+import Educations from '../../layout/Educations'
+
 import { getProfile } from '../../../store/ducks/profile/actions'
 
 export default function Dashboard() {
@@ -35,7 +38,11 @@ export default function Dashboard() {
 					</Link>
 				</>
 			) : (
-				<DashboardActions />
+				<>
+					<DashboardActions />
+					<Experiences experiences={profile.experience} />
+					<Educations educations={profile.education} />
+				</>
 			)}
 		</section>
 	)

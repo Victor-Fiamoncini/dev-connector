@@ -1,28 +1,36 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { FaCodeBranch } from 'react-icons/fa'
 
 import Alert from '../../layout/Alert'
 import { setAlert } from '../../../store/ducks/alert/actions'
-import { storeExperience } from '../../../store/ducks/profile/actions'
+import { storeEducation } from '../../../store/ducks/profile/actions'
 
-export default function AddExperience() {
+export default function AddEducation() {
 	const dispatch = useDispatch()
 	const history = useHistory()
 
 	const [disableTo, setDisableTo] = useState(false)
 	const [formData, setFormData] = useState({
-		company: '',
-		title: '',
-		location: '',
+		school: '',
+		degree: '',
+		fieldofstudy: '',
 		from: '',
 		to: '',
 		current: false,
 		description: '',
 	})
 
-	const { company, title, location, from, to, current, description } = formData
+	const {
+		school,
+		degree,
+		fieldofstudy,
+		from,
+		to,
+		current,
+		description,
+	} = formData
 
 	function handleInputChange(event) {
 		const { name, value } = event.target
@@ -39,20 +47,20 @@ export default function AddExperience() {
 	function handleFormSubmit(event) {
 		event.preventDefault()
 
-		if (!title || !company || !from) {
+		if (!school || !degree || !from) {
 			dispatch(setAlert('Please, fill all required fields', 'danger'))
 		} else {
-			dispatch(storeExperience(formData, history))
+			dispatch(storeEducation(formData, history))
 		}
 	}
 
 	return (
 		<section className="container">
 			<Alert />
-			<h1 className="large text-primary">Add An Experience</h1>
+			<h1 className="large text-primary">Add Your Education</h1>
 			<p className="lead">
-				<FaCodeBranch /> Add any developer/programming positions that you have
-				had in the past
+				<FaCodeBranch /> Add any school or bootcamp or lesson that you have
+				attended
 			</p>
 			<small>* = required field</small>
 			<form className="form" onSubmit={handleFormSubmit}>
@@ -60,9 +68,9 @@ export default function AddExperience() {
 					<input
 						required
 						type="text"
-						placeholder="* Job Title"
-						name="title"
-						value={title}
+						placeholder="* School"
+						name="school"
+						value={school}
 						onChange={handleInputChange}
 					/>
 				</div>
@@ -70,18 +78,18 @@ export default function AddExperience() {
 					<input
 						required
 						type="text"
-						placeholder="* Company"
-						name="company"
-						value={company}
+						placeholder="* Degree"
+						name="degree"
+						value={degree}
 						onChange={handleInputChange}
 					/>
 				</div>
 				<div className="form-group">
 					<input
 						type="text"
-						placeholder="Location"
-						name="location"
-						value={location}
+						placeholder="Field of Study"
+						name="fieldofstudy"
+						value={fieldofstudy}
 						onChange={handleInputChange}
 					/>
 				</div>
@@ -103,7 +111,7 @@ export default function AddExperience() {
 							value={current ? true : false}
 							onChange={handleCheckboxChange}
 						/>{' '}
-						Current Job
+						Current
 					</p>
 				</div>
 				<div className="form-group">
@@ -127,7 +135,7 @@ export default function AddExperience() {
 					></textarea>
 				</div>
 				<button type="submit" className="btn btn-primary my-1">
-					Add Experience
+					Add Education
 				</button>
 				<Link to="/dashboard" className="btn btn-light my-1">
 					Go Back

@@ -16,7 +16,7 @@ export default (state = initialState, { payload, type }) => {
 				...state,
 				profile: {
 					...state.profile,
-					experience: payload,
+					experience: [...state.profile.experience, payload],
 				},
 				loading: false,
 			}
@@ -26,7 +26,7 @@ export default (state = initialState, { payload, type }) => {
 				...state,
 				profile: {
 					...state.profile,
-					education: payload,
+					education: [...state.profile.education, payload],
 				},
 				loading: false,
 			}

@@ -10,11 +10,7 @@ export default function Register() {
 	const dispatch = useDispatch()
 	const { isAuthenticated } = useSelector(state => state.session)
 
-	const [formData, setFormData] = useState({
-		email: '',
-		password: '',
-	})
-
+	const [formData, setFormData] = useState({ email: '', password: '' })
 	const { email, password } = formData
 
 	function handleInputChange(event) {
@@ -33,7 +29,7 @@ export default function Register() {
 		return <Redirect to="/dashboard" />
 	} else {
 		return (
-			<section className="container">
+			<section className="container" style={{ maxWidth: '768px' }}>
 				<Alert />
 				<h1 className="large text-primary">Sign In</h1>
 				<p className="lead">

@@ -39,7 +39,7 @@ export default function Register() {
 		return <Redirect to="/dashboard" />
 	} else {
 		return (
-			<section className="container">
+			<section className="container" style={{ maxWidth: '768px' }}>
 				<Alert />
 				<h1 className="large text-primary">Sign Up</h1>
 				<p className="lead">

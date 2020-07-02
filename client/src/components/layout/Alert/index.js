@@ -9,7 +9,7 @@ export default function Alert() {
 		alerts.length > 0 &&
 		alerts.map(alert => (
 			<div key={alert.id} className={`alert alert-${alert.type}`}>
-				{alert.message}
+				<p>{alert.message}</p>
 			</div>
 		))
 	)
