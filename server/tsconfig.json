@@ -1,0 +1,27 @@
+
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+		"strict": true,
+		"allowJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"strictPropertyInitialization": false,
+		"rootDir": ".",
+		"outDir": "./dist",
+		"baseUrl": "./src",
+		"paths": {
+			"@domain/*": ["domain/*"],
+			"@infra/*": ["infra/*"],
+			"@main/*": ["main/*"],
+			"@presentation/*": ["presentation/*"],
+			"@shared/*": ["shared/*"],
+		}
+	},
+	"include": ["./src"],
+	"exclude": ["node_modules"]
+}

@@ -3,9 +3,9 @@ import helmet from 'helmet'
 import cors from 'cors'
 import morgan from 'morgan'
 
-import mongo from './app/config/mongoose'
+import mongo from './config/mongoose'
 import routes from './routes'
-import { error } from './app/middlewares'
+import { error } from './middlewares'
 
 export default class App {
 	constructor() {

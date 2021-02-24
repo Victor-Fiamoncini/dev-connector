@@ -1,8 +1,8 @@
 import { Router } from 'express'
 
-import * as controllers from './app/controllers'
-import * as middlewares from './app/middlewares'
-import * as validators from './app/validators'
+import * as controllers from './__old__/controllers'
+import * as middlewares from './__old__/middlewares'
+import * as validators from './__old__/validators'
 
 const router = Router()
 
