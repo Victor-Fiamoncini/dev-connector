@@ -1,4 +1,4 @@
-import { CreateUserRepository, CreateUserDTO } from '@data/repositories'
+import { CreateUserRepository, CreateUserDTO } from '@data/contracts'
 import { User } from '@domain/entities'
 import { UserAlreadyExistsError } from '@domain/errors'
 import { CreateUserUseCase } from '@domain/usecases'
