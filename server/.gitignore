@@ -13,4 +13,6 @@ env.js
 *.DS_Store
 *.sqlite
 
+.docker
+
 yarn-error.log

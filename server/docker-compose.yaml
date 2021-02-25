@@ -10,6 +10,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
-      MONGO_INITDB_DATABASE=test: ${MONGO_NAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
     ports:
-      - 27017:27017
+      - 27017:${MONGO_PORT}
+    volumes:
+      - ./.docker/dev_connector_mongo:/data/db
