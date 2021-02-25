@@ -1,7 +1,4 @@
-import express from 'express'
+import app from '@main/config/app'
+import env from '@main/config/env'
 
-const app = express()
-
-const PORT = 3333
-
-app.listen(PORT, () => console.log(`Server running at: ${PORT}`))
+app.listen(env.port, () => console.log(`Server running at: ${env.port}`))
