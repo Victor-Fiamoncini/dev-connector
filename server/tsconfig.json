@@ -12,7 +12,7 @@
 		"emitDecoratorMetadata": true,
 		"strictPropertyInitialization": false,
 		"rootDir": ".",
-		"outDir": "./dist",
+		"outDir": "./build",
 		"baseUrl": "./src",
 		"paths": {
 			"@domain/*": ["domain/*"],
