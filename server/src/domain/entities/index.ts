@@ -1,1 +1,1 @@
-export { default as User } from '@domain/entities/User'
+export * from '@domain/entities/User'

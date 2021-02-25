@@ -1,8 +1,11 @@
-import { CreateUserUseCaseDTO } from '@domain/dtos'
 import { User } from '@domain/entities'
 
-interface CreateUserUseCase {
-	store({ name, email, password }: CreateUserUseCaseDTO): Promise<User>
+interface CreateUserUseCaseDTO {
+	name: string
+	email: string
+	password: string
 }
 
-export default CreateUserUseCase
+export interface CreateUserUseCase {
+	createUser(userData: CreateUserUseCaseDTO): Promise<User>
+}

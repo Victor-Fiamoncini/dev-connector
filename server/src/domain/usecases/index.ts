@@ -1,1 +1,1 @@
-export { default as CreateUserUseCase } from '@domain/usecases/CreateUserUseCase'
+export * from '@domain/usecases/CreateUserUseCase'

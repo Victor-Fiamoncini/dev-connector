@@ -15,6 +15,7 @@
 		"outDir": "./build",
 		"baseUrl": "./src",
 		"paths": {
+			"@data/*": ["data/*"],
 			"@domain/*": ["domain/*"],
 			"@infra/*": ["infra/*"],
 			"@main/*": ["main/*"],
