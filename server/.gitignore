@@ -6,6 +6,8 @@ coverage/
 
 temp/uploads/*
 
+__old__
+
 env.js
 *.env
 *.DS_Store
