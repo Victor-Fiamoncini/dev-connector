@@ -10,8 +10,8 @@
     "node": "^12.20.0"
   },
   "scripts": {
-    "dev:server": "tsnd -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/main/main.ts",
-    "dev:debug": "tsnd --inspect -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/main/main.ts",
+    "dev:server": "tsnd -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/main/server.ts",
+    "dev:debug": "tsnd --inspect -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/main/server.ts",
     "build": "tsc"
   },
   "dependencies": {
@@ -25,8 +25,7 @@
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.20",
-    "morgan": "^1.10.0",
-    "youch": "^2.0.10"
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.0",

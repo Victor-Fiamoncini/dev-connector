@@ -3,10 +3,6 @@ export type HttpResponse<T = unknown> = {
 	data: T
 }
 
-export type HttpResquest<T = unknown> = {
-	body: T
-}
-
 export const serverError = (err: Error): HttpResponse<any> => ({
 	statusCode: 500,
 	data: err.stack,

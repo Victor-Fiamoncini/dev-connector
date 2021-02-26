@@ -6,8 +6,13 @@ import {
 	HttpResquest,
 	serverError,
 } from '@presentation/contracts'
-import { CreateUserDTO } from '@presentation/dtos'
 import { CreateUserViewModel } from '@presentation/view-models'
+
+interface CreateUserDTO {
+	name: string
+	email: string
+	password: string
+}
 
 export class CreateUserController implements Controller {
 	constructor(private readonly createUserUseCase: CreateUserUseCase) {}

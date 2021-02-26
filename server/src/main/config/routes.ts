@@ -1,7 +1,8 @@
+// import * as routes from '@main/routes'
 import { Application, Router } from 'express'
 import { readdirSync } from 'fs'
 
-function setupRoutes(app: Application): void {
+const setupRoutes = (app: Application): void => {
 	const router = Router()
 
 	app.use(router)
