@@ -4,6 +4,7 @@ import {
 	FindUserByEmailRepository,
 	AvatarGenerator,
 	HashGenerator,
+	TokenGenerator,
 } from '@data/contracts'
 import { User } from '@domain/entities'
 import { UserAlreadyExistsError } from '@domain/errors'
@@ -14,7 +15,8 @@ export class CreateUserService implements CreateUserUseCase {
 		private readonly createUserRepository: CreateUserRepository,
 		private readonly findUserByEmailRepository: FindUserByEmailRepository,
 		private readonly avatarGenerator: AvatarGenerator,
-		private readonly hashGenerator: HashGenerator
+		private readonly hashGenerator: HashGenerator,
+		private readonly tokenGenerator: TokenGenerator
 	) {}
 
 	async createUser({ name, email, password }: CreateUserDTO): Promise<User> {
@@ -28,13 +30,19 @@ export class CreateUserService implements CreateUserUseCase {
 
 		const avatar = await this.avatarGenerator.generateAvatar(email)
 
-		const hashedPassword = await this.hashGenerator.hash(password)
+		const hashedPassword = await this.hashGenerator.generateHash(password)
 
-		return this.createUserRepository.createUser({
+		const createdUser = await this.createUserRepository.createUser({
 			name,
 			email,
 			password: hashedPassword,
 			avatar,
 		})
+
+		const token = await this.tokenGenerator.generateToken({
+			id: createdUser.email,
+		})
+
+		return createdUser
 	}
 }
