@@ -1,3 +1,4 @@
+import { TokenGeneratorAdapter } from '@data/contracts'
 import { CreateUserUseCase } from '@domain/usecases'
 import {
 	Controller,
@@ -15,7 +16,10 @@ interface CreateUserDTO {
 }
 
 export class CreateUserController implements Controller {
-	constructor(private readonly createUserUseCase: CreateUserUseCase) {}
+	constructor(
+		private readonly createUserUseCase: CreateUserUseCase,
+		private readonly tokenGeneratorAdapter: TokenGeneratorAdapter
+	) {}
 
 	async handle(
 		httpRequest: HttpResquest<CreateUserDTO>
@@ -25,7 +29,11 @@ export class CreateUserController implements Controller {
 
 			const user = await this.createUserUseCase.createUser(body)
 
-			return created(user)
+			const token = await this.tokenGeneratorAdapter.generateToken({
+				id: user.id,
+			})
+
+			return created({ user, token })
 		} catch (err) {
 			return serverError(err)
 		}

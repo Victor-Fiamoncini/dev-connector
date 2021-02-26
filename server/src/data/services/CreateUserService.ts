@@ -2,9 +2,8 @@ import {
 	CreateUserRepository,
 	CreateUserDTO,
 	FindUserByEmailRepository,
-	AvatarGenerator,
-	HashGenerator,
-	TokenGenerator,
+	AvatarGeneratorAdapter,
+	HashGeneratorAdapter,
 } from '@data/contracts'
 import { User } from '@domain/entities'
 import { UserAlreadyExistsError } from '@domain/errors'
@@ -14,9 +13,8 @@ export class CreateUserService implements CreateUserUseCase {
 	constructor(
 		private readonly createUserRepository: CreateUserRepository,
 		private readonly findUserByEmailRepository: FindUserByEmailRepository,
-		private readonly avatarGenerator: AvatarGenerator,
-		private readonly hashGenerator: HashGenerator,
-		private readonly tokenGenerator: TokenGenerator
+		private readonly avatarGeneratorAdapter: AvatarGeneratorAdapter,
+		private readonly hashGeneratorAdapter: HashGeneratorAdapter
 	) {}
 
 	async createUser({ name, email, password }: CreateUserDTO): Promise<User> {
@@ -28,19 +26,17 @@ export class CreateUserService implements CreateUserUseCase {
 			throw new UserAlreadyExistsError()
 		}
 
-		const avatar = await this.avatarGenerator.generateAvatar(email)
+		const avatar = await this.avatarGeneratorAdapter.generateAvatar(email)
 
-		const hashedPassword = await this.hashGenerator.generateHash(password)
+		const hashedPassword = await this.hashGeneratorAdapter.generateHash(
+			password
+		)
 
 		const createdUser = await this.createUserRepository.createUser({
 			name,
 			email,
 			password: hashedPassword,
 			avatar,
-		})
-
-		const token = await this.tokenGenerator.generateToken({
-			id: createdUser.email,
 		})
 
 		return createdUser

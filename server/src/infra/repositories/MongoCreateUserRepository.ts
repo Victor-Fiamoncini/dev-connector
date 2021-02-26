@@ -6,9 +6,18 @@ export class MongoCreateUserRepository implements CreateUserRepository {
 	async createUser(userData: CreateUserDTO): Promise<UserDataModel> {
 		const createdUser = await UserMongoDataSource.create(userData)
 
-		const { email, name, password, avatar, createdAt, updatedAt } = createdUser
+		const {
+			id,
+			email,
+			name,
+			password,
+			avatar,
+			createdAt,
+			updatedAt,
+		} = createdUser
 
 		return {
+			id,
 			name,
 			email,
 			password,

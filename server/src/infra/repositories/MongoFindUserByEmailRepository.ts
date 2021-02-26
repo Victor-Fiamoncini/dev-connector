@@ -8,9 +8,10 @@ export class MongoFindUserByEmailRepository implements FindUserByEmailRepository
 		const user = await UserMongoDataSource.findOne({ email })
 
 		if (user) {
-			const { email, name, password, avatar, createdAt, updatedAt } = user
+			const { id,  email, name, password, avatar, createdAt, updatedAt } = user
 
 			return {
+				id,
 				name,
 				email,
 				password,

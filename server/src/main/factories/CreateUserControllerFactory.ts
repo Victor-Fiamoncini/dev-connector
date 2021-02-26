@@ -2,6 +2,7 @@ import { CreateUserService } from '@data/services'
 import {
 	BcryptHashGeneratorAdapter,
 	GravatarAvatarGeneratorAdapter,
+	JwtTokenGeneratorAdapter,
 } from '@infra/adapters'
 import {
 	MongoCreateUserRepository,
@@ -24,6 +25,8 @@ export class CreateUserControllerFactory {
 			hashGeneratorAdapter
 		)
 
-		return new CreateUserController(createUserService)
+		const tokenGeneratorAdapter = new JwtTokenGeneratorAdapter()
+
+		return new CreateUserController(createUserService, tokenGeneratorAdapter)
 	}
 }
