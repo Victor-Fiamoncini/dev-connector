@@ -2,6 +2,7 @@ import {
 	CreateUserRepository,
 	CreateUserDTO,
 	FindUserByEmailRepository,
+	AvatarGenerator,
 } from '@data/contracts'
 import { User } from '@domain/entities'
 import { UserAlreadyExistsError } from '@domain/errors'
@@ -10,18 +11,26 @@ import { CreateUserUseCase } from '@domain/usecases'
 export class CreateUserService implements CreateUserUseCase {
 	constructor(
 		private readonly createUserRepository: CreateUserRepository,
-		private readonly findUserByEmailRepository: FindUserByEmailRepository
+		private readonly findUserByEmailRepository: FindUserByEmailRepository,
+		private readonly avatarGenerator: AvatarGenerator
 	) {}
 
-	async createUser(userData: CreateUserDTO): Promise<User> {
+	async createUser({ name, email, password }: CreateUserDTO): Promise<User> {
 		const userByEmail = await this.findUserByEmailRepository.findUserByEmail(
-			userData.email
+			email
 		)
 
 		if (userByEmail) {
 			throw new UserAlreadyExistsError()
 		}
 
-		return this.createUserRepository.createUser(userData)
+		const avatar = await this.avatarGenerator.generateAvatar(email)
+
+		return this.createUserRepository.createUser({
+			name,
+			email,
+			password,
+			avatar,
+		})
 	}
 }

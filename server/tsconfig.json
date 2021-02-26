@@ -18,8 +18,7 @@
 			"@domain/*": ["domain/*"],
 			"@infra/*": ["infra/*"],
 			"@main/*": ["main/*"],
-			"@presentation/*": ["presentation/*"],
-			"@shared/*": ["shared/*"],
+			"@presentation/*": ["presentation/*"]
 		}
 	},
 	"include": ["./src"],
