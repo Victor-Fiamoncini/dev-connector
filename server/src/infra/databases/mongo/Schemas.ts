@@ -1,7 +1,11 @@
-import { UserModel } from '@data/models'
+import { UserDataModel } from '@data/models'
 import { Document, Model, model, Schema } from 'mongoose'
 
-type MongoooseUserModel = UserModel & Document
+type MongoooseUserModel = UserDataModel &
+	Document & {
+		createdAt: Date
+		updatedAt: Date
+	}
 
 const UserSchema = new Schema(
 	{

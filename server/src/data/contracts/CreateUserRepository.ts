@@ -1,4 +1,4 @@
-import { UserModel } from '@data/models'
+import { UserDataModel } from '@data/models'
 
 export interface CreateUserDTO {
 	name: string
@@ -7,5 +7,5 @@ export interface CreateUserDTO {
 }
 
 export interface CreateUserRepository {
-	createUser(userData: CreateUserDTO): Promise<UserModel>
+	createUser(userData: CreateUserDTO): Promise<UserDataModel>
 }

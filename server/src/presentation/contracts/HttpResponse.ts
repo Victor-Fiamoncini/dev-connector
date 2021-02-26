@@ -5,7 +5,7 @@ export type HttpResponse<T = unknown> = {
 
 export const serverError = (err: Error): HttpResponse<any> => ({
 	statusCode: 500,
-	data: err.stack,
+	data: err.message,
 })
 
 export const ok = (data: unknown): HttpResponse<any> => ({

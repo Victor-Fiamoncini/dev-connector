@@ -30,7 +30,7 @@ export class MongoConnection {
 				useFindAndModify: false,
 			})
 		} catch (err) {
-			throw new Error(err.stack)
+			throw new Error(err.message)
 		}
 	}
 
@@ -38,7 +38,7 @@ export class MongoConnection {
 		try {
 			await this.connection.disconnect()
 		} catch (err) {
-			throw new Error(err.stack)
+			throw new Error(err.message)
 		}
 	}
 }

@@ -6,7 +6,7 @@ export class ExpressBodyRouterAdapter {
 		return async (req: Request, res: Response): Promise<Response> => {
 			const httpResponse = await controller.handle({ body: req.body })
 
-			return res.json(httpResponse.statusCode).json(httpResponse.data)
+			return res.status(httpResponse.statusCode).json(httpResponse.data)
 		}
 	}
 }

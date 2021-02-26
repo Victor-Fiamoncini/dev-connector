@@ -1,1 +1,1 @@
-export * from '@data/models/UserModel'
+export * from '@data/models/UserDataModel'
