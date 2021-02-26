@@ -1,4 +1,5 @@
 import { CreateUserService } from '@data/services'
+import { GravatarAvatarGeneratorAdapter } from '@infra/adapters'
 import {
 	MongoCreateUserRepository,
 	MongoFindUserByEmailRepository,
@@ -10,9 +11,12 @@ export class CreateUserControllerFactory {
 	static make(): Controller {
 		const createUserRepository = new MongoCreateUserRepository()
 		const findUserByEmailRepository = new MongoFindUserByEmailRepository()
+		const avatarGenerator = new GravatarAvatarGeneratorAdapter()
+
 		const createUserService = new CreateUserService(
 			createUserRepository,
-			findUserByEmailRepository
+			findUserByEmailRepository,
+			avatarGenerator
 		)
 
 		return new CreateUserController(createUserService)

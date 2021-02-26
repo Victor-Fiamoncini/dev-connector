@@ -5,7 +5,7 @@ import { Router } from 'express'
 const userRoutes = (router: Router): void => {
 	router.post(
 		'/users',
-		ExpressBodyRouterAdapter.adapt(CreateUserControllerFactory.make())
+		ExpressBodyRouterAdapter.handleBodyRoute(CreateUserControllerFactory.make())
 	)
 }
 
