@@ -1,4 +1,5 @@
 import { connect, Mongoose } from 'mongoose'
+import env from '@main/config/env'
 
 export class MongoConnection {
 	private connection: Mongoose
@@ -17,22 +18,12 @@ export class MongoConnection {
 	}
 
 	async open(): Promise<void> {
+		const { mongo } = env
+
+		const url = `mongodb://${mongo.host}:${mongo.port}/${mongo.name}`
+
 		try {
-			const {
-				MONGO_NAME,
-				MONGO_PORT,
-				MONGO_HOST,
-				MONGO_USER,
-				MONGO_PASS,
-			} = process.env
-
-			const url = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_NAME}`
-
 			this.connection = await connect(url, {
-				auth: {
-					user: MONGO_USER as string,
-					password: MONGO_PASS as string,
-				},
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
 				useCreateIndex: true,
