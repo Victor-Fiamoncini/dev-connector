@@ -8,6 +8,7 @@ import {
 	MongoCreateUserRepository,
 	MongoFindUserByEmailRepository,
 } from '@infra/repositories'
+import env from '@main/config/env'
 import { Controller } from '@presentation/contracts'
 import { CreateUserController } from '@presentation/controllers'
 
@@ -25,7 +26,10 @@ export class CreateUserControllerFactory {
 			hashGeneratorAdapter
 		)
 
-		const tokenGeneratorAdapter = new JwtTokenGeneratorAdapter()
+		const tokenGeneratorAdapter = new JwtTokenGeneratorAdapter(
+			env.jwt.secret,
+			env.jwt.expires
+		)
 
 		return new CreateUserController(createUserService, tokenGeneratorAdapter)
 	}
