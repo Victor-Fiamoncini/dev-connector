@@ -3,7 +3,7 @@ import {
 	HashComparatorAdapter,
 } from '@data/contracts'
 import { User } from '@domain/entities'
-import { InvalidCredentialsError, UnauthorizedError } from '@domain/errors'
+import { InvalidCredentialsError } from '@domain/errors'
 import { EnsureUserAuthenticationUseCase } from '@domain/usecases'
 
 // prettier-ignore
@@ -21,7 +21,7 @@ export class EnsureUserAuthenticationService implements EnsureUserAuthentication
 		)
 
 		if (!userByEmail) {
-			throw new UnauthorizedError()
+			throw new InvalidCredentialsError()
 		}
 
 		const isPasswordValid = await this.hashComparatorAdapter.adapt(
