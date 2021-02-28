@@ -1,2 +1,2 @@
 export * from '@data/services/CreateUserService'
-export * from '@data/services/CreateUserSessionService'
+export * from '@data/services/EnsureUserAuthenticationService'

@@ -3,16 +3,19 @@ import {
 	HashComparatorAdapter,
 } from '@data/contracts'
 import { User } from '@domain/entities'
-import { UnauthorizedError } from '@domain/errors'
-import { CreateUserSessionUseCase } from '@domain/usecases'
+import { InvalidCredentialsError, UnauthorizedError } from '@domain/errors'
+import { EnsureUserAuthenticationUseCase } from '@domain/usecases'
 
-export class CreateUserSessionService implements CreateUserSessionUseCase {
+// prettier-ignore
+export class EnsureUserAuthenticationService implements EnsureUserAuthenticationUseCase {
 	constructor(
 		private readonly findUserByEmailRepository: FindUserByEmailRepository,
 		private readonly hashComparatorAdapter: HashComparatorAdapter
 	) {}
 
-	async createSession(data: CreateUserSessionUseCase.Params): Promise<User> {
+	async ensureAuthentication(
+		data: EnsureUserAuthenticationUseCase.Params
+	): Promise<User> {
 		const userByEmail = await this.findUserByEmailRepository.findUserByEmail(
 			data.email
 		)
@@ -27,7 +30,9 @@ export class CreateUserSessionService implements CreateUserSessionUseCase {
 		)
 
 		if (!isPasswordValid) {
-			throw new UnauthorizedError()
+			throw new InvalidCredentialsError()
 		}
+
+		return userByEmail
 	}
 }
