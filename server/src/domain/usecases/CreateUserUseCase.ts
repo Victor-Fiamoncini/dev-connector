@@ -9,5 +9,5 @@ export namespace CreateUserUseCase {
 }
 
 export interface CreateUserUseCase {
-	createUser(userData: CreateUserUseCase.Params): Promise<User>
+	createUser(data: CreateUserUseCase.Params): Promise<User>
 }
