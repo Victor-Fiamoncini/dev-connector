@@ -1,11 +1,13 @@
 import { User } from '@domain/entities'
 
-interface CreateUserUseCaseDTO {
-	name: string
-	email: string
-	password: string
+namespace CreateUserUseCase {
+	export type Params = {
+		name: string
+		email: string
+		password: string
+	}
 }
 
 export interface CreateUserUseCase {
-	createUser(userData: CreateUserUseCaseDTO): Promise<User>
+	createUser(userData: CreateUserUseCase.Params): Promise<User>
 }

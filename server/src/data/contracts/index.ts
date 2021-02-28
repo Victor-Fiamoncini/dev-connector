@@ -1,5 +1,2 @@
-export * from '@data/contracts/CreateUserRepository'
-export * from '@data/contracts/FindUserByEmailRepository'
-export * from '@data/contracts/AvatarGeneratorAdapter'
-export * from '@data/contracts/HashGeneratorAdapter'
-export * from '@data/contracts/TokenGeneratorAdapter'
+export * from '@data/contracts/repositories'
+export * from '@data/contracts/adapters'

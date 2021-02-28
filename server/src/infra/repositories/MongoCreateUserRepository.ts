@@ -1,29 +1,21 @@
-import { CreateUserDTO, CreateUserRepository } from '@data/contracts'
+import { CreateUserRepository } from '@data/contracts'
 import { UserDataModel } from '@data/models'
 import { UserMongoDataSource } from '@infra/databases/mongo'
 
 export class MongoCreateUserRepository implements CreateUserRepository {
-	async createUser(userData: CreateUserDTO): Promise<UserDataModel> {
+	async createUser(
+		userData: CreateUserRepository.Params
+	): Promise<UserDataModel> {
 		const createdUser = await UserMongoDataSource.create(userData)
 
-		const {
-			id,
-			email,
-			name,
-			password,
-			avatar,
-			createdAt,
-			updatedAt,
-		} = createdUser
-
 		return {
-			id,
-			name,
-			email,
-			password,
-			avatar,
-			created_at: createdAt,
-			update_at: updatedAt,
+			id: createdUser.id,
+			name: createdUser.name,
+			email: createdUser.email,
+			password: createdUser.password,
+			avatar: createdUser.avatar,
+			created_at: createdUser.createdAt,
+			update_at: createdUser.updatedAt,
 		}
 	}
 }

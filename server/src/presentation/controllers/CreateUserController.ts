@@ -9,10 +9,12 @@ import {
 } from '@presentation/contracts'
 import { CreateUserViewModel } from '@presentation/view-models'
 
-interface CreateUserDTO {
-	name: string
-	email: string
-	password: string
+namespace CreateUserController {
+	export type Params = {
+		name: string
+		email: string
+		password: string
+	}
 }
 
 export class CreateUserController implements Controller {
@@ -22,7 +24,7 @@ export class CreateUserController implements Controller {
 	) {}
 
 	async handle(
-		httpRequest: HttpResquest<CreateUserDTO>
+		httpRequest: HttpResquest<CreateUserController.Params>
 	): Promise<HttpResponse<CreateUserViewModel>> {
 		try {
 			const { body } = httpRequest
