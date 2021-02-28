@@ -1,12 +1,6 @@
 import { TokenGeneratorAdapter } from '@data/contracts'
 import { CreateUserUseCase } from '@domain/usecases'
-import {
-	Controller,
-	created,
-	HttpResponse,
-	HttpResquest,
-	serverError,
-} from '@presentation/contracts'
+import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
 import { CreateUserViewModel } from '@presentation/view-models'
 
 namespace CreateUserController {
@@ -35,9 +29,9 @@ export class CreateUserController implements Controller {
 				id: user.id,
 			})
 
-			return created({ user, token })
+			return HttpResponse.created({ user, token })
 		} catch (err) {
-			return serverError(err)
+			return HttpResponse.serverError(err)
 		}
 	}
 }

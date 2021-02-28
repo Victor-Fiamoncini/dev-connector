@@ -1,11 +1,16 @@
-import { ExpressBodyRouterAdapter } from '@main/adapters'
+import {
+	ExpressBodyRouterAdapter,
+	ExpressValidatorAdapter,
+} from '@main/adapters'
 import { CreateUserControllerFactory } from '@main/factories'
+import { CreateUserValidator } from '@utils/validators'
 import { Router } from 'express'
 
 const userRoutes = (router: Router): void => {
 	router.post(
 		'/users',
-		ExpressBodyRouterAdapter.handleBodyRoute(CreateUserControllerFactory.make())
+		ExpressValidatorAdapter.adapt(new CreateUserValidator()),
+		ExpressBodyRouterAdapter.adapt(CreateUserControllerFactory.make())
 	)
 }
 

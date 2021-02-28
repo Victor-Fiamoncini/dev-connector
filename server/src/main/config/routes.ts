@@ -1,4 +1,3 @@
-// import * as routes from '@main/routes'
 import { Application, Router } from 'express'
 import { readdirSync } from 'fs'
 
