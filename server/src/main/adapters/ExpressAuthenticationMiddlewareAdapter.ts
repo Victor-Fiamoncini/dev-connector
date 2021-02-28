@@ -1,5 +1,6 @@
 import { TokenAuthenticationMiddleware } from 'utils/contracts'
 import { NextFunction, Request, Response } from 'express'
+import { HttpResponse } from '@presentation/contracts'
 
 namespace ExpressAuthenticationMiddlewareAdapter {
 	export type Return = (
@@ -23,7 +24,7 @@ export class ExpressAuthenticationMiddlewareAdapter {
 
 				return next()
 			} catch (err) {
-				return res.status(400).json(err.message)
+				return res.status(401).json(err.message)
 			}
 		}
 	}
