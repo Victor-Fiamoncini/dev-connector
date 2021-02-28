@@ -3,6 +3,5 @@ export class ValidatorError extends Error {
 		super(message)
 
 		this.name = 'ValidatorError'
-		this.message = message
 	}
 }

@@ -1,6 +1,5 @@
 import {
 	CreateUserRepository,
-	CreateUserDTO,
 	FindUserByEmailRepository,
 	AvatarGeneratorAdapter,
 	HashGeneratorAdapter,
@@ -17,24 +16,22 @@ export class CreateUserService implements CreateUserUseCase {
 		private readonly hashGeneratorAdapter: HashGeneratorAdapter
 	) {}
 
-	async createUser({ name, email, password }: CreateUserDTO): Promise<User> {
+	async createUser(data: CreateUserUseCase.Params): Promise<User> {
 		const userByEmail = await this.findUserByEmailRepository.findUserByEmail(
-			email
+			data.email
 		)
 
 		if (userByEmail) {
 			throw new UserAlreadyExistsError()
 		}
 
-		const avatar = await this.avatarGeneratorAdapter.generateAvatar(email)
+		const avatar = await this.avatarGeneratorAdapter.adapt(data.email)
 
-		const hashedPassword = await this.hashGeneratorAdapter.generateHash(
-			password
-		)
+		const hashedPassword = await this.hashGeneratorAdapter.adapt(data.password)
 
 		const createdUser = await this.createUserRepository.createUser({
-			name,
-			email,
+			name: data.name,
+			email: data.email,
 			password: hashedPassword,
 			avatar,
 		})

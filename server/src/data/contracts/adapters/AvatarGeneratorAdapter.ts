@@ -1,3 +1,3 @@
 export interface AvatarGeneratorAdapter {
-	generateAvatar(payload: string): Promise<string>
+	adapt(payload: string): Promise<string>
 }

@@ -1,6 +1,6 @@
 import { User } from '@domain/entities'
 
-namespace CreateUserUseCase {
+export namespace CreateUserUseCase {
 	export type Params = {
 		name: string
 		email: string

@@ -1,3 +1,3 @@
 export interface TokenGeneratorAdapter {
-	generateToken(payload: object): Promise<string>
+	adapt(payload: object): Promise<string>
 }

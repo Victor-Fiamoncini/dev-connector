@@ -1,44 +1,39 @@
-import { connect, Mongoose } from 'mongoose'
-import env from '@main/config/env'
+import { UnexpectedError } from '@utils/errors'
+import { connect } from 'mongoose'
 
 export class MongoConnection {
-	private connection: Mongoose
 	private static _instance: MongoConnection
 
-	static get instance(): MongoConnection {
+	private constructor(
+		private readonly host: string,
+		private readonly port: string,
+		private readonly name: string
+	) {}
+
+	static getInstance(
+		host: string,
+		port: string,
+		name: string
+	): MongoConnection {
 		if (!MongoConnection._instance) {
-			MongoConnection._instance = new MongoConnection()
+			MongoConnection._instance = new MongoConnection(host, port, name)
 		}
 
 		return MongoConnection._instance
 	}
 
-	get conn(): Mongoose {
-		return this.connection
-	}
-
 	async open(): Promise<void> {
-		const { mongo } = env
-
-		const url = `mongodb://${mongo.host}:${mongo.port}/${mongo.name}`
+		const url = `mongodb://${this.host}:${this.port}/${this.name}`
 
 		try {
-			this.connection = await connect(url, {
+			await connect(url, {
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
 				useCreateIndex: true,
 				useFindAndModify: false,
 			})
 		} catch (err) {
-			throw new Error(err.message)
-		}
-	}
-
-	async close(): Promise<void> {
-		try {
-			await this.connection.disconnect()
-		} catch (err) {
-			throw new Error(err.message)
+			throw new UnexpectedError(err.message)
 		}
 	}
 }
