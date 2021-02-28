@@ -13,6 +13,11 @@ export namespace HttpResponse {
 		data: err.message,
 	})
 
+	export const unauthorizedError = (err: Error): HttpResponse<any> => ({
+		statusCode: 403,
+		data: err.message,
+	})
+
 	export const ok = (data: unknown): HttpResponse<any> => ({
 		statusCode: 200,
 		data,

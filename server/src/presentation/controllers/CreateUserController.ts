@@ -23,7 +23,11 @@ export class CreateUserController implements Controller {
 		try {
 			const { body } = httpRequest
 
-			const user = await this.createUserUseCase.createUser(body)
+			const user = await this.createUserUseCase.createUser({
+				name: body.name,
+				email: body.email,
+				password: body.password,
+			})
 
 			const token = await this.tokenGeneratorAdapter.adapt({ id: user.id })
 
