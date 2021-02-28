@@ -1,10 +1,11 @@
-import { UnauthorizedError } from '@domain/errors'
+import { UnauthorizedError } from '@utils/errors'
 import {
 	TokenAuthenticationMiddleware,
 	TokenVerifierAdapter,
 } from '@utils/contracts'
 
 // prettier-ignore
+
 export class TokenValidateAuthenticationMiddleware implements TokenAuthenticationMiddleware {
 	constructor(
 		private readonly tokenSecret: string,
@@ -29,7 +30,10 @@ export class TokenValidateAuthenticationMiddleware implements TokenAuthenticatio
 		}
 
 		try {
-			const verifiedData = await this.tokenVerifierAdapter.adapt(token, this.tokenSecret)
+			const verifiedData = await this.tokenVerifierAdapter.adapt(
+				token,
+				this.tokenSecret
+			)
 
 			return verifiedData
 		} catch {

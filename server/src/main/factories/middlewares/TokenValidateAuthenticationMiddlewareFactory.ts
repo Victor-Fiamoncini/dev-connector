@@ -1,13 +1,15 @@
 import env from '@main/config/env'
+import { JwtTokenVerifierAdapter } from '@utils/adapters'
 import { TokenAuthenticationMiddleware } from '@utils/contracts'
 import { TokenValidateAuthenticationMiddleware } from '@utils/middlewares'
 
 export class TokenValidateAuthenticationMiddlewareFactory {
 	static make(): TokenAuthenticationMiddleware {
-		const tokenve = new TokenVe()
+		const tokenVerifierAdapter = new JwtTokenVerifierAdapter()
 
-		const tokenAuthenticationMiddleware = new TokenValidateAuthenticationMiddleware(
-			env.jwt.secret
+		return new TokenValidateAuthenticationMiddleware(
+			env.jwt.secret,
+			tokenVerifierAdapter
 		)
 	}
 }

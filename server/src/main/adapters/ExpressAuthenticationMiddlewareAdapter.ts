@@ -15,7 +15,11 @@ export class ExpressAuthenticationMiddlewareAdapter {
 	): ExpressAuthenticationMiddlewareAdapter.Return {
 		return async (req: Request, res: Response, next: NextFunction) => {
 			try {
-				await authenticationMiddleware.handle(String(req.headers.authorization))
+				const verifiedToken = await authenticationMiddleware.handle(
+					String(req.headers.authorization)
+				)
+
+				req.authPayload = verifiedToken
 
 				return next()
 			} catch (err) {
