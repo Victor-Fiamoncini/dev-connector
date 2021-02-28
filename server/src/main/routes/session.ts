@@ -14,6 +14,13 @@ const sessionRoutes = (router: Router): void => {
 			EnsureUserAuthenticationControllerFactory.make()
 		)
 	)
+
+	router.get(
+		'/sessions',
+		ExpressBodyRouterAdapter.adapt(
+			EnsureUserAuthenticationControllerFactory.make()
+		)
+	)
 }
 
 export default sessionRoutes
