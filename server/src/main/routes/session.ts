@@ -1,8 +1,12 @@
 import {
+	ExpressAttributeRouterAdapter,
 	ExpressBodyRouterAdapter,
 	ExpressValidatorAdapter,
 } from '@main/adapters'
-import { EnsureUserAuthenticationControllerFactory } from '@main/factories'
+import {
+	EnsureUserAuthenticationControllerFactory,
+	RefreshUserAuthenticationControllerFactory,
+} from '@main/factories'
 import { EnsureUserAuthenticationValidator } from '@utils/validators'
 import { Router } from 'express'
 
@@ -17,8 +21,9 @@ const sessionRoutes = (router: Router): void => {
 
 	router.get(
 		'/sessions',
-		ExpressBodyRouterAdapter.adapt(
-			EnsureUserAuthenticationControllerFactory.make()
+		ExpressAttributeRouterAdapter.adapt(
+			RefreshUserAuthenticationControllerFactory.make(),
+			'userId'
 		)
 	)
 }
