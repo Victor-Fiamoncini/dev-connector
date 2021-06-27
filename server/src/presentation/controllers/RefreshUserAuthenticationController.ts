@@ -1,6 +1,6 @@
 import { RefreshUserAuthenticationUseCase } from '@domain/usecases'
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { CreateUserViewModel } from '@presentation/view-models'
+import { RefreshUserAuthenticationViewModel } from '@presentation/view-models'
 
 namespace RefreshUserAuthenticationController {
 	export type Params = {
@@ -15,7 +15,7 @@ export class RefreshUserAuthenticationController implements Controller {
 
 	async handle(
 		httpRequest: HttpResquest<RefreshUserAuthenticationController.Params>
-	): Promise<HttpResponse<CreateUserViewModel>> {
+	): Promise<HttpResponse<RefreshUserAuthenticationViewModel>> {
 		try {
 			const { body } = httpRequest
 
@@ -23,7 +23,12 @@ export class RefreshUserAuthenticationController implements Controller {
 				body.id
 			)
 
-			return HttpResponse.ok(user)
+			return HttpResponse.ok({
+				id: user.id,
+				name: user.name,
+				email: user.email,
+				avatar: user.avatar,
+			} as RefreshUserAuthenticationViewModel)
 		} catch (err) {
 			return HttpResponse.unauthorizedError(err)
 		}

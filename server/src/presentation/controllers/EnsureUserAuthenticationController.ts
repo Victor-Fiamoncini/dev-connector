@@ -1,7 +1,7 @@
 import { TokenGeneratorAdapter } from '@data/contracts'
 import { EnsureUserAuthenticationUseCase } from '@domain/usecases'
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { CreateUserViewModel } from '@presentation/view-models'
+import { EnsureUserAuthenticationViewModel } from '@presentation/view-models'
 
 namespace EnsureUserAuthenticationController {
 	export type Params = {
@@ -18,7 +18,7 @@ export class EnsureUserAuthenticationController implements Controller {
 
 	async handle(
 		httpRequest: HttpResquest<EnsureUserAuthenticationController.Params>
-	): Promise<HttpResponse<CreateUserViewModel>> {
+	): Promise<HttpResponse<EnsureUserAuthenticationViewModel>> {
 		try {
 			const { body } = httpRequest
 
@@ -31,7 +31,15 @@ export class EnsureUserAuthenticationController implements Controller {
 
 			const token = await this.tokenGeneratorAdapter.adapt({ id: user.id })
 
-			return HttpResponse.ok({ user, token })
+			return HttpResponse.ok({
+				user: {
+					id: user.id,
+					name: user.name,
+					email: user.email,
+					avatar: user.avatar,
+				},
+				token,
+			} as EnsureUserAuthenticationViewModel)
 		} catch (err) {
 			return HttpResponse.unauthorizedError(err)
 		}

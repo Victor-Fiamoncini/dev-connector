@@ -18,7 +18,7 @@ export class EnsureUserAuthenticationValidator implements Validator {
 		try {
 			await validationSchema.validate(data, { abortEarly: true })
 		} catch (err) {
-			throw new ValidatorError(err.errors[0])
+			throw new ValidatorError(err.message)
 		}
 	}
 }
