@@ -1,5 +1,5 @@
 import {
-	ExpressAuthenticationPayloadRouterAdapter,
+	ExpressAuthenticatedPayloadRouterAdapter,
 	ExpressAuthenticationMiddlewareAdapter,
 	ExpressBodyRouterAdapter,
 	ExpressValidatorAdapter,
@@ -26,7 +26,7 @@ const sessionRoutes = (router: Router): void => {
 		ExpressAuthenticationMiddlewareAdapter.adapt(
 			TokenValidateAuthenticationMiddlewareFactory.make()
 		),
-		ExpressAuthenticationPayloadRouterAdapter.adapt(
+		ExpressAuthenticatedPayloadRouterAdapter.adapt(
 			RefreshUserAuthenticationControllerFactory.make()
 		)
 	)

@@ -4,7 +4,9 @@ import { RefreshUserAuthenticationViewModel } from '@presentation/view-models'
 
 namespace RefreshUserAuthenticationController {
 	export type Params = {
-		id: string
+		user: {
+			id: string
+		}
 	}
 }
 
@@ -20,7 +22,7 @@ export class RefreshUserAuthenticationController implements Controller {
 			const { body } = httpRequest
 
 			const user = await this.refreshUserAuthenticationUseCase.refreshAuthentication(
-				body.id
+				body.user.id
 			)
 
 			return HttpResponse.ok({
