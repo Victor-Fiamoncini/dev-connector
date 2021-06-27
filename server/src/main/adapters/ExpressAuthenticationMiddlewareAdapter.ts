@@ -21,6 +21,8 @@ export class ExpressAuthenticationMiddlewareAdapter {
 
 				req.authPayload = verifiedToken
 
+				console.log('ExpressAuthenticationMiddlewareAdapter', req.authPayload)
+
 				return next()
 			} catch (err) {
 				return res.status(401).json(err.message)

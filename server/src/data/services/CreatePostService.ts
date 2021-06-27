@@ -16,7 +16,12 @@ export class CreatePostService implements CreatePostUseCase {
 			throw new UnauthorizedError()
 		}
 
-		const post = await this.createPostRepository.createPost(data)
+		const post = await this.createPostRepository.createPost({
+			name: userById.name,
+			text: data.text,
+			avatar: userById.avatar,
+			user: data.user,
+		})
 
 		return post
 	}

@@ -4,9 +4,7 @@ import { CreatePostViewModel } from '@presentation/view-models'
 
 namespace CreatePostController {
 	export type Params = {
-		name: string
 		text: string
-		avatar: string
 		user: {
 			id: string
 		}
@@ -25,9 +23,7 @@ export class CreatePostController implements Controller {
 			console.log('CHEGOUUUUU', body)
 
 			const post = await this.createPostUseCase.createPost({
-				name: body.name,
 				text: body.text,
-				avatar: body.avatar,
 				user: body.user.id,
 			})
 

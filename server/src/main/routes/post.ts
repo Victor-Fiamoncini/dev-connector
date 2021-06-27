@@ -1,6 +1,6 @@
 import {
+	ExpressAuthenticatedPayloadRouterAdapter,
 	ExpressAuthenticationMiddlewareAdapter,
-	ExpressBodyRouterAdapter,
 	ExpressValidatorAdapter,
 } from '@main/adapters'
 import {
@@ -17,7 +17,9 @@ const postRoutes = (router: Router): void => {
 		ExpressAuthenticationMiddlewareAdapter.adapt(
 			TokenValidateAuthenticationMiddlewareFactory.make()
 		),
-		ExpressBodyRouterAdapter.adapt(CreatePostControllerFactory.make())
+		ExpressAuthenticatedPayloadRouterAdapter.adapt(
+			CreatePostControllerFactory.make()
+		)
 	)
 }
 
