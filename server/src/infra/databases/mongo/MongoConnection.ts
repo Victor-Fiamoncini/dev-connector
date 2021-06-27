@@ -1,5 +1,5 @@
-import { UnexpectedError } from '@utils/errors'
 import { connect } from 'mongoose'
+import { UnexpectedError } from '@utils/errors'
 
 export class MongoConnection {
 	private static _instance: MongoConnection
