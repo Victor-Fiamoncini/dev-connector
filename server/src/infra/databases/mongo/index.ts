@@ -1,2 +1,2 @@
 export * from '@infra/databases/mongo/MongoConnection'
-export * from '@infra/databases/mongo/Schemas'
+export * from '@infra/databases/mongo/schemas'

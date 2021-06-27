@@ -1,6 +1,5 @@
 import { TokenAuthenticationMiddleware } from 'utils/contracts'
 import { NextFunction, Request, Response } from 'express'
-import { HttpResponse } from '@presentation/contracts'
 
 namespace ExpressAuthenticationMiddlewareAdapter {
 	export type Return = (
