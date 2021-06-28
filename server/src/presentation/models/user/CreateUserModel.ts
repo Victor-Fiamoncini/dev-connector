@@ -1,4 +1,6 @@
-export type CreateUserModel = {
+import { User } from '@domain/entities'
+
+export class CreateUserModel {
 	user: {
 		id: string
 		name: string
@@ -6,4 +8,16 @@ export type CreateUserModel = {
 		avatar: string
 	}
 	token: string
+
+	static map(user: User, token: string): CreateUserModel {
+		return {
+			user: {
+				id: user.id,
+				name: user.name,
+				email: user.email,
+				avatar: user.avatar,
+			},
+			token,
+		}
+	}
 }

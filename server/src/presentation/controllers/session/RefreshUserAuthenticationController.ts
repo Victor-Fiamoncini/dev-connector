@@ -25,12 +25,7 @@ export class RefreshUserAuthenticationController implements Controller {
 				body.user.id
 			)
 
-			return HttpResponse.ok({
-				id: user.id,
-				name: user.name,
-				email: user.email,
-				avatar: user.avatar,
-			} as RefreshUserAuthenticationModel)
+			return HttpResponse.ok(RefreshUserAuthenticationModel.map(user))
 		} catch (err) {
 			return HttpResponse.unauthorizedError(err)
 		}

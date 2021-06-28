@@ -31,15 +31,7 @@ export class CreateUserController implements Controller {
 
 			const token = await this.tokenGeneratorAdapter.adapt({ id: user.id })
 
-			return HttpResponse.created({
-				user: {
-					id: user.id,
-					name: user.name,
-					email: user.email,
-					avatar: user.avatar,
-				},
-				token,
-			} as CreateUserModel)
+			return HttpResponse.created(CreateUserModel.map(user, token))
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

@@ -31,15 +31,7 @@ export class EnsureUserAuthenticationController implements Controller {
 
 			const token = await this.tokenGeneratorAdapter.adapt({ id: user.id })
 
-			return HttpResponse.ok({
-				user: {
-					id: user.id,
-					name: user.name,
-					email: user.email,
-					avatar: user.avatar,
-				},
-				token,
-			} as EnsureUserAuthenticationModel)
+			return HttpResponse.ok(EnsureUserAuthenticationModel.map(user, token))
 		} catch (err) {
 			return HttpResponse.unauthorizedError(err)
 		}
