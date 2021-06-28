@@ -1,2 +1,2 @@
-export * from '@domain/errors/UserAlreadyExistsError'
-export * from '@domain/errors/InvalidCredentialsError'
+export * from '@domain/errors/session'
+export * from '@domain/errors/user'

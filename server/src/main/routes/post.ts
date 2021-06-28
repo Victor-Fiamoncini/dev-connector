@@ -5,6 +5,7 @@ import {
 } from '@main/adapters'
 import {
 	CreatePostControllerFactory,
+	FetchPostsControllerFactory,
 	TokenValidateAuthenticationMiddlewareFactory,
 } from '@main/factories'
 import { CreatePostValidator } from '@utils/validators'
@@ -19,6 +20,16 @@ const postRoutes = (router: Router): void => {
 		),
 		ExpressAuthenticatedPayloadRouterAdapter.adapt(
 			CreatePostControllerFactory.make()
+		)
+	)
+
+	router.get(
+		'/posts',
+		ExpressAuthenticationMiddlewareAdapter.adapt(
+			TokenValidateAuthenticationMiddlewareFactory.make()
+		),
+		ExpressAuthenticatedPayloadRouterAdapter.adapt(
+			FetchPostsControllerFactory.make()
 		)
 	)
 }

@@ -20,8 +20,6 @@ export class CreatePostController implements Controller {
 		try {
 			const { body } = httpRequest
 
-			console.log('CHEGOUUUUU', body)
-
 			const post = await this.createPostUseCase.createPost({
 				text: body.text,
 				user: body.user.id,
