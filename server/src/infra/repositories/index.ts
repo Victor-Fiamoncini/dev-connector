@@ -1,4 +1,2 @@
-export * from '@infra/repositories/MongoCreatePostRepository'
-export * from '@infra/repositories/MongoCreateUserRepository'
-export * from '@infra/repositories/MongoFindUserByEmailRepository'
-export * from '@infra/repositories/MongoFindUserByIdRepository'
+export * from '@infra/repositories/post'
+export * from '@infra/repositories/user'

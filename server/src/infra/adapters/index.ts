@@ -1,4 +1,3 @@
-export * from '@infra/adapters/GravatarAvatarGeneratorAdapter'
-export * from '@infra/adapters/BcryptHashGeneratorAdapter'
-export * from '@infra/adapters/JwtTokenGeneratorAdapter'
-export * from '@infra/adapters/BcryptHashComparatorAdapter'
+export * from '@infra/adapters/bcrypt'
+export * from '@infra/adapters/gravatar'
+export * from '@infra/adapters/jwt'

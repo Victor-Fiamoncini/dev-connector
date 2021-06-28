@@ -1,4 +1,3 @@
-export * from '@data/services/CreatePostService'
-export * from '@data/services/CreateUserService'
-export * from '@data/services/EnsureUserAuthenticationService'
-export * from '@data/services/RefreshUserAuthenticationService'
+export * from '@data/services/post'
+export * from '@data/services/session'
+export * from '@data/services/user'

@@ -1,3 +1,3 @@
-export * from '@utils/validators/CreatePostValidator'
-export * from '@utils/validators/CreateUserValidator'
-export * from '@utils/validators/EnsureUserAuthenticationValidator'
+export * from '@utils/validators/post'
+export * from '@utils/validators/session'
+export * from '@utils/validators/user'

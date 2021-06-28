@@ -1,4 +1,3 @@
-export * from '@domain/usecases/CreatePostUseCase'
-export * from '@domain/usecases/CreateUserUseCase'
-export * from '@domain/usecases/EnsureUserAuthenticationUseCase'
-export * from '@domain/usecases/RefreshUserAuthenticationUseCase'
+export * from '@domain/usecases/post'
+export * from '@domain/usecases/session'
+export * from '@domain/usecases/user'

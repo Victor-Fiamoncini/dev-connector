@@ -9,15 +9,17 @@ type MongooosePostModel = PostDataModel &
 
 const PostSchema = new Schema(
 	{
+		name: {
+			type: String,
+			required: false,
+		},
 		text: {
 			type: String,
 			required: true,
 		},
-		name: {
-			type: String,
-		},
 		avatar: {
 			type: String,
+			required: false,
 		},
 		likes: [
 			{
@@ -43,6 +45,7 @@ const PostSchema = new Schema(
 				},
 				avatar: {
 					type: String,
+					required: false,
 				},
 				date: {
 					type: Date,
