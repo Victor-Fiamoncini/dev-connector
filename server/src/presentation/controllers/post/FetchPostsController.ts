@@ -1,6 +1,6 @@
 import { FetchPostsUseCase } from '@domain/usecases'
 import { Controller, HttpResponse } from '@presentation/contracts'
-import { FetchPostsViewModel } from '@presentation/view-models'
+import { FetchPostsViewModel } from '@presentation/models'
 
 export class FetchPostsController implements Controller {
 	constructor(private readonly fetchPostsUseCase: FetchPostsUseCase) {}

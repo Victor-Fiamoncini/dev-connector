@@ -1,7 +1,7 @@
 import { TokenGeneratorAdapter } from '@data/contracts'
 import { EnsureUserAuthenticationUseCase } from '@domain/usecases'
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { EnsureUserAuthenticationViewModel } from '@presentation/view-models'
+import { EnsureUserAuthenticationViewModel } from '@presentation/models'
 
 namespace EnsureUserAuthenticationController {
 	export type Params = {

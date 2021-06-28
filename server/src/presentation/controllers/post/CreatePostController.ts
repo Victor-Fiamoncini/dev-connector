@@ -1,6 +1,6 @@
 import { CreatePostUseCase } from '@domain/usecases'
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { CreatePostViewModel } from '@presentation/view-models'
+import { CreatePostViewModel } from '@presentation/models'
 
 namespace CreatePostController {
 	export type Params = {

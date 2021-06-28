@@ -1,7 +1,7 @@
 import { TokenGeneratorAdapter } from '@data/contracts'
 import { CreateUserUseCase } from '@domain/usecases'
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { CreateUserViewModel } from '@presentation/view-models'
+import { CreateUserViewModel } from '@presentation/models'
 
 namespace CreateUserController {
 	export type Params = {

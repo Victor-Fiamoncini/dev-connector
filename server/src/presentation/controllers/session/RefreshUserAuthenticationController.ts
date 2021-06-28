@@ -1,6 +1,6 @@
 import { RefreshUserAuthenticationUseCase } from '@domain/usecases'
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { RefreshUserAuthenticationViewModel } from '@presentation/view-models'
+import { RefreshUserAuthenticationViewModel } from '@presentation/models'
 
 namespace RefreshUserAuthenticationController {
 	export type Params = {
