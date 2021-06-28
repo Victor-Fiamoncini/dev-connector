@@ -1,4 +1,4 @@
-export namespace FetchPostsViewModel {
+export namespace FetchPostsModel {
 	export type Like = {
 		user: string
 	}
@@ -12,12 +12,12 @@ export namespace FetchPostsViewModel {
 	}
 }
 
-export type FetchPostsViewModel = {
+export type FetchPostsModel = {
 	id: string
 	name: string
 	text: string
 	avatar: string
-	likes: FetchPostsViewModel.Like[]
-	comments: FetchPostsViewModel.Comment[]
+	likes: FetchPostsModel.Like[]
+	comments: FetchPostsModel.Comment[]
 	user: string
 }

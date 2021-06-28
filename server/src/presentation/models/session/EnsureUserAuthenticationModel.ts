@@ -1,4 +1,4 @@
-export type CreateUserViewModel = {
+export type EnsureUserAuthenticationModel = {
 	user: {
 		id: string
 		name: string

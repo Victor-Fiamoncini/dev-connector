@@ -1,6 +1,6 @@
 import { CreatePostUseCase } from '@domain/usecases'
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { CreatePostViewModel } from '@presentation/models'
+import { CreatePostModel } from '@presentation/models'
 
 namespace CreatePostController {
 	export type Params = {
@@ -16,7 +16,7 @@ export class CreatePostController implements Controller {
 
 	async handle(
 		httpRequest: HttpResquest<CreatePostController.Params>
-	): Promise<HttpResponse<CreatePostViewModel>> {
+	): Promise<HttpResponse<CreatePostModel>> {
 		try {
 			const { body } = httpRequest
 
@@ -31,7 +31,7 @@ export class CreatePostController implements Controller {
 				text: post.text,
 				avatar: post.avatar,
 				user: post.user,
-			} as CreatePostViewModel)
+			} as CreatePostModel)
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

@@ -1,4 +1,4 @@
-export type RefreshUserAuthenticationViewModel = {
+export type RefreshUserAuthenticationModel = {
 	id: string
 	name: string
 	email: string

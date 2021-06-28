@@ -1,2 +1,3 @@
-export * from '@presentation/models/post/CreatePostViewModel'
-export * from '@presentation/models/post/FetchPostsViewModel'
+export * from '@presentation/models/post/CreatePostModel'
+export * from '@presentation/models/post/FetchPostsModel'
+export * from '@presentation/models/post/FetchPostModel'

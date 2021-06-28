@@ -1,7 +1,7 @@
 import { TokenGeneratorAdapter } from '@data/contracts'
 import { EnsureUserAuthenticationUseCase } from '@domain/usecases'
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { EnsureUserAuthenticationViewModel } from '@presentation/models'
+import { EnsureUserAuthenticationModel } from '@presentation/models'
 
 namespace EnsureUserAuthenticationController {
 	export type Params = {
@@ -18,7 +18,7 @@ export class EnsureUserAuthenticationController implements Controller {
 
 	async handle(
 		httpRequest: HttpResquest<EnsureUserAuthenticationController.Params>
-	): Promise<HttpResponse<EnsureUserAuthenticationViewModel>> {
+	): Promise<HttpResponse<EnsureUserAuthenticationModel>> {
 		try {
 			const { body } = httpRequest
 
@@ -39,7 +39,7 @@ export class EnsureUserAuthenticationController implements Controller {
 					avatar: user.avatar,
 				},
 				token,
-			} as EnsureUserAuthenticationViewModel)
+			} as EnsureUserAuthenticationModel)
 		} catch (err) {
 			return HttpResponse.unauthorizedError(err)
 		}

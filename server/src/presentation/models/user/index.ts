@@ -1,1 +1,1 @@
-export * from '@presentation/models/user/CreateUserViewModel'
+export * from '@presentation/models/user/CreateUserModel'

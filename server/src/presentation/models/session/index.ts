@@ -1,2 +1,2 @@
-export * from '@presentation/models/session/EnsureUserAuthenticationViewModel'
-export * from '@presentation/models/session/RefreshUserAuthenticationViewModel'
+export * from '@presentation/models/session/EnsureUserAuthenticationModel'
+export * from '@presentation/models/session/RefreshUserAuthenticationModel'
