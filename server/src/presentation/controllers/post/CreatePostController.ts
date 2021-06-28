@@ -25,13 +25,7 @@ export class CreatePostController implements Controller {
 				user: body.user.id,
 			})
 
-			return HttpResponse.created({
-				id: post.id,
-				name: post.name,
-				text: post.text,
-				avatar: post.avatar,
-				user: post.user,
-			} as CreatePostModel)
+			return HttpResponse.created(CreatePostModel.map(post))
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

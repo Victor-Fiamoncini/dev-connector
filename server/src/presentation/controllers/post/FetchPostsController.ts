@@ -9,17 +9,7 @@ export class FetchPostsController implements Controller {
 		try {
 			const posts = await this.fetchPostsUseCase.fetchPosts()
 
-			const presentedPosts = posts.map(post => ({
-				id: post.id,
-				name: post.name,
-				text: post.text,
-				avatar: post.avatar,
-				likes: post.likes,
-				comments: post.comments,
-				user: post.user,
-			}))
-
-			return HttpResponse.ok(presentedPosts as FetchPostsModel[])
+			return HttpResponse.ok(FetchPostsModel.mapColletion(posts))
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

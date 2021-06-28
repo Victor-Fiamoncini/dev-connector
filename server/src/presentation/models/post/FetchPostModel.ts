@@ -1,3 +1,5 @@
+import { Post } from '@domain/entities'
+
 export namespace FetchPostModel {
 	export type Like = {
 		user: string
@@ -12,7 +14,7 @@ export namespace FetchPostModel {
 	}
 }
 
-export type FetchPostModel = {
+export class FetchPostModel {
 	id: string
 	name: string
 	text: string
@@ -20,4 +22,16 @@ export type FetchPostModel = {
 	likes: FetchPostModel.Like[]
 	comments: FetchPostModel.Comment[]
 	user: string
+
+	static map(post: Post): FetchPostModel {
+		return {
+			id: post.id,
+			name: post.name,
+			text: post.text,
+			avatar: post.avatar,
+			likes: post.likes,
+			comments: post.comments,
+			user: post.user,
+		}
+	}
 }

@@ -17,17 +17,7 @@ export class FetchPostController implements Controller {
 		try {
 			const post = await this.fetchPostUseCase.fetchPost(httpRequest.body.id)
 
-			const presentedPost = {
-				id: post.id,
-				name: post.name,
-				text: post.text,
-				avatar: post.avatar,
-				likes: post.likes,
-				comments: post.comments,
-				user: post.user,
-			}
-
-			return HttpResponse.ok(presentedPost as FetchPostModel)
+			return HttpResponse.ok(FetchPostModel.map(post))
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}
