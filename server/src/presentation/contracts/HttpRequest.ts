@@ -1,3 +1,4 @@
-export type HttpResquest<T = unknown> = {
-	body: T
+export type HttpResquest<B = unknown, P = unknown> = {
+	body: B
+	params: P
 }

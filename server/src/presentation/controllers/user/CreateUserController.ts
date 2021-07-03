@@ -18,15 +18,15 @@ export class CreateUserController implements Controller {
 	) {}
 
 	async handle(
-		httpRequest: HttpResquest<CreateUserController.Params>
+		httpRequest: HttpResquest<CreateUserController.Params, null>
 	): Promise<HttpResponse<CreateUserModel>> {
 		try {
-			const { body } = httpRequest
+			const { name, email, password } = httpRequest.body
 
 			const user = await this.createUserUseCase.createUser({
-				name: body.name,
-				email: body.email,
-				password: body.password,
+				name,
+				email,
+				password,
 			})
 
 			const token = await this.tokenGeneratorAdapter.adapt({ id: user.id })

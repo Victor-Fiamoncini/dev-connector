@@ -12,10 +12,12 @@ export class FetchPostController implements Controller {
 	constructor(private readonly fetchPostUseCase: FetchPostUseCase) {}
 
 	async handle(
-		httpRequest: HttpResquest<FetchPostController.Params>
+		httpRequest: HttpResquest<null, FetchPostController.Params>
 	): Promise<HttpResponse<FetchPostModel>> {
 		try {
-			const post = await this.fetchPostUseCase.fetchPost(httpRequest.body.id)
+			const { id } = httpRequest.params
+
+			const post = await this.fetchPostUseCase.fetchPost(id)
 
 			return HttpResponse.ok(FetchPostModel.map(post))
 		} catch (err) {

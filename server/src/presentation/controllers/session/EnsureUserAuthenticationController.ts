@@ -17,15 +17,15 @@ export class EnsureUserAuthenticationController implements Controller {
 	) {}
 
 	async handle(
-		httpRequest: HttpResquest<EnsureUserAuthenticationController.Params>
+		httpRequest: HttpResquest<EnsureUserAuthenticationController.Params, null>
 	): Promise<HttpResponse<EnsureUserAuthenticationModel>> {
 		try {
-			const { body } = httpRequest
+			const { email, password } = httpRequest.body
 
 			const user = await this.ensureUserAuthenticationUseCase.ensureAuthentication(
 				{
-					email: body.email,
-					password: body.password,
+					email,
+					password,
 				}
 			)
 

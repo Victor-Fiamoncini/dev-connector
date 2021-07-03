@@ -42,6 +42,14 @@ const postRoutes = (router: Router): void => {
 		),
 		ExpressParamRouterAdapter.adapt(FetchPostControllerFactory.make())
 	)
+
+	// router.delete(
+	// 	'/posts/:id',
+	// 	ExpressAuthenticationMiddlewareAdapter.adapt(
+	// 		TokenAuthenticationMiddlewareFactory.make()
+	// 	),
+	// 	ExpressParamRouterAdapter.adapt(FetchPostControllerFactory.make())
+	// )
 }
 
 export default postRoutes

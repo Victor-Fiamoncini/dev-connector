@@ -16,7 +16,7 @@ export class RefreshUserAuthenticationController implements Controller {
 	) {}
 
 	async handle(
-		httpRequest: HttpResquest<RefreshUserAuthenticationController.Params>
+		httpRequest: HttpResquest<RefreshUserAuthenticationController.Params, null>
 	): Promise<HttpResponse<RefreshUserAuthenticationModel>> {
 		try {
 			const { body } = httpRequest

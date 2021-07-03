@@ -15,7 +15,7 @@ export class CreatePostController implements Controller {
 	constructor(private readonly createPostUseCase: CreatePostUseCase) {}
 
 	async handle(
-		httpRequest: HttpResquest<CreatePostController.Params>
+		httpRequest: HttpResquest<CreatePostController.Params, null>
 	): Promise<HttpResponse<CreatePostModel>> {
 		try {
 			const { body } = httpRequest
