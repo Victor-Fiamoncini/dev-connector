@@ -7,9 +7,9 @@ import {
 import {
 	EnsureUserAuthenticationControllerFactory,
 	RefreshUserAuthenticationControllerFactory,
-	TokenValidateAuthenticationMiddlewareFactory,
+	TokenAuthenticationMiddlewareFactory,
 } from '@main/factories'
-import { EnsureUserAuthenticationValidator } from '@utils/validators'
+import { EnsureUserAuthenticationValidator } from '@utils/implementations/validators'
 import { Router } from 'express'
 
 const sessionRoutes = (router: Router): void => {
@@ -24,7 +24,7 @@ const sessionRoutes = (router: Router): void => {
 	router.get(
 		'/sessions',
 		ExpressAuthenticationMiddlewareAdapter.adapt(
-			TokenValidateAuthenticationMiddlewareFactory.make()
+			TokenAuthenticationMiddlewareFactory.make()
 		),
 		ExpressAuthenticatedPayloadRouterAdapter.adapt(
 			RefreshUserAuthenticationControllerFactory.make()

@@ -3,7 +3,7 @@ import {
 	ExpressValidatorAdapter,
 } from '@main/adapters'
 import { CreateUserControllerFactory } from '@main/factories'
-import { CreateUserValidator } from '@utils/validators'
+import { CreateUserValidator } from '@utils/implementations'
 import { Router } from 'express'
 
 const userRoutes = (router: Router): void => {

@@ -1,1 +1,1 @@
-export * from '@utils/contracts/middlewares/TokenAuthenticationMiddleware'
+export * from '@utils/contracts/middlewares/AuthenticationMiddleware'

@@ -1,4 +1,4 @@
-import { TokenAuthenticationMiddleware } from 'utils/contracts'
+import { AuthenticationMiddleware } from 'utils/contracts'
 import { NextFunction, Request, Response } from 'express'
 
 namespace ExpressAuthenticationMiddlewareAdapter {
@@ -11,7 +11,7 @@ namespace ExpressAuthenticationMiddlewareAdapter {
 
 export class ExpressAuthenticationMiddlewareAdapter {
 	static adapt(
-		authenticationMiddleware: TokenAuthenticationMiddleware
+		authenticationMiddleware: AuthenticationMiddleware
 	): ExpressAuthenticationMiddlewareAdapter.Return {
 		return async (req: Request, res: Response, next: NextFunction) => {
 			try {
@@ -20,8 +20,6 @@ export class ExpressAuthenticationMiddlewareAdapter {
 				)
 
 				req.authPayload = verifiedToken
-
-				console.log('ExpressAuthenticationMiddlewareAdapter', req.authPayload)
 
 				return next()
 			} catch (err) {

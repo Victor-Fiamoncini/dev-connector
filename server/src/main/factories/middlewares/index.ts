@@ -1,1 +1,1 @@
-export * from '@main/factories/middlewares/TokenValidateAuthenticationMiddlewareFactory'
+export * from '@main/factories/middlewares/TokenAuthenticationMiddlewareFactory'
