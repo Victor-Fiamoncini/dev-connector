@@ -1,6 +1,6 @@
 import { DeletePostRepository } from '@data/contracts'
 import { PostDataModel } from '@data/models'
-import { PostDeleteError } from '@domain/errors'
+import { PostDeleteError } from '@data/errors'
 import { PostMongoDataSource } from '@infra/databases/mongo'
 
 export class MongoDeletePostRepository implements DeletePostRepository {

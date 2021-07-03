@@ -9,7 +9,7 @@ export class ExpressAuthenticatedPayloadRouterAdapter {
 					...req.body,
 					user: req.authPayload,
 				},
-				params: {},
+				params: req.params,
 			})
 
 			return res.status(httpResponse.statusCode).json(httpResponse.data)

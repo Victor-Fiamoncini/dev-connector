@@ -6,6 +6,7 @@ import {
 } from '@main/adapters'
 import {
 	CreatePostControllerFactory,
+	DeletePostControllerFactory,
 	FetchPostControllerFactory,
 	FetchPostsControllerFactory,
 	TokenAuthenticationMiddlewareFactory,
@@ -43,13 +44,15 @@ const postRoutes = (router: Router): void => {
 		ExpressParamRouterAdapter.adapt(FetchPostControllerFactory.make())
 	)
 
-	// router.delete(
-	// 	'/posts/:id',
-	// 	ExpressAuthenticationMiddlewareAdapter.adapt(
-	// 		TokenAuthenticationMiddlewareFactory.make()
-	// 	),
-	// 	ExpressParamRouterAdapter.adapt(FetchPostControllerFactory.make())
-	// )
+	router.delete(
+		'/posts/:id',
+		ExpressAuthenticationMiddlewareAdapter.adapt(
+			TokenAuthenticationMiddlewareFactory.make()
+		),
+		ExpressAuthenticatedPayloadRouterAdapter.adapt(
+			DeletePostControllerFactory.make()
+		)
+	)
 }
 
 export default postRoutes

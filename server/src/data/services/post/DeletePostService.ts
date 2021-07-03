@@ -25,11 +25,14 @@ export class DeletePostService implements DeletePostUseCase {
 		const postById = await this.findPostByIdRepository.findPostById(data.post)
 
 		if (!postById) {
-			throw new UnauthorizedError()
+			throw new PostNotFoundError()
 		}
 
-		if (userById.id !== postById.user) {
-			throw new PostNotFoundError()
+		if (
+			String(postById.user) !== data.user ||
+			data.user !== String(userById.id)
+		) {
+			throw new UnauthorizedError()
 		}
 
 		const post = await this.deletePostRepository.deletePost(postById.id)
