@@ -6,7 +6,7 @@ export namespace UpdateProfileRepository {
 		website: string
 		location: string
 		status: string
-		skills: string
+		skills: string[]
 		bio: string
 		githubusername: string
 		social: {

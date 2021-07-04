@@ -1,12 +1,12 @@
-import { ProfileDataModel } from '@data/models'
+import { Profile } from '@domain/entities'
 
-export namespace CreateProfileRepository {
+export namespace CreateOrUpdateProfileUseCase {
 	export type Params = {
 		company: string
 		website: string
 		location: string
 		status: string
-		skills: string[]
+		skills: string
 		bio: string
 		githubusername: string
 		social: {
@@ -20,6 +20,8 @@ export namespace CreateProfileRepository {
 	}
 }
 
-export interface CreateProfileRepository {
-	createProfile(data: CreateProfileRepository.Params): Promise<ProfileDataModel>
+export interface CreateOrUpdateProfileUseCase {
+	createOrUpdateProfile(
+		data: CreateOrUpdateProfileUseCase.Params
+	): Promise<Profile | null>
 }
