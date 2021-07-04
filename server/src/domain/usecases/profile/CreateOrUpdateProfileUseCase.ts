@@ -23,5 +23,5 @@ export namespace CreateOrUpdateProfileUseCase {
 export interface CreateOrUpdateProfileUseCase {
 	createOrUpdateProfile(
 		data: CreateOrUpdateProfileUseCase.Params
-	): Promise<Profile | null>
+	): Promise<Profile>
 }

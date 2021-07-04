@@ -4,6 +4,7 @@ import {
 	UpdateProfileRepository,
 } from '@data/contracts'
 import { Profile } from '@domain/entities'
+import { ProfileUpdateError } from '@domain/errors'
 import { CreateOrUpdateProfileUseCase } from '@domain/usecases'
 
 // prettier-ignore
@@ -16,7 +17,7 @@ export class CreateOrUpdateProfileService implements CreateOrUpdateProfileUseCas
 
 	async createOrUpdateProfile(
 		data: CreateOrUpdateProfileUseCase.Params
-	): Promise<Profile | null> {
+	): Promise<Profile> {
 		const { skills } = data
 
 		let serializedSkills: string[] = []
@@ -36,7 +37,7 @@ export class CreateOrUpdateProfileService implements CreateOrUpdateProfileUseCas
 			})
 
 			if (!updatedProfile) {
-				return null
+				throw new ProfileUpdateError()
 			}
 
 			return updatedProfile
