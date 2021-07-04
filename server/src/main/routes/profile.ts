@@ -1,10 +1,12 @@
 import {
 	ExpressAuthenticatedPayloadRouterAdapter,
 	ExpressAuthenticationMiddlewareAdapter,
+	ExpressRouterAdapter,
 	ExpressValidatorAdapter,
 } from '@main/adapters'
 import {
 	CreateOrUpdateProfileControllerFactory,
+	FetchProfilesControllerFactory,
 	TokenAuthenticationMiddlewareFactory,
 } from '@main/factories'
 import { CreateOrUpdateProfileValidator } from '@utils/implementations/validators'
@@ -20,6 +22,14 @@ const profileRoutes = (router: Router): void => {
 		ExpressAuthenticatedPayloadRouterAdapter.adapt(
 			CreateOrUpdateProfileControllerFactory.make()
 		)
+	)
+
+	router.get(
+		'/profiles',
+		ExpressAuthenticationMiddlewareAdapter.adapt(
+			TokenAuthenticationMiddlewareFactory.make()
+		),
+		ExpressRouterAdapter.adapt(FetchProfilesControllerFactory.make())
 	)
 }
 

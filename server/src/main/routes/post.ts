@@ -2,6 +2,7 @@ import {
 	ExpressAuthenticatedPayloadRouterAdapter,
 	ExpressAuthenticationMiddlewareAdapter,
 	ExpressParamRouterAdapter,
+	ExpressRouterAdapter,
 	ExpressValidatorAdapter,
 } from '@main/adapters'
 import {
@@ -31,9 +32,7 @@ const postRoutes = (router: Router): void => {
 		ExpressAuthenticationMiddlewareAdapter.adapt(
 			TokenAuthenticationMiddlewareFactory.make()
 		),
-		ExpressAuthenticatedPayloadRouterAdapter.adapt(
-			FetchPostsControllerFactory.make()
-		)
+		ExpressRouterAdapter.adapt(FetchPostsControllerFactory.make())
 	)
 
 	router.get(
