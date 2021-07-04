@@ -31,10 +31,17 @@ export class CreateOrUpdateProfileService implements CreateOrUpdateProfileUseCas
 		)
 
 		if (profile) {
+			console.log(profile, data, serializedSkills)
+
+
 			const updatedProfile = await this.updateProfileRepository.updateProfile({
 				...data,
+				id: profile.id,
 				skills: serializedSkills,
 			})
+
+			console.log('aqui')
+
 
 			if (!updatedProfile) {
 				throw new ProfileUpdateError()

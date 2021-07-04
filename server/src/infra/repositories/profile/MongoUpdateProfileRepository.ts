@@ -6,8 +6,11 @@ export class MongoUpdateProfileRepository implements UpdateProfileRepository {
 	async updateProfile(
 		data: UpdateProfileRepository.Params
 	): Promise<ProfileDataModel | null> {
+		const { id, ...updateData } = data
+
 		const updatedProfile = await ProfileMongoDataSource.findByIdAndUpdate(
-			data,
+			id,
+			updateData,
 			{
 				new: true,
 				runValidators: true,

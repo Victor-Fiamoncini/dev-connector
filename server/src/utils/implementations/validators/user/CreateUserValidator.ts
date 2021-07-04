@@ -10,7 +10,7 @@ export class CreateUserValidator implements Validator {
 				.required('Name is required')
 				.typeError('Invalid name'),
 			email: Yup.string()
-				.email()
+				.email('Invalid e-mail')
 				.required('E-mail is required')
 				.typeError('Invalid e-mail'),
 			password: Yup.string()

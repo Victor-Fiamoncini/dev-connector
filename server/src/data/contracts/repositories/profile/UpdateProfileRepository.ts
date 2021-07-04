@@ -2,6 +2,7 @@ import { ProfileDataModel } from '@data/models'
 
 export namespace UpdateProfileRepository {
 	export type Params = {
+		id: string
 		company: string
 		website: string
 		location: string
