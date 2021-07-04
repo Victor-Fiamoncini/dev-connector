@@ -3,10 +3,8 @@ import { PostDataModel } from '@data/models'
 import { PostMongoDataSource } from '@infra/databases/mongo'
 
 export class MongoCreatePostRepository implements CreatePostRepository {
-	async createPost(
-		postData: CreatePostRepository.Params
-	): Promise<PostDataModel> {
-		const createdPost = await PostMongoDataSource.create(postData)
+	async createPost(data: CreatePostRepository.Params): Promise<PostDataModel> {
+		const createdPost = await PostMongoDataSource.create(data)
 
 		return {
 			id: createdPost.id,

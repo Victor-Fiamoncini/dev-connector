@@ -1,14 +1,13 @@
 import { DeletePostRepository } from '@data/contracts'
 import { PostDataModel } from '@data/models'
-import { PostDeleteError } from '@data/errors'
 import { PostMongoDataSource } from '@infra/databases/mongo'
 
 export class MongoDeletePostRepository implements DeletePostRepository {
-	async deletePost(id: string): Promise<PostDataModel> {
+	async deletePost(id: string): Promise<PostDataModel | null> {
 		const deletedPost = await PostMongoDataSource.findByIdAndDelete(id)
 
 		if (!deletedPost) {
-			throw new PostDeleteError()
+			return null
 		}
 
 		return {

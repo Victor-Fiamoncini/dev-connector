@@ -3,10 +3,8 @@ import { UserDataModel } from '@data/models'
 import { UserMongoDataSource } from '@infra/databases/mongo'
 
 export class MongoCreateUserRepository implements CreateUserRepository {
-	async createUser(
-		userData: CreateUserRepository.Params
-	): Promise<UserDataModel> {
-		const createdUser = await UserMongoDataSource.create(userData)
+	async createUser(data: CreateUserRepository.Params): Promise<UserDataModel> {
+		const createdUser = await UserMongoDataSource.create(data)
 
 		return {
 			id: createdUser.id,

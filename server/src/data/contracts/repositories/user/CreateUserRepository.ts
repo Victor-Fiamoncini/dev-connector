@@ -10,5 +10,5 @@ export namespace CreateUserRepository {
 }
 
 export interface CreateUserRepository {
-	createUser(userData: CreateUserRepository.Params): Promise<UserDataModel>
+	createUser(data: CreateUserRepository.Params): Promise<UserDataModel>
 }
