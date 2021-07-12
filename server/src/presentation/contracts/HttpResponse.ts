@@ -1,6 +1,6 @@
 export type HttpResponse<T = unknown> = {
 	statusCode: number
-	data: T
+	data?: T
 }
 export namespace HttpResponse {
 	export const serverError = (err: Error): HttpResponse<any> => ({
@@ -27,4 +27,6 @@ export namespace HttpResponse {
 		statusCode: 201,
 		data,
 	})
+
+	export const noContent = (): HttpResponse<any> => ({ statusCode: 204 })
 }
