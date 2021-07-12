@@ -8,6 +8,7 @@ import {
 	CreateOrUpdateProfileControllerFactory,
 	DeleteProfileControllerFactory,
 	FetchProfilesControllerFactory,
+	FetchUserProfileControllerFactory,
 	TokenAuthenticationMiddlewareFactory,
 } from '@main/factories'
 import { CreateOrUpdateProfileValidator } from '@utils/implementations/validators'
@@ -40,6 +41,16 @@ const profileRoutes = (router: Router): void => {
 		),
 		ExpressAuthenticatedPayloadRouterAdapter.adapt(
 			DeleteProfileControllerFactory.make()
+		)
+	)
+
+	router.get(
+		'/profiles/user/me',
+		ExpressAuthenticationMiddlewareAdapter.adapt(
+			TokenAuthenticationMiddlewareFactory.make()
+		),
+		ExpressAuthenticatedPayloadRouterAdapter.adapt(
+			FetchUserProfileControllerFactory.make()
 		)
 	)
 }
