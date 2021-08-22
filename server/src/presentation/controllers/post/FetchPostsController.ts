@@ -1,16 +1,16 @@
 import { FetchPostsUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse } from '@presentation/contracts'
-import { FetchPostsModel } from '@presentation/models'
+import { PostViewModel } from '@presentation/view-models'
 
 export class FetchPostsController implements Controller {
 	constructor(private readonly fetchPostsUseCase: FetchPostsUseCase) {}
 
-	async handle(): Promise<HttpResponse<FetchPostsModel[]>> {
+	async handle() {
 		try {
 			const posts = await this.fetchPostsUseCase.fetchPosts()
 
-			return HttpResponse.ok(FetchPostsModel.mapColletion(posts))
+			return HttpResponse.ok(PostViewModel.mapColletion(posts))
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

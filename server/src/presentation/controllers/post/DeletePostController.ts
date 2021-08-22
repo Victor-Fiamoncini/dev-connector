@@ -1,7 +1,7 @@
 import { DeletePostUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { DeletePostModel } from '@presentation/models'
+import { PostViewModel } from '@presentation/view-models'
 
 namespace DeletePostController {
 	export type BodyParams = {
@@ -23,7 +23,7 @@ export class DeletePostController implements Controller {
 			DeletePostController.BodyParams,
 			DeletePostController.UrlParams
 		>
-	): Promise<HttpResponse<DeletePostModel>> {
+	) {
 		try {
 			const { id } = httpRequest.params
 			const { user } = httpRequest.body
@@ -33,7 +33,7 @@ export class DeletePostController implements Controller {
 				user: user.id,
 			})
 
-			return HttpResponse.ok(DeletePostModel.map(deletedPost))
+			return HttpResponse.ok(PostViewModel.map(deletedPost))
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

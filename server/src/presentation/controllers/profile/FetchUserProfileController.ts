@@ -1,6 +1,7 @@
 import { FetchUserProfileUseCase } from '@domain/usecases'
+
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { FetchProfilesModel } from '@presentation/models'
+import { ProfileViewModel } from '@presentation/view-models'
 
 namespace FetchUserProfileController {
 	export type Params = {
@@ -15,9 +16,7 @@ export class FetchUserProfileController implements Controller {
 		private readonly fetchUserProfileUseCase: FetchUserProfileUseCase
 	) {}
 
-	async handle(
-		httpResquest: HttpResquest<FetchUserProfileController.Params, null>
-	): Promise<HttpResponse<FetchProfilesModel[]>> {
+	async handle(httpResquest: HttpResquest<FetchUserProfileController.Params>) {
 		try {
 			const { body } = httpResquest
 
@@ -25,7 +24,7 @@ export class FetchUserProfileController implements Controller {
 				body.user.id
 			)
 
-			return HttpResponse.ok(profile)
+			return HttpResponse.ok(ProfileViewModel.map(profile))
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

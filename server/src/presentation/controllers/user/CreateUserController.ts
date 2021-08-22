@@ -3,7 +3,7 @@ import { TokenGeneratorAdapter } from '@data/contracts'
 import { CreateUserUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { CreateUserModel } from '@presentation/models'
+import { UserViewModel } from '@presentation/view-models'
 
 namespace CreateUserController {
 	export type Params = {
@@ -19,9 +19,7 @@ export class CreateUserController implements Controller {
 		private readonly tokenGeneratorAdapter: TokenGeneratorAdapter
 	) {}
 
-	async handle(
-		httpRequest: HttpResquest<CreateUserController.Params, null>
-	): Promise<HttpResponse<CreateUserModel>> {
+	async handle(httpRequest: HttpResquest<CreateUserController.Params>) {
 		try {
 			const { name, email, password } = httpRequest.body
 
@@ -33,7 +31,7 @@ export class CreateUserController implements Controller {
 
 			const token = await this.tokenGeneratorAdapter.adapt({ id: user.id })
 
-			return HttpResponse.created(CreateUserModel.map(user, token))
+			return HttpResponse.created(UserViewModel.map(user, token))
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

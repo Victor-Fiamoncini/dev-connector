@@ -1,6 +1,6 @@
 import { DeleteProfileUseCase } from '@domain/usecases'
+
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { FetchProfilesModel } from '@presentation/models'
 
 namespace DeleteProfileController {
 	export type Params = {
@@ -13,9 +13,7 @@ namespace DeleteProfileController {
 export class DeleteProfileController implements Controller {
 	constructor(private readonly deleteProfileUseCase: DeleteProfileUseCase) {}
 
-	async handle(
-		httpResquest: HttpResquest<DeleteProfileController.Params, null>
-	): Promise<HttpResponse<FetchProfilesModel[]>> {
+	async handle(httpResquest: HttpResquest<DeleteProfileController.Params>) {
 		try {
 			const { body } = httpResquest
 
