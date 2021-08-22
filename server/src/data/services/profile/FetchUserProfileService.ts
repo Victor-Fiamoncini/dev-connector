@@ -1,4 +1,5 @@
 import { FindProfileByUserRepository } from '@data/contracts'
+
 import { Profile } from '@domain/entities'
 import { ProfileNotFoundError } from '@domain/errors'
 import { FetchUserProfileUseCase } from '@domain/usecases'
