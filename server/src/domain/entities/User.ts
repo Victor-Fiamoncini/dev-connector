@@ -1,9 +1,11 @@
-export type User = {
-	id: string
-	name: string
-	email: string
-	password: string
-	avatar: string
-	created_at: Date
-	update_at: Date
+export class User {
+	constructor(
+		public id: string,
+		public name: string,
+		public email: string,
+		public password: string,
+		public avatar: string,
+		public created_at: Date,
+		public update_at: Date
+	) {}
 }

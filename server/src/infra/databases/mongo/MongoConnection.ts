@@ -1,4 +1,5 @@
 import { connect } from 'mongoose'
+
 import { UnexpectedError } from '@utils/errors'
 
 export class MongoConnection {

@@ -1,3 +1,5 @@
+import { Router } from 'express'
+
 import {
 	ExpressAuthenticatedPayloadRouterAdapter,
 	ExpressAuthenticationMiddlewareAdapter,
@@ -9,8 +11,8 @@ import {
 	RefreshUserAuthenticationControllerFactory,
 	TokenAuthenticationMiddlewareFactory,
 } from '@main/factories'
+
 import { EnsureUserAuthenticationValidator } from '@utils/implementations/validators'
-import { Router } from 'express'
 
 const sessionRoutes = (router: Router): void => {
 	router.post(

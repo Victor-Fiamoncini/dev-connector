@@ -1,6 +1,7 @@
 import env from '@main/config/env'
-import { JwtTokenVerifierAdapter } from '@utils/implementations'
+
 import { AuthenticationMiddleware } from '@utils/contracts'
+import { JwtTokenVerifierAdapter } from '@utils/implementations'
 import { TokenAuthenticationMiddleware } from '@utils/implementations'
 
 export class TokenAuthenticationMiddlewareFactory {

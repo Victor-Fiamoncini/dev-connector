@@ -1,10 +1,13 @@
 import { EnsureUserAuthenticationService } from '@data/services'
+
 import {
 	BcryptHashComparatorAdapter,
 	JwtTokenGeneratorAdapter,
 } from '@infra/adapters'
 import { MongoFindUserByEmailRepository } from '@infra/repositories'
+
 import env from '@main/config/env'
+
 import { Controller } from '@presentation/contracts'
 import { EnsureUserAuthenticationController } from '@presentation/controllers'
 

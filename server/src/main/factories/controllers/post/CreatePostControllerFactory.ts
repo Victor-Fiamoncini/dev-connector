@@ -1,8 +1,10 @@
 import { CreatePostService } from '@data/services'
+
 import {
 	MongoCreatePostRepository,
 	MongoFindUserByIdRepository,
 } from '@infra/repositories'
+
 import { Controller } from '@presentation/contracts'
 import { CreatePostController } from '@presentation/controllers'
 

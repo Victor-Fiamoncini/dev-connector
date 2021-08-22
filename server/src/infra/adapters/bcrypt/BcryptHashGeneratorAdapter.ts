@@ -1,5 +1,6 @@
-import { HashGeneratorAdapter } from '@data/contracts'
 import { hash, genSalt } from 'bcrypt'
+
+import { HashGeneratorAdapter } from '@data/contracts'
 
 export class BcryptHashGeneratorAdapter implements HashGeneratorAdapter {
 	async adapt(payload: string): Promise<string> {

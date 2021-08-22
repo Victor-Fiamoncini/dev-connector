@@ -1,9 +1,11 @@
 import { CreateOrUpdateProfileService } from '@data/services'
+
 import {
 	MongoCreateProfileRepository,
 	MongoFindProfileByUserRepository,
 	MongoUpdateProfileRepository,
 } from '@infra/repositories'
+
 import { Controller } from '@presentation/contracts'
 import { CreateOrUpdateProfileController } from '@presentation/controllers'
 

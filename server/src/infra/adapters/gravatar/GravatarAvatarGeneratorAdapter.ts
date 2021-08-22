@@ -1,5 +1,6 @@
-import { AvatarGeneratorAdapter } from '@data/contracts'
 import { url } from 'gravatar'
+
+import { AvatarGeneratorAdapter } from '@data/contracts'
 
 export class GravatarAvatarGeneratorAdapter implements AvatarGeneratorAdapter {
 	async adapt(payload: string): Promise<string> {

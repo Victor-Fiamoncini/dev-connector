@@ -1,4 +1,5 @@
 import { FetchPostUseCase } from '@domain/usecases'
+
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
 import { FetchPostModel } from '@presentation/models'
 

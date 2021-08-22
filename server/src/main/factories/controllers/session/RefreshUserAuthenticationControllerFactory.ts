@@ -1,5 +1,7 @@
 import { RefreshUserAuthenticationService } from '@data/services'
+
 import { MongoFindUserByIdRepository } from '@infra/repositories'
+
 import { Controller } from '@presentation/contracts'
 import { RefreshUserAuthenticationController } from '@presentation/controllers'
 

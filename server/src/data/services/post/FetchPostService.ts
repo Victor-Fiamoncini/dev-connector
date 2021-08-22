@@ -1,4 +1,5 @@
 import { FindPostByIdRepository } from '@data/contracts'
+
 import { Post } from '@domain/entities'
 import { PostNotFoundError } from '@domain/errors'
 import { FetchPostUseCase } from '@domain/usecases'

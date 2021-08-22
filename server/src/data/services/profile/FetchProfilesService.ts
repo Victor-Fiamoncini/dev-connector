@@ -1,4 +1,5 @@
 import { FetchProfilesRepository } from '@data/contracts'
+
 import { Profile } from '@domain/entities'
 import { FetchProfilesUseCase } from '@domain/usecases'
 

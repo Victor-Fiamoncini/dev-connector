@@ -1,5 +1,5 @@
-import { AuthenticationMiddleware } from 'utils/contracts'
 import { NextFunction, Request, Response } from 'express'
+import { AuthenticationMiddleware } from 'utils/contracts'
 
 namespace ExpressAuthenticationMiddlewareAdapter {
 	export type Return = (

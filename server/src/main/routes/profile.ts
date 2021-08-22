@@ -1,16 +1,20 @@
+import { Router } from 'express'
+
 import {
 	ExpressAuthenticatedPayloadRouterAdapter,
 	ExpressAuthenticationMiddlewareAdapter,
+	ExpressParamRouterAdapter,
 	ExpressRouterAdapter,
 	ExpressValidatorAdapter,
 } from '@main/adapters'
 import {
 	CreateOrUpdateProfileControllerFactory,
+	FetchProfileControllerFactory,
 	FetchProfilesControllerFactory,
 	TokenAuthenticationMiddlewareFactory,
 } from '@main/factories'
+
 import { CreateOrUpdateProfileValidator } from '@utils/implementations/validators'
-import { Router } from 'express'
 
 const profileRoutes = (router: Router): void => {
 	router.post(
@@ -30,6 +34,14 @@ const profileRoutes = (router: Router): void => {
 			TokenAuthenticationMiddlewareFactory.make()
 		),
 		ExpressRouterAdapter.adapt(FetchProfilesControllerFactory.make())
+	)
+
+	router.get(
+		'/profiles/:id',
+		ExpressAuthenticationMiddlewareAdapter.adapt(
+			TokenAuthenticationMiddlewareFactory.make()
+		),
+		ExpressParamRouterAdapter.adapt(FetchProfileControllerFactory.make())
 	)
 }
 

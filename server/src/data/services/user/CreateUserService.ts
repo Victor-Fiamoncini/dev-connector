@@ -4,6 +4,7 @@ import {
 	AvatarGeneratorAdapter,
 	HashGeneratorAdapter,
 } from '@data/contracts'
+
 import { User } from '@domain/entities'
 import { UserAlreadyExistsError } from '@domain/errors'
 import { CreateUserUseCase } from '@domain/usecases'

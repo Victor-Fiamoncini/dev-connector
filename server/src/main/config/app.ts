@@ -1,10 +1,11 @@
-import express from 'express'
-import cors from 'cors'
-import helmet from 'helmet'
 import compression from 'compression'
+import cors from 'cors'
+import express from 'express'
+import helmet from 'helmet'
 import morgan from 'morgan'
-import setupRoutes from '@main/config/routes'
+
 import setupDatabases from '@main/config/databases'
+import setupRoutes from '@main/config/routes'
 
 const app = express()
 

@@ -28,19 +28,21 @@ export namespace Profile {
 	}
 }
 
-export type Profile = {
-	id: string
-	company: string
-	website: string
-	location: string
-	status: string
-	skills: string[]
-	bio: string
-	githubusername: string
-	experience: Profile.Experience[]
-	education: Profile.Education[]
-	social: Profile.Social
-	user: string
-	created_at: Date
-	update_at: Date
+export class Profile {
+	constructor(
+		public id: string,
+		public company: string,
+		public website: string,
+		public location: string,
+		public status: string,
+		public skills: string[],
+		public bio: string,
+		public githubusername: string,
+		public experience: Profile.Experience[],
+		public education: Profile.Education[],
+		public social: Profile.Social,
+		public user: string,
+		public created_at: Date,
+		public update_at: Date
+	) {}
 }

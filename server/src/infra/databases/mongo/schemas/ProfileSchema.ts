@@ -1,5 +1,6 @@
-import { ProfileDataModel } from '@data/models'
 import { Document, Model, model, Schema } from 'mongoose'
+
+import { ProfileDataModel } from '@data/models'
 
 type MongoooseProfileModel = ProfileDataModel &
 	Document & {

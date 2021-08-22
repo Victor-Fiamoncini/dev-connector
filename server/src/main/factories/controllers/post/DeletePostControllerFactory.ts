@@ -1,9 +1,11 @@
 import { DeletePostService } from '@data/services'
+
 import {
 	MongoDeletePostRepository,
 	MongoFindPostByIdRepository,
 	MongoFindUserByIdRepository,
 } from '@infra/repositories'
+
 import { Controller } from '@presentation/contracts'
 import { DeletePostController } from '@presentation/controllers'
 

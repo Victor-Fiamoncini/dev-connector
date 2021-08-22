@@ -3,6 +3,7 @@ import {
 	FindProfileByUserRepository,
 	UpdateProfileRepository,
 } from '@data/contracts'
+
 import { Profile } from '@domain/entities'
 import { ProfileUpdateError } from '@domain/errors'
 import { CreateOrUpdateProfileUseCase } from '@domain/usecases'

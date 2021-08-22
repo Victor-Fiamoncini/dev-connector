@@ -1,5 +1,6 @@
-import { Validator } from 'utils/contracts'
 import { NextFunction, Request, Response } from 'express'
+
+import { Validator } from '@utils/contracts'
 
 namespace ExpressValidatorAdapter {
 	export type Return = (

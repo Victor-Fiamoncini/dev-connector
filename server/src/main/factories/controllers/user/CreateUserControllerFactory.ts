@@ -1,4 +1,5 @@
 import { CreateUserService } from '@data/services'
+
 import {
 	BcryptHashGeneratorAdapter,
 	GravatarAvatarGeneratorAdapter,
@@ -8,7 +9,9 @@ import {
 	MongoCreateUserRepository,
 	MongoFindUserByEmailRepository,
 } from '@infra/repositories'
+
 import env from '@main/config/env'
+
 import { Controller } from '@presentation/contracts'
 import { CreateUserController } from '@presentation/controllers'
 

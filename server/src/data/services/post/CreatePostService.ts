@@ -1,6 +1,8 @@
 import { CreatePostRepository, FindUserByIdRepository } from '@data/contracts'
+
 import { Post } from '@domain/entities'
 import { CreatePostUseCase } from '@domain/usecases'
+
 import { UnauthorizedError } from '@utils/errors'
 
 export class CreatePostService implements CreatePostUseCase {

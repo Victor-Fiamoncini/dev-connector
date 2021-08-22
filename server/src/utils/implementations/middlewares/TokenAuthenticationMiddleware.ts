@@ -1,15 +1,13 @@
-import { UnauthorizedError } from '@utils/errors'
 import {
 	AuthenticationMiddleware,
 	TokenVerifierAdapter,
 } from '@utils/contracts'
-
-// prettier-ignore
+import { UnauthorizedError } from '@utils/errors'
 
 export class TokenAuthenticationMiddleware implements AuthenticationMiddleware {
 	constructor(
 		private readonly tokenVerifierAdapter: TokenVerifierAdapter,
-		private readonly tokenSecret: string,
+		private readonly tokenSecret: string
 	) {}
 
 	async handle(authorization: string): Promise<string | object> {

@@ -1,5 +1,6 @@
 import { MongoConnection } from '@infra/databases'
-import env from './env'
+
+import env from '@main/config/env'
 
 const setupDatabases = async (): Promise<void> => {
 	await MongoConnection.getInstance(

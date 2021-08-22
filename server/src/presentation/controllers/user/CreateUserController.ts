@@ -1,5 +1,7 @@
 import { TokenGeneratorAdapter } from '@data/contracts'
+
 import { CreateUserUseCase } from '@domain/usecases'
+
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
 import { CreateUserModel } from '@presentation/models'
 

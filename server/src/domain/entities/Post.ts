@@ -12,14 +12,16 @@ export namespace Post {
 	}
 }
 
-export type Post = {
-	id: string
-	name: string
-	text: string
-	avatar: string
-	likes: Post.Like[]
-	comments: Post.Comment[]
-	user: string
-	created_at: Date
-	update_at: Date
+export class Post {
+	constructor(
+		public id: string,
+		public name: string,
+		public text: string,
+		public avatar: string,
+		public likes: Post.Like[],
+		public comments: Post.Comment[],
+		public user: string,
+		public created_at: Date,
+		public update_at: Date
+	) {}
 }

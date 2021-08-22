@@ -1,6 +1,7 @@
+import * as Yup from 'yup'
+
 import { Validator } from '@utils/contracts'
 import { ValidatorError } from '@utils/errors'
-import * as Yup from 'yup'
 
 export class EnsureUserAuthenticationValidator implements Validator {
 	async validate(data: object): Promise<void> {

@@ -1,5 +1,6 @@
-import { TokenGeneratorAdapter } from '@data/contracts'
 import { sign } from 'jsonwebtoken'
+
+import { TokenGeneratorAdapter } from '@data/contracts'
 
 export class JwtTokenGeneratorAdapter implements TokenGeneratorAdapter {
 	constructor(

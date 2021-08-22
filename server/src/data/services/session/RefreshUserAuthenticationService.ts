@@ -1,7 +1,9 @@
 import { FindUserByIdRepository } from '@data/contracts'
+
 import { User } from '@domain/entities'
-import { UnauthorizedError } from '@utils/errors'
 import { RefreshUserAuthenticationUseCase } from '@domain/usecases'
+
+import { UnauthorizedError } from '@utils/errors'
 
 // prettier-ignore
 export class RefreshUserAuthenticationService implements RefreshUserAuthenticationUseCase {

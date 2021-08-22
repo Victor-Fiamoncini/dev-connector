@@ -1,3 +1,5 @@
+import { Router } from 'express'
+
 import {
 	ExpressAuthenticatedPayloadRouterAdapter,
 	ExpressAuthenticationMiddlewareAdapter,
@@ -12,8 +14,8 @@ import {
 	FetchPostsControllerFactory,
 	TokenAuthenticationMiddlewareFactory,
 } from '@main/factories'
+
 import { CreatePostValidator } from '@utils/implementations/validators'
-import { Router } from 'express'
 
 const postRoutes = (router: Router): void => {
 	router.post(

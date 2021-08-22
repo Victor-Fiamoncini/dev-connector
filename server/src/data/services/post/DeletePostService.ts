@@ -3,9 +3,11 @@ import {
 	FindPostByIdRepository,
 	FindUserByIdRepository,
 } from '@data/contracts'
+
 import { Post } from '@domain/entities'
 import { PostDeleteError, PostNotFoundError } from '@domain/errors'
 import { DeletePostUseCase } from '@domain/usecases'
+
 import { UnauthorizedError } from '@utils/errors'
 
 export class DeletePostService implements DeletePostUseCase {

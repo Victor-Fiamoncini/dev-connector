@@ -1,5 +1,7 @@
 import { TokenGeneratorAdapter } from '@data/contracts'
+
 import { EnsureUserAuthenticationUseCase } from '@domain/usecases'
+
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
 import { EnsureUserAuthenticationModel } from '@presentation/models'
 

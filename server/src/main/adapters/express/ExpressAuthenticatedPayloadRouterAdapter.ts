@@ -1,5 +1,6 @@
-import { Controller } from '@presentation/contracts'
 import { Request, Response } from 'express'
+
+import { Controller } from '@presentation/contracts'
 
 export class ExpressAuthenticatedPayloadRouterAdapter {
 	static adapt(controller: Controller) {

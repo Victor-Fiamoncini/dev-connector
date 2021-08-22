@@ -1,5 +1,6 @@
-import { HashComparatorAdapter } from '@data/contracts'
 import { compare } from 'bcrypt'
+
+import { HashComparatorAdapter } from '@data/contracts'
 
 export class BcryptHashComparatorAdapter implements HashComparatorAdapter {
 	async adapt(payload: string, hashedPayload: string): Promise<boolean> {

@@ -1,4 +1,5 @@
 import { FetchProfilesUseCase } from '@domain/usecases'
+
 import { Controller, HttpResponse } from '@presentation/contracts'
 import { FetchProfilesModel } from '@presentation/models'
 

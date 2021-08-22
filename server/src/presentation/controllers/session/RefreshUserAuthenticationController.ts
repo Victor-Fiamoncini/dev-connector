@@ -1,4 +1,5 @@
 import { RefreshUserAuthenticationUseCase } from '@domain/usecases'
+
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
 import { RefreshUserAuthenticationModel } from '@presentation/models'
 
