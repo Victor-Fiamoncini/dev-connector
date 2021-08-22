@@ -1,5 +1,6 @@
 import { FetchProfilesRepository } from '@data/contracts'
 import { ProfileDataModel } from '@data/models'
+
 import { ProfileMongoDataSource } from '@infra/databases/mongo'
 
 export class MongoFetchProfilesRepository implements FetchProfilesRepository {

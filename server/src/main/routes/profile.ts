@@ -10,7 +10,9 @@ import {
 import {
 	CreateOrUpdateProfileControllerFactory,
 	FetchProfileControllerFactory,
+	DeleteProfileControllerFactory,
 	FetchProfilesControllerFactory,
+	FetchUserProfileControllerFactory,
 	TokenAuthenticationMiddlewareFactory,
 } from '@main/factories'
 
@@ -42,6 +44,26 @@ const profileRoutes = (router: Router): void => {
 			TokenAuthenticationMiddlewareFactory.make()
 		),
 		ExpressParamRouterAdapter.adapt(FetchProfileControllerFactory.make())
+	)
+
+	router.delete(
+		'/profiles',
+		ExpressAuthenticationMiddlewareAdapter.adapt(
+			TokenAuthenticationMiddlewareFactory.make()
+		),
+		ExpressAuthenticatedPayloadRouterAdapter.adapt(
+			DeleteProfileControllerFactory.make()
+		)
+	)
+
+	router.get(
+		'/profiles/user/me',
+		ExpressAuthenticationMiddlewareAdapter.adapt(
+			TokenAuthenticationMiddlewareFactory.make()
+		),
+		ExpressAuthenticatedPayloadRouterAdapter.adapt(
+			FetchUserProfileControllerFactory.make()
+		)
 	)
 }
 

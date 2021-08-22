@@ -1,5 +1,6 @@
 import { FetchPostsRepository } from '@data/contracts'
 import { PostDataModel } from '@data/models'
+
 import { PostMongoDataSource } from '@infra/databases/mongo'
 
 export class MongoFetchPostsRepository implements FetchPostsRepository {

@@ -1,5 +1,6 @@
 import { FindProfileByUserRepository } from '@data/contracts'
 import { ProfileDataModel } from '@data/models'
+
 import { ProfileMongoDataSource } from '@infra/databases/mongo'
 
 // prettier-ignore
