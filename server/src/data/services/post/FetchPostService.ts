@@ -1,6 +1,6 @@
 import { FindPostByIdRepository } from '@data/contracts'
+import { PostDataModel } from '@data/models'
 
-import { Post } from '@domain/entities'
 import { PostNotFoundError } from '@domain/errors'
 import { FetchPostUseCase } from '@domain/usecases'
 
@@ -9,13 +9,13 @@ export class FetchPostService implements FetchPostUseCase {
 		private readonly findPostByIdRepository: FindPostByIdRepository
 	) {}
 
-	async fetchPost(id: string): Promise<Post> {
+	async fetchPost(id: string) {
 		const post = (await this.findPostByIdRepository.findPostById(id)) || null
 
 		if (!post) {
 			throw new PostNotFoundError()
 		}
 
-		return post
+		return PostDataModel.fromDatabase(post).toDomain()
 	}
 }

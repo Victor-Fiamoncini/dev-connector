@@ -1,6 +1,6 @@
 import { CreatePostRepository, FindUserByIdRepository } from '@data/contracts'
+import { PostDataModel } from '@data/models'
 
-import { Post } from '@domain/entities'
 import { CreatePostUseCase } from '@domain/usecases'
 
 import { UnauthorizedError } from '@utils/errors'
@@ -11,7 +11,7 @@ export class CreatePostService implements CreatePostUseCase {
 		private readonly createPostRepository: CreatePostRepository
 	) {}
 
-	async createPost(data: CreatePostUseCase.Params): Promise<Post> {
+	async createPost(data: CreatePostUseCase.Params) {
 		const userById = await this.findUserByIdRepository.findUserById(data.user)
 
 		if (!userById) {
@@ -25,6 +25,6 @@ export class CreatePostService implements CreatePostUseCase {
 			user: data.user,
 		})
 
-		return post
+		return PostDataModel.fromDatabase(post).toDomain()
 	}
 }

@@ -1,14 +1,14 @@
 import { FetchPostsRepository } from '@data/contracts'
+import { PostDataModel } from '@data/models'
 
-import { Post } from '@domain/entities'
 import { FetchPostsUseCase } from '@domain/usecases'
 
 export class FetchPostsService implements FetchPostsUseCase {
 	constructor(private readonly fetchPostsRepository: FetchPostsRepository) {}
 
-	async fetchPosts(): Promise<Post[]> {
+	async fetchPosts() {
 		const posts = await this.fetchPostsRepository.fetchPosts()
 
-		return posts || []
+		return PostDataModel.fromDatabaseColletion(posts).toDomainColletion()
 	}
 }

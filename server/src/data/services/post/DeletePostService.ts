@@ -3,8 +3,8 @@ import {
 	FindPostByIdRepository,
 	FindUserByIdRepository,
 } from '@data/contracts'
+import { PostDataModel } from '@data/models'
 
-import { Post } from '@domain/entities'
 import { PostDeleteError, PostNotFoundError } from '@domain/errors'
 import { DeletePostUseCase } from '@domain/usecases'
 
@@ -17,18 +17,22 @@ export class DeletePostService implements DeletePostUseCase {
 		private readonly deletePostRepository: DeletePostRepository
 	) {}
 
-	async deletePost(data: DeletePostUseCase.Params): Promise<Post> {
+	async deletePost(data: DeletePostUseCase.Params) {
 		const userById = await this.findUserByIdRepository.findUserById(data.user)
 
 		if (!userById) {
 			throw new UnauthorizedError()
 		}
 
-		const postById = await this.findPostByIdRepository.findPostById(data.post)
+		const postByIdFromDatabase = await this.findPostByIdRepository.findPostById(
+			data.post
+		)
 
-		if (!postById) {
+		if (!postByIdFromDatabase) {
 			throw new PostNotFoundError()
 		}
+
+		const postById = PostDataModel.fromDatabase(postByIdFromDatabase).toDomain()
 
 		if (
 			String(postById.user) !== data.user ||
@@ -43,6 +47,6 @@ export class DeletePostService implements DeletePostUseCase {
 			throw new PostDeleteError()
 		}
 
-		return post
+		return PostDataModel.fromDatabase(post).toDomain()
 	}
 }
