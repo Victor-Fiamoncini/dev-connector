@@ -16,4 +16,8 @@ export default {
 		expires: process.env.JWT_EXPIRES || '24h',
 		secret: process.env.JWT_AUTH_SECRET || 'dev_secret',
 	},
+	github: {
+		clientID: process.env.GITHUB_CLIENT_ID || '',
+		clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
+	},
 }

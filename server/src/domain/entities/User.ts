@@ -1,3 +1,10 @@
+export namespace User {
+	export type Repository = {
+		id: number
+		name: string
+	}
+}
+
 export class User {
 	constructor(
 		public id: string,

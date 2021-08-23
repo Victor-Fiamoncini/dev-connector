@@ -1,3 +1,4 @@
+export * from '@infra/repositories/user/AxiosFindUserRepositoriesRepository'
 export * from '@infra/repositories/user/MongoCreateUserRepository'
 export * from '@infra/repositories/user/MongoDeleteUserRepository'
 export * from '@infra/repositories/user/MongoFindUserByEmailRepository'

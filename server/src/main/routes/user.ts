@@ -1,10 +1,16 @@
 import { Router } from 'express'
 
 import {
+	ExpressAuthenticationMiddlewareAdapter,
 	ExpressBodyRouterAdapter,
+	ExpressParamRouterAdapter,
 	ExpressValidatorAdapter,
 } from '@main/adapters'
-import { CreateUserControllerFactory } from '@main/factories'
+import {
+	CreateUserControllerFactory,
+	FetchUserRepositoriesControllerFactory,
+	TokenAuthenticationMiddlewareFactory,
+} from '@main/factories'
 
 import { CreateUserValidator } from '@utils/implementations'
 
@@ -13,6 +19,16 @@ const userRoutes = (router: Router): void => {
 		'/users',
 		ExpressValidatorAdapter.adapt(new CreateUserValidator()),
 		ExpressBodyRouterAdapter.adapt(CreateUserControllerFactory.make())
+	)
+
+	router.get(
+		'/github/:username',
+		ExpressAuthenticationMiddlewareAdapter.adapt(
+			TokenAuthenticationMiddlewareFactory.make()
+		),
+		ExpressParamRouterAdapter.adapt(
+			FetchUserRepositoriesControllerFactory.make()
+		)
 	)
 }
 
