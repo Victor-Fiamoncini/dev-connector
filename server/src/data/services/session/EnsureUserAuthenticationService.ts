@@ -2,8 +2,8 @@ import {
 	FindUserByEmailRepository,
 	HashComparatorAdapter,
 } from '@data/contracts'
+import { UserDataModel } from '@data/models'
 
-import { User } from '@domain/entities'
 import { InvalidCredentialsError } from '@domain/errors'
 import { EnsureUserAuthenticationUseCase } from '@domain/usecases'
 
@@ -14,16 +14,18 @@ export class EnsureUserAuthenticationService implements EnsureUserAuthentication
 		private readonly hashComparatorAdapter: HashComparatorAdapter
 	) {}
 
-	async ensureAuthentication(
-		data: EnsureUserAuthenticationUseCase.Params
-	): Promise<User> {
-		const userByEmail = await this.findUserByEmailRepository.findUserByEmail(
+	async ensureAuthentication(data: EnsureUserAuthenticationUseCase.Params) {
+		const userByEmailFromDatabase = await this.findUserByEmailRepository.findUserByEmail(
 			data.email
 		)
 
-		if (!userByEmail) {
+		if (!userByEmailFromDatabase) {
 			throw new InvalidCredentialsError()
 		}
+
+		const userByEmail = UserDataModel.fromDatabase(
+			userByEmailFromDatabase
+		).toDomain()
 
 		const isPasswordValid = await this.hashComparatorAdapter.adapt(
 			data.password,

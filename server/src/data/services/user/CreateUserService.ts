@@ -4,8 +4,8 @@ import {
 	AvatarGeneratorAdapter,
 	HashGeneratorAdapter,
 } from '@data/contracts'
+import { UserDataModel } from '@data/models'
 
-import { User } from '@domain/entities'
 import { UserAlreadyExistsError } from '@domain/errors'
 import { CreateUserUseCase } from '@domain/usecases'
 
@@ -17,7 +17,7 @@ export class CreateUserService implements CreateUserUseCase {
 		private readonly hashGeneratorAdapter: HashGeneratorAdapter
 	) {}
 
-	async createUser(data: CreateUserUseCase.Params): Promise<User> {
+	async createUser(data: CreateUserUseCase.Params) {
 		const userByEmail = await this.findUserByEmailRepository.findUserByEmail(
 			data.email
 		)
@@ -37,6 +37,6 @@ export class CreateUserService implements CreateUserUseCase {
 			avatar,
 		})
 
-		return createdUser
+		return UserDataModel.fromDatabase(createdUser).toDomain()
 	}
 }
