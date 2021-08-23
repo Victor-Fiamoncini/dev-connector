@@ -1,4 +1,5 @@
 import { DeleteProfileRepository, DeleteUserRepository } from '@data/contracts'
+
 import { DeleteProfileUseCase } from '@domain/usecases'
 
 export class DeleteProfileService implements DeleteProfileUseCase {
@@ -7,7 +8,7 @@ export class DeleteProfileService implements DeleteProfileUseCase {
 		private readonly deleteUserRepository: DeleteUserRepository
 	) {}
 
-	async deleteProfile(user: string): Promise<void> {
+	async deleteProfile(user: string) {
 		await this.deleteProfileRepository.deleteProfile(user)
 		await this.deleteUserRepository.deleterUser(user)
 	}

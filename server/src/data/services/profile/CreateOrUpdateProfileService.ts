@@ -3,22 +3,21 @@ import {
 	FindProfileByUserRepository,
 	UpdateProfileRepository,
 } from '@data/contracts'
+import { ProfileDataModel } from '@data/models'
 
-import { Profile } from '@domain/entities'
 import { ProfileUpdateError } from '@domain/errors'
 import { CreateOrUpdateProfileUseCase } from '@domain/usecases'
-
 // prettier-ignore
-export class CreateOrUpdateProfileService implements CreateOrUpdateProfileUseCase {
+
+export class CreateOrUpdateProfileService
+implements CreateOrUpdateProfileUseCase {
 	constructor(
 		private readonly findProfileByUserRepository: FindProfileByUserRepository,
 		private readonly updateProfileRepository: UpdateProfileRepository,
 		private readonly createProfileRepository: CreateProfileRepository
 	) {}
 
-	async createOrUpdateProfile(
-		data: CreateOrUpdateProfileUseCase.Params
-	): Promise<Profile> {
+	async createOrUpdateProfile(data: CreateOrUpdateProfileUseCase.Params) {
 		const { skills } = data
 
 		let serializedSkills: string[] = []
@@ -32,9 +31,11 @@ export class CreateOrUpdateProfileService implements CreateOrUpdateProfileUseCas
 		)
 
 		if (profile) {
+			const profileEntity = ProfileDataModel.fromDatabase(profile).toDomain()
+
 			const updatedProfile = await this.updateProfileRepository.updateProfile({
 				...data,
-				id: profile.id,
+				id: profileEntity.id,
 				skills: serializedSkills,
 			})
 
@@ -42,7 +43,7 @@ export class CreateOrUpdateProfileService implements CreateOrUpdateProfileUseCas
 				throw new ProfileUpdateError()
 			}
 
-			return updatedProfile
+			return ProfileDataModel.fromDatabase(updatedProfile).toDomain()
 		}
 
 		const createdProfile = await this.createProfileRepository.createProfile({
@@ -50,6 +51,6 @@ export class CreateOrUpdateProfileService implements CreateOrUpdateProfileUseCas
 			skills: serializedSkills,
 		})
 
-		return createdProfile
+		return ProfileDataModel.fromDatabase(createdProfile).toDomain()
 	}
 }

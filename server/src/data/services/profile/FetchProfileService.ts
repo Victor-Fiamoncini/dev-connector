@@ -1,6 +1,6 @@
 import { FindProfileByIdRepository } from '@data/contracts'
+import { ProfileDataModel } from '@data/models'
 
-import { Profile } from '@domain/entities'
 import { ProfileNotFoundError } from '@domain/errors'
 import { FetchProfileUseCase } from '@domain/usecases'
 
@@ -9,13 +9,13 @@ export class FetchProfileService implements FetchProfileUseCase {
 		private readonly findProfileByIdRepository: FindProfileByIdRepository
 	) {}
 
-	async fetchProfile(id: string): Promise<Profile> {
+	async fetchProfile(id: string) {
 		const profile = await this.findProfileByIdRepository.findProfileById(id)
 
 		if (!profile) {
 			throw new ProfileNotFoundError()
 		}
 
-		return profile
+		return ProfileDataModel.fromDatabase(profile).toDomain()
 	}
 }

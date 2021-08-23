@@ -1,6 +1,6 @@
 import { FetchProfilesRepository } from '@data/contracts'
+import { ProfileDataModel } from '@data/models'
 
-import { Profile } from '@domain/entities'
 import { FetchProfilesUseCase } from '@domain/usecases'
 
 export class FetchProfilesService implements FetchProfilesUseCase {
@@ -8,9 +8,9 @@ export class FetchProfilesService implements FetchProfilesUseCase {
 		private readonly fetchProfilesRepository: FetchProfilesRepository
 	) {}
 
-	async fetchProfiles(): Promise<Profile[]> {
+	async fetchProfiles() {
 		const profiles = await this.fetchProfilesRepository.fetchProfiles()
 
-		return profiles
+		return ProfileDataModel.fromDatabaseColletion(profiles).toDomainColletion()
 	}
 }
