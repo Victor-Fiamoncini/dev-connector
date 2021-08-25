@@ -16,13 +16,13 @@ export namespace PostViewModel {
 
 export class PostViewModel {
 	constructor(
-		public id: string,
-		public name: string,
-		public text: string,
-		public avatar: string,
-		public likes: PostViewModel.Like[],
-		public comments: PostViewModel.Comment[],
-		public user: string
+		public readonly id: string,
+		public readonly name: string,
+		public readonly text: string,
+		public readonly avatar: string,
+		public readonly likes: PostViewModel.Like[],
+		public readonly comments: PostViewModel.Comment[],
+		public readonly user: string
 	) {}
 
 	static map(post: Post) {

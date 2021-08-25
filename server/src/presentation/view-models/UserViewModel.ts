@@ -2,13 +2,8 @@ import { User } from '@domain/entities'
 
 export class UserViewModel {
 	constructor(
-		public user: {
-			id: string
-			name: string
-			email: string
-			avatar: string
-		},
-		public token?: string
+		public readonly user: Omit<User, 'password' | 'created_at' | 'update_at'>,
+		public readonly token?: string
 	) {}
 
 	static map(user: User, token?: string) {

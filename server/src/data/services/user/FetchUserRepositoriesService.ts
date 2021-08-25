@@ -1,4 +1,5 @@
 import { FindUserRepositoriesRepository } from '@data/contracts'
+import { RepositoryDataModel } from '@data/data-models'
 
 import { FetchUserRepositoriesUseCase } from '@domain/usecases'
 
@@ -11,6 +12,6 @@ export class FetchUserRepositoriesService implements FetchUserRepositoriesUseCas
 	async fetchRepos(username: string) {
 		const repos = await this.findUserRepositoriesRepository.findRepos(username)
 
-		return repos
+		return RepositoryDataModel.fromJsonColletion(repos).toDomainCollection()
 	}
 }
