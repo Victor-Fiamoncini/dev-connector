@@ -4,7 +4,7 @@ import { Validator } from '@utils/contracts'
 import { ValidatorError } from '@utils/errors'
 
 export class CreateUserValidator implements Validator {
-	async validate(data: object): Promise<void> {
+	async validate(data: object) {
 		const validationSchema = Yup.object().shape({
 			name: Yup.string()
 				.min(2, 'Invalid name')

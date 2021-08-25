@@ -1,5 +1,5 @@
 import { CreatePostRepository, FindUserByIdRepository } from '@data/contracts'
-import { PostDataModel } from '@data/models'
+import { PostDataModel } from '@data/data-models'
 
 import { CreatePostUseCase } from '@domain/usecases'
 

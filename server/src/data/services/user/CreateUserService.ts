@@ -4,7 +4,7 @@ import {
 	AvatarGeneratorAdapter,
 	HashGeneratorAdapter,
 } from '@data/contracts'
-import { UserDataModel } from '@data/models'
+import { UserDataModel } from '@data/data-models'
 
 import { UserAlreadyExistsError } from '@domain/errors'
 import { CreateUserUseCase } from '@domain/usecases'

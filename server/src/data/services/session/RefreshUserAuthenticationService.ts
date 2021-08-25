@@ -1,5 +1,5 @@
 import { FindUserByIdRepository } from '@data/contracts'
-import { UserDataModel } from '@data/models'
+import { UserDataModel } from '@data/data-models'
 
 import { RefreshUserAuthenticationUseCase } from '@domain/usecases'
 

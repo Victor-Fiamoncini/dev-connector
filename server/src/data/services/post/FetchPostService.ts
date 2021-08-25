@@ -1,5 +1,5 @@
 import { FindPostByIdRepository } from '@data/contracts'
-import { PostDataModel } from '@data/models'
+import { PostDataModel } from '@data/data-models'
 
 import { PostNotFoundError } from '@domain/errors'
 import { FetchPostUseCase } from '@domain/usecases'

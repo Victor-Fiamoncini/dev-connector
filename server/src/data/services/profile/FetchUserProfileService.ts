@@ -1,5 +1,5 @@
 import { FindProfileByUserRepository } from '@data/contracts'
-import { ProfileDataModel } from '@data/models'
+import { ProfileDataModel } from '@data/data-models'
 
 import { ProfileNotFoundError } from '@domain/errors'
 import { FetchUserProfileUseCase } from '@domain/usecases'

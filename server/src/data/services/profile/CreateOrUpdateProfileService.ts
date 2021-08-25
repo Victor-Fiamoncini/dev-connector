@@ -3,14 +3,13 @@ import {
 	FindProfileByUserRepository,
 	UpdateProfileRepository,
 } from '@data/contracts'
-import { ProfileDataModel } from '@data/models'
+import { ProfileDataModel } from '@data/data-models'
 
 import { ProfileUpdateError } from '@domain/errors'
 import { CreateOrUpdateProfileUseCase } from '@domain/usecases'
-// prettier-ignore
 
-export class CreateOrUpdateProfileService
-implements CreateOrUpdateProfileUseCase {
+// prettier-ignore
+export class CreateOrUpdateProfileService implements CreateOrUpdateProfileUseCase {
 	constructor(
 		private readonly findProfileByUserRepository: FindProfileByUserRepository,
 		private readonly updateProfileRepository: UpdateProfileRepository,

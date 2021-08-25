@@ -1,6 +1,6 @@
 import { Document, Model, model, Schema } from 'mongoose'
 
-import { UserDataModel } from '@data/models'
+import { UserDataModel } from '@data/data-models'
 
 type MongoooseUserModel = UserDataModel &
 	Document & {

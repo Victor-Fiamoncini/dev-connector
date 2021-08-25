@@ -1,4 +1,4 @@
-import { ProfileDataModel } from '@data/models'
+import { ProfileDataModel } from '@data/data-models'
 
 export namespace UpdateProfileRepository {
 	export type Params = {

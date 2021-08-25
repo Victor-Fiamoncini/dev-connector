@@ -1,5 +1,5 @@
 import { FetchPostsRepository } from '@data/contracts'
-import { PostDataModel } from '@data/models'
+import { PostDataModel } from '@data/data-models'
 
 import { FetchPostsUseCase } from '@domain/usecases'
 

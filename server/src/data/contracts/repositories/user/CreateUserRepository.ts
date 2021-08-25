@@ -1,4 +1,4 @@
-import { UserDataModel } from '@data/models'
+import { UserDataModel } from '@data/data-models'
 
 export namespace CreateUserRepository {
 	export type Params = {

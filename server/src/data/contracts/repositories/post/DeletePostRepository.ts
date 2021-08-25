@@ -1,4 +1,4 @@
-import { PostDataModel } from '@data/models'
+import { PostDataModel } from '@data/data-models'
 
 export interface DeletePostRepository {
 	deletePost(id: string): Promise<PostDataModel | null>

@@ -2,7 +2,7 @@ import {
 	FindUserByEmailRepository,
 	HashComparatorAdapter,
 } from '@data/contracts'
-import { UserDataModel } from '@data/models'
+import { UserDataModel } from '@data/data-models'
 
 import { InvalidCredentialsError } from '@domain/errors'
 import { EnsureUserAuthenticationUseCase } from '@domain/usecases'

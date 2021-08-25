@@ -1,3 +1,3 @@
 export interface Validator {
-	validate(data: object): Promise<void>
+	validate(data: object): Promise<object | void>
 }

@@ -3,7 +3,7 @@ import {
 	FindPostByIdRepository,
 	FindUserByIdRepository,
 } from '@data/contracts'
-import { PostDataModel } from '@data/models'
+import { PostDataModel } from '@data/data-models'
 
 import { PostDeleteError, PostNotFoundError } from '@domain/errors'
 import { DeletePostUseCase } from '@domain/usecases'

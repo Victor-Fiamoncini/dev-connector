@@ -10,7 +10,7 @@ export class TokenAuthenticationMiddleware implements AuthenticationMiddleware {
 		private readonly tokenSecret: string
 	) {}
 
-	async handle(authorization: string): Promise<string | object> {
+	async handle(authorization: string) {
 		if (!authorization) {
 			throw new UnauthorizedError()
 		}

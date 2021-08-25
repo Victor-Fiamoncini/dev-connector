@@ -1,6 +1,6 @@
 import { Document, Model, model, Schema } from 'mongoose'
 
-import { PostDataModel } from '@data/models'
+import { PostDataModel } from '@data/data-models'
 
 type MongooosePostModel = PostDataModel &
 	Document & {
