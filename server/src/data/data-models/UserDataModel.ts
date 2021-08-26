@@ -1,7 +1,11 @@
 import { User } from '@domain/entities'
 
+export namespace UserDataModel {
+	export type Props = User
+}
+
 export class UserDataModel {
-	constructor(private readonly props: User) {}
+	constructor(private readonly props: UserDataModel.Props) {}
 
 	static fromDatabase(databaseModel: any) {
 		return new UserDataModel({

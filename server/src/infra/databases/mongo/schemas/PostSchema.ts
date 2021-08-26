@@ -2,11 +2,11 @@ import { Document, Model, model, Schema } from 'mongoose'
 
 import { PostDataModel } from '@data/data-models'
 
-type MongooosePostModel = PostDataModel &
-	Document & {
-		createdAt: Date
-		updatedAt: Date
-	}
+interface MongooosePostModel extends Document, PostDataModel.Props {
+	id: PostDataModel.Props['id']
+	createdAt: Date
+	updatedAt: Date
+}
 
 const PostSchema = new Schema(
 	{

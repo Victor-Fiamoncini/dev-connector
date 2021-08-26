@@ -1,9 +1,13 @@
 import { User } from '@domain/entities'
 
+export namespace RepositoryDataModel {
+	export type Props = User.Repository
+}
+
 export class RepositoryDataModel {
 	private static repositoryDataModels: RepositoryDataModel[] = []
 
-	constructor(private readonly props: User.Repository) {}
+	constructor(private readonly props: RepositoryDataModel.Props) {}
 
 	static fromJsonColletion(jsonModels: any[]) {
 		this.repositoryDataModels = jsonModels.map(jsonModel => {

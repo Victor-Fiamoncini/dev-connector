@@ -21,5 +21,7 @@ export namespace CreateProfileRepository {
 }
 
 export interface CreateProfileRepository {
-	createProfile(data: CreateProfileRepository.Params): Promise<ProfileDataModel>
+	createProfile(
+		data: CreateProfileRepository.Params
+	): Promise<ProfileDataModel.Props>
 }

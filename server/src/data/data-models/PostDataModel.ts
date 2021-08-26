@@ -1,9 +1,13 @@
 import { Post } from '@domain/entities'
 
+export namespace PostDataModel {
+	export type Props = Post
+}
+
 export class PostDataModel {
 	private static postDataModels: PostDataModel[] = []
 
-	constructor(private readonly props: Post) {}
+	constructor(private readonly props: PostDataModel.Props) {}
 
 	static fromDatabase(databaseModel: any) {
 		return new PostDataModel({

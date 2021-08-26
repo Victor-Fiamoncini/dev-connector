@@ -23,5 +23,5 @@ export namespace UpdateProfileRepository {
 export interface UpdateProfileRepository {
 	updateProfile(
 		data: UpdateProfileRepository.Params
-	): Promise<ProfileDataModel | null>
+	): Promise<ProfileDataModel.Props | null>
 }

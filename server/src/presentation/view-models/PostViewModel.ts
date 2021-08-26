@@ -31,8 +31,14 @@ export class PostViewModel {
 			post.name,
 			post.text,
 			post.avatar,
-			post.likes,
-			post.comments,
+			post.likes.map(like => ({ user: like.user })),
+			post.comments.map(comment => ({
+				user: comment.user,
+				text: comment.text,
+				name: comment.name,
+				avatar: comment.avatar,
+				date: comment.date,
+			})),
 			post.user
 		)
 	}
@@ -44,8 +50,14 @@ export class PostViewModel {
 				post.name,
 				post.text,
 				post.avatar,
-				post.likes,
-				post.comments,
+				post.likes.map(like => ({ user: like.user })),
+				post.comments.map(comment => ({
+					user: comment.user,
+					text: comment.text,
+					name: comment.name,
+					avatar: comment.avatar,
+					date: comment.date,
+				})),
 				post.user
 			)
 		})

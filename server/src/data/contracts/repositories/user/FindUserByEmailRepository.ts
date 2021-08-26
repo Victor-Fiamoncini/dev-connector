@@ -1,5 +1,5 @@
 import { UserDataModel } from '@data/data-models'
 
 export interface FindUserByEmailRepository {
-	findUserByEmail(email: string): Promise<UserDataModel | null>
+	findUserByEmail(email: string): Promise<UserDataModel.Props | null>
 }

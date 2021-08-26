@@ -7,22 +7,16 @@ export class MongoCreateExperienceRepository implements CreateExperienceReposito
 	async createExperience(data: CreateExperienceRepository.Params) {
 		const { id, ...experienceData } = data
 
-		const profileWithNewExperience = await ProfileMongoDataSource.findByIdAndUpdate(
-			id,
-			{
-				$push: {
-					experience: experienceData,
-				},
-			},
-			{
-				runValidators: true,
-			}
-		)
+		const profile = await ProfileMongoDataSource.findById(id)
 
-		if (!profileWithNewExperience) {
+		if (!profile) {
 			return null
 		}
 
-		return profileWithNewExperience
+		profile.experience.unshift(experienceData)
+
+		await profile.save()
+
+		return profile
 	}
 }

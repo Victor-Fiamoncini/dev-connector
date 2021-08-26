@@ -16,5 +16,5 @@ export namespace CreateExperienceRepository {
 export interface CreateExperienceRepository {
 	createExperience(
 		data: CreateExperienceRepository.Params
-	): Promise<ProfileDataModel | null>
+	): Promise<ProfileDataModel.Props | null>
 }

@@ -10,5 +10,5 @@ export namespace CreatePostRepository {
 }
 
 export interface CreatePostRepository {
-	createPost(data: CreatePostRepository.Params): Promise<PostDataModel>
+	createPost(data: CreatePostRepository.Params): Promise<PostDataModel.Props>
 }

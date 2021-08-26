@@ -1,9 +1,13 @@
 import { Profile } from '@domain/entities'
 
+export namespace ProfileDataModel {
+	export type Props = Profile
+}
+
 export class ProfileDataModel {
 	private static profileDataModels: ProfileDataModel[] = []
 
-	constructor(private readonly props: Profile) {}
+	constructor(private readonly props: ProfileDataModel.Props) {}
 
 	static fromDatabase(databaseModel: any) {
 		return new ProfileDataModel({

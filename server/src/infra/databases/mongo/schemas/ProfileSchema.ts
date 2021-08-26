@@ -2,11 +2,11 @@ import { Document, Model, model, Schema } from 'mongoose'
 
 import { ProfileDataModel } from '@data/data-models'
 
-type MongoooseProfileModel = ProfileDataModel &
-	Document & {
-		createdAt: Date
-		updatedAt: Date
-	}
+interface MongoooseProfileModel extends Document, ProfileDataModel.Props {
+	id: ProfileDataModel.Props['id']
+	createdAt: Date
+	updatedAt: Date
+}
 
 const ProfileSchema = new Schema(
 	{

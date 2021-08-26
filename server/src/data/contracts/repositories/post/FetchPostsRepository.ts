@@ -1,5 +1,5 @@
 import { PostDataModel } from '@data/data-models'
 
 export interface FetchPostsRepository {
-	fetchPosts(): Promise<PostDataModel[]>
+	fetchPosts(): Promise<PostDataModel.Props[]>
 }

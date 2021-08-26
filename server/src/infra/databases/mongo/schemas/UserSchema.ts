@@ -2,11 +2,11 @@ import { Document, Model, model, Schema } from 'mongoose'
 
 import { UserDataModel } from '@data/data-models'
 
-type MongoooseUserModel = UserDataModel &
-	Document & {
-		createdAt: Date
-		updatedAt: Date
-	}
+interface MongoooseUserModel extends Document, UserDataModel.Props {
+	id: UserDataModel.Props['id']
+	createdAt: Date
+	updatedAt: Date
+}
 
 const UserSchema = new Schema(
 	{
