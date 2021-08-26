@@ -1,8 +1,10 @@
 import { DeleteProfileService } from '@data/services'
+
 import {
 	MongoDeleteProfileRepository,
 	MongoDeleteUserRepository,
 } from '@infra/repositories'
+
 import { Controller } from '@presentation/contracts'
 import { DeleteProfileController } from '@presentation/controllers'
 

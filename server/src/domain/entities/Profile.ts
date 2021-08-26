@@ -1,5 +1,6 @@
 export namespace Profile {
 	export type Experience = {
+		id: string
 		title: string
 		company: string
 		location: string

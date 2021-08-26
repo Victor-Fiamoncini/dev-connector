@@ -15,6 +15,7 @@ import {
 	FetchUserProfileControllerFactory,
 	TokenAuthenticationMiddlewareFactory,
 	CreateExperienceControllerFactory,
+	DeleteExperienceControllerFactory,
 } from '@main/factories'
 
 import {
@@ -78,6 +79,16 @@ const profileRoutes = (router: Router): void => {
 		),
 		ExpressAuthenticatedPayloadRouterAdapter.adapt(
 			CreateExperienceControllerFactory.make()
+		)
+	)
+
+	router.delete(
+		'/profiles/experience/:id',
+		ExpressAuthenticationMiddlewareAdapter.adapt(
+			TokenAuthenticationMiddlewareFactory.make()
+		),
+		ExpressAuthenticatedPayloadRouterAdapter.adapt(
+			DeleteExperienceControllerFactory.make()
 		)
 	)
 }

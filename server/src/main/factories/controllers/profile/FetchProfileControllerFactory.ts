@@ -1,5 +1,7 @@
 import { FetchProfileService } from '@data/services'
+
 import { MongoFindProfileByIdRepository } from '@infra/repositories'
+
 import { Controller } from '@presentation/contracts'
 import { FetchProfileController } from '@presentation/controllers'
 

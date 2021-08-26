@@ -1,5 +1,6 @@
 export * from '@data/services/profile/CreateExperienceService'
 export * from '@data/services/profile/CreateOrUpdateProfileService'
+export * from '@data/services/profile/DeleteExperienceService'
 export * from '@data/services/profile/DeleteProfileService'
 export * from '@data/services/profile/FetchProfilesService'
 export * from '@data/services/profile/FetchProfileService'

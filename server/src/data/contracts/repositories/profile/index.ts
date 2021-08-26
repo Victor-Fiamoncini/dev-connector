@@ -1,5 +1,6 @@
 export * from '@data/contracts/repositories/profile/CreateExperienceRepository'
 export * from '@data/contracts/repositories/profile/CreateProfileRepository'
+export * from '@data/contracts/repositories/profile/DeleteExperienceRepository'
 export * from '@data/contracts/repositories/profile/DeleteProfileRepository'
 export * from '@data/contracts/repositories/profile/FetchProfilesRepository'
 export * from '@data/contracts/repositories/profile/FindProfileByIdRepository'

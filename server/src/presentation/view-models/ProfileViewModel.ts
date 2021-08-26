@@ -2,6 +2,7 @@ import { Profile } from '@domain/entities'
 
 export namespace ProfileViewModel {
 	export type Experience = {
+		id: string
 		title: string
 		company: string
 		location: string
@@ -57,6 +58,7 @@ export class ProfileViewModel {
 			profile.bio,
 			profile.githubusername,
 			profile.experience.map(experience => ({
+				id: experience.id,
 				title: experience.title,
 				company: experience.company,
 				location: experience.location,
@@ -97,6 +99,7 @@ export class ProfileViewModel {
 				profile.bio,
 				profile.githubusername,
 				profile.experience.map(experience => ({
+					id: experience.id,
 					title: experience.title,
 					company: experience.company,
 					location: experience.location,
