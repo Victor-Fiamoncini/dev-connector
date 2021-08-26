@@ -1,3 +1,4 @@
+export * from '@infra/repositories/profile/MongoCreateExperienceRepository'
 export * from '@infra/repositories/profile/MongoCreateProfileRepository'
 export * from '@infra/repositories/profile/MongoDeleteProfileRepository'
 export * from '@infra/repositories/profile/MongoFetchProfilesRepository'

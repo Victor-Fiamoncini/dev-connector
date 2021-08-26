@@ -1,2 +1,3 @@
-export * from '@domain/errors/profile/ProfileDeleteError'
+export * from '@domain/errors/profile/ExperienceCreateError'
+export * from '@domain/errors/profile/ProfileUpdateError'
 export * from '@domain/errors/profile/ProfileNotFoundError'

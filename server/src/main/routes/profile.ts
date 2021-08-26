@@ -14,9 +14,13 @@ import {
 	FetchProfilesControllerFactory,
 	FetchUserProfileControllerFactory,
 	TokenAuthenticationMiddlewareFactory,
+	CreateExperienceControllerFactory,
 } from '@main/factories'
 
-import { CreateOrUpdateProfileValidator } from '@utils/implementations/validators'
+import {
+	CreateExperienceValidator,
+	CreateOrUpdateProfileValidator,
+} from '@utils/implementations/validators'
 
 const profileRoutes = (router: Router): void => {
 	router.post(
@@ -63,6 +67,17 @@ const profileRoutes = (router: Router): void => {
 		),
 		ExpressAuthenticatedPayloadRouterAdapter.adapt(
 			FetchUserProfileControllerFactory.make()
+		)
+	)
+
+	router.post(
+		'/profiles/experience',
+		ExpressValidatorAdapter.adapt(new CreateExperienceValidator()),
+		ExpressAuthenticationMiddlewareAdapter.adapt(
+			TokenAuthenticationMiddlewareFactory.make()
+		),
+		ExpressAuthenticatedPayloadRouterAdapter.adapt(
+			CreateExperienceControllerFactory.make()
 		)
 	)
 }
