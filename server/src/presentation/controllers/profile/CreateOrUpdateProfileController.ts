@@ -1,7 +1,6 @@
 import { CreateOrUpdateProfileUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { ProfileViewModel } from '@presentation/view-models'
 
 namespace CreateOrUpdateProfileController {
 	export type Params = {
@@ -33,9 +32,9 @@ export class CreateOrUpdateProfileController implements Controller {
 	async handle(
 		httpResquest: HttpResquest<CreateOrUpdateProfileController.Params>
 	) {
-		try {
-			const { body } = httpResquest
+		const { body } = httpResquest
 
+		try {
 			const profile = await this.createOrUpdateProfileUseCase.createOrUpdateProfile(
 				{
 					...body,
@@ -43,7 +42,7 @@ export class CreateOrUpdateProfileController implements Controller {
 				}
 			)
 
-			return HttpResponse.ok(ProfileViewModel.map(profile))
+			return HttpResponse.ok(profile)
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

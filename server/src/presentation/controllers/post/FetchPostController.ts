@@ -1,7 +1,6 @@
 import { FetchPostUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { PostViewModel } from '@presentation/view-models'
 
 namespace FetchPostController {
 	export type Params = {
@@ -13,12 +12,12 @@ export class FetchPostController implements Controller {
 	constructor(private readonly fetchPostUseCase: FetchPostUseCase) {}
 
 	async handle(httpRequest: HttpResquest<null, FetchPostController.Params>) {
-		try {
-			const { id } = httpRequest.params
+		const { id } = httpRequest.params
 
+		try {
 			const post = await this.fetchPostUseCase.fetchPost(id)
 
-			return HttpResponse.ok(PostViewModel.map(post))
+			return HttpResponse.ok(post)
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

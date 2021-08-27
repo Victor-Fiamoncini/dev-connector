@@ -25,9 +25,9 @@ export class DeleteExperienceController implements Controller {
 			DeleteExperienceController.UrlParams
 		>
 	) {
-		try {
-			const { body, params } = httpResquest
+		const { body, params } = httpResquest
 
+		try {
 			await this.deleteExperienceUseCase.deleteExperience({
 				experience: params.id,
 				user: body.user.id,

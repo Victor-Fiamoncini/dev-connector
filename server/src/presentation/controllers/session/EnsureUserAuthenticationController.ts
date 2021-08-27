@@ -3,7 +3,6 @@ import { TokenGeneratorAdapter } from '@data/contracts'
 import { EnsureUserAuthenticationUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { UserViewModel } from '@presentation/view-models'
 
 namespace EnsureUserAuthenticationController {
 	export type Params = {
@@ -21,9 +20,9 @@ export class EnsureUserAuthenticationController implements Controller {
 	async handle(
 		httpRequest: HttpResquest<EnsureUserAuthenticationController.Params>
 	) {
-		try {
-			const { email, password } = httpRequest.body
+		const { email, password } = httpRequest.body
 
+		try {
 			const user = await this.ensureUserAuthenticationUseCase.ensureAuthentication(
 				{
 					email,
@@ -33,7 +32,7 @@ export class EnsureUserAuthenticationController implements Controller {
 
 			const token = await this.tokenGeneratorAdapter.adapt({ id: user.id })
 
-			return HttpResponse.ok(UserViewModel.map(user, token))
+			return HttpResponse.ok({ user, token })
 		} catch (err) {
 			return HttpResponse.unauthorizedError(err)
 		}

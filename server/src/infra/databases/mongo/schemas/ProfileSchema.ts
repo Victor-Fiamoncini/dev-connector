@@ -1,5 +1,9 @@
 import { Document, Model, model, Schema } from 'mongoose'
 
+import { ProfileDataModel } from '@data/data-models'
+
+type ProfileDocument = Document & ProfileDataModel.Props
+
 const ProfileSchema = new Schema(
 	{
 		company: {
@@ -112,7 +116,7 @@ const ProfileSchema = new Schema(
 	}
 )
 
-export const ProfileMongoDataSource: Model<Document> = model(
+export const ProfileMongoDataSource: Model<ProfileDocument> = model(
 	'Profile',
 	ProfileSchema
 )

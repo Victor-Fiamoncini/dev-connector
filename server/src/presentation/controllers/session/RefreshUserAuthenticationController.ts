@@ -1,7 +1,6 @@
 import { RefreshUserAuthenticationUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { UserViewModel } from '@presentation/view-models'
 
 namespace RefreshUserAuthenticationController {
 	export type Params = {
@@ -19,14 +18,14 @@ export class RefreshUserAuthenticationController implements Controller {
 	async handle(
 		httpRequest: HttpResquest<RefreshUserAuthenticationController.Params>
 	) {
-		try {
-			const { body } = httpRequest
+		const { body } = httpRequest
 
+		try {
 			const user = await this.refreshUserAuthenticationUseCase.refreshAuthentication(
 				body.user.id
 			)
 
-			return HttpResponse.ok(UserViewModel.map(user))
+			return HttpResponse.ok(user)
 		} catch (err) {
 			return HttpResponse.unauthorizedError(err)
 		}

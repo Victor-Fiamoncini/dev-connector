@@ -1,7 +1,6 @@
 import { CreateExperienceUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { ProfileViewModel } from '@presentation/view-models'
 
 namespace CreateExperienceController {
 	export type Params = {
@@ -24,9 +23,9 @@ export class CreateExperienceController implements Controller {
 	) {}
 
 	async handle(httpResquest: HttpResquest<CreateExperienceController.Params>) {
-		try {
-			const { body } = httpResquest
+		const { body } = httpResquest
 
+		try {
 			const profileWithNewExperience = await this.createExperienceUseCase.createExperience(
 				{
 					...body,
@@ -34,9 +33,7 @@ export class CreateExperienceController implements Controller {
 				}
 			)
 
-			return HttpResponse.created(
-				ProfileViewModel.map(profileWithNewExperience)
-			)
+			return HttpResponse.created(profileWithNewExperience)
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

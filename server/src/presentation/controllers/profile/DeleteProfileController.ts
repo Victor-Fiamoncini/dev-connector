@@ -14,9 +14,9 @@ export class DeleteProfileController implements Controller {
 	constructor(private readonly deleteProfileUseCase: DeleteProfileUseCase) {}
 
 	async handle(httpResquest: HttpResquest<DeleteProfileController.Params>) {
-		try {
-			const { body } = httpResquest
+		const { body } = httpResquest
 
+		try {
 			await this.deleteProfileUseCase.deleteProfile(body.user.id)
 
 			return HttpResponse.noContent()

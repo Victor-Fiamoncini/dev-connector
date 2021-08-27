@@ -1,7 +1,6 @@
 import { FetchUserRepositoriesUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
-import { RepositoryViewModel } from '@presentation/view-models'
 
 namespace FetchUserRepositoriesController {
 	export type Params = {
@@ -17,12 +16,12 @@ export class FetchUserRepositoriesController implements Controller {
 	async handle(
 		httpRequest: HttpResquest<null, FetchUserRepositoriesController.Params>
 	) {
-		try {
-			const { username } = httpRequest.params
+		const { username } = httpRequest.params
 
+		try {
 			const repos = await this.fetchUserRepositoriesUseCase.fetchRepos(username)
 
-			return HttpResponse.ok(RepositoryViewModel.mapCollection(repos))
+			return HttpResponse.ok(repos)
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

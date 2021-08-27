@@ -10,6 +10,6 @@ export class MongoFetchProfilesRepository implements FetchProfilesRepository {
 			.populate('user', ['name', 'avatar'])
 			.sort({ date: -1 })
 
-		return FetchProfilesMapper.fromInfraCollection(profiles as any)
+		return FetchProfilesMapper.fromInfraCollection(profiles)
 	}
 }

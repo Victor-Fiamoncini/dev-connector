@@ -2,11 +2,7 @@ import { Document, Model, model, Schema } from 'mongoose'
 
 import { PostDataModel } from '@data/data-models'
 
-interface MongooosePostModel extends Document, PostDataModel.Props {
-	id: PostDataModel.Props['id']
-	createdAt: Date
-	updatedAt: Date
-}
+type PostDocument = Document & PostDataModel.Props
 
 const PostSchema = new Schema(
 	{
@@ -66,7 +62,7 @@ const PostSchema = new Schema(
 	}
 )
 
-export const PostMongoDataSource: Model<MongooosePostModel> = model(
+export const PostMongoDataSource: Model<PostDocument> = model(
 	'Post',
 	PostSchema
 )

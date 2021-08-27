@@ -1,7 +1,6 @@
 import { FetchPostsUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse } from '@presentation/contracts'
-import { PostViewModel } from '@presentation/view-models'
 
 export class FetchPostsController implements Controller {
 	constructor(private readonly fetchPostsUseCase: FetchPostsUseCase) {}
@@ -10,7 +9,7 @@ export class FetchPostsController implements Controller {
 		try {
 			const posts = await this.fetchPostsUseCase.fetchPosts()
 
-			return HttpResponse.ok(PostViewModel.mapColletion(posts))
+			return HttpResponse.ok(posts)
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}
