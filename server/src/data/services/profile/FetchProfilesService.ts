@@ -1,5 +1,5 @@
 import { FetchProfilesRepository } from '@data/contracts'
-import { ProfileDataModel } from '@data/data-models'
+import { FetchProfilesMapper } from '@data/mappers'
 
 import { FetchProfilesUseCase } from '@domain/usecases'
 
@@ -11,6 +11,6 @@ export class FetchProfilesService implements FetchProfilesUseCase {
 	async fetchProfiles() {
 		const profiles = await this.fetchProfilesRepository.fetchProfiles()
 
-		return ProfileDataModel.fromDatabaseColletion(profiles).toDomainColletion()
+		return FetchProfilesMapper.toDomainColletion(profiles)
 	}
 }

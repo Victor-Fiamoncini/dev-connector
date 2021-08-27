@@ -1,6 +1,6 @@
 export namespace Profile {
 	export type Experience = {
-		id: string
+		id?: string
 		title: string
 		company: string
 		location: string
@@ -31,19 +31,19 @@ export namespace Profile {
 
 export class Profile {
 	constructor(
-		public id: string,
-		public company: string,
-		public website: string,
-		public location: string,
-		public status: string,
-		public skills: string[],
-		public bio: string,
-		public githubusername: string,
-		public experience: Profile.Experience[],
-		public education: Profile.Education[],
-		public social: Profile.Social,
-		public user: string,
-		public created_at: Date,
-		public update_at: Date
+		public readonly id: string,
+		public readonly company: string,
+		public readonly website: string,
+		public readonly location: string,
+		public readonly status: string,
+		public readonly skills: string[],
+		public readonly bio: string,
+		public readonly githubusername: string,
+		public readonly experience: Profile.Experience[],
+		public readonly education: Profile.Education[],
+		public readonly social: Profile.Social,
+		public readonly user: string,
+		public readonly created_at: Date,
+		public readonly update_at: Date
 	) {}
 }

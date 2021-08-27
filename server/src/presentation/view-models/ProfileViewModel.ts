@@ -2,7 +2,7 @@ import { Profile } from '@domain/entities'
 
 export namespace ProfileViewModel {
 	export type Experience = {
-		id: string
+		id?: string
 		title: string
 		company: string
 		location: string
@@ -29,6 +29,11 @@ export namespace ProfileViewModel {
 		facebook: string
 		twitter: string
 	}
+
+	export type User = {
+		name: string
+		avatar: string
+	}
 }
 
 export class ProfileViewModel {
@@ -44,7 +49,7 @@ export class ProfileViewModel {
 		public readonly experience: ProfileViewModel.Experience[],
 		public readonly education: ProfileViewModel.Education[],
 		public readonly social: ProfileViewModel.Social,
-		public readonly user: string
+		public readonly user: ProfileViewModel.User
 	) {}
 
 	static map(profile: Profile) {
@@ -83,7 +88,10 @@ export class ProfileViewModel {
 				facebook: profile.social.facebook,
 				twitter: profile.social.twitter,
 			},
-			profile.user
+			{
+				name: profile.user.name,
+				avatar: profile.user.avatar,
+			}
 		)
 	}
 
@@ -124,7 +132,10 @@ export class ProfileViewModel {
 					facebook: profile.social.facebook,
 					twitter: profile.social.twitter,
 				},
-				profile.user
+				{
+					name: profile.user.name,
+					avatar: profile.user.avatar,
+				}
 			)
 		})
 	}

@@ -7,44 +7,44 @@ export namespace ProfileDataModel {
 export class ProfileDataModel {
 	private static profileDataModels: ProfileDataModel[] = []
 
-	constructor(private readonly props: ProfileDataModel.Props) {}
+	constructor(public readonly props: ProfileDataModel.Props) {}
 
 	static fromDatabase(databaseModel: any) {
 		return new ProfileDataModel({
-			id: databaseModel['id'] as string,
-			company: databaseModel['company'] as string,
-			website: databaseModel['website'] as string,
-			location: databaseModel['location'] as string,
-			status: databaseModel['status'] as string,
-			skills: databaseModel['skills'] as string[],
-			bio: databaseModel['bio'] as string,
-			githubusername: databaseModel['githubusername'] as string,
-			experience: databaseModel['experience'] as Profile.Experience[],
-			education: databaseModel['education'] as Profile.Education[],
-			social: databaseModel['social'] as Profile.Social,
-			user: databaseModel['user'] as string,
-			created_at: databaseModel['createdAt'] as Date,
-			update_at: databaseModel['updatedAt'] as Date,
+			id: databaseModel.id as string,
+			company: databaseModel.company as string,
+			website: databaseModel.website as string,
+			location: databaseModel.location as string,
+			status: databaseModel.status as string,
+			skills: databaseModel.skills as string[],
+			bio: databaseModel.bio as string,
+			githubusername: databaseModel.githubusername as string,
+			experience: databaseModel.experience as Profile.Experience[],
+			education: databaseModel.education as Profile.Education[],
+			social: databaseModel.social as Profile.Social,
+			user: databaseModel.user as string,
+			created_at: databaseModel.createdAt as Date,
+			update_at: databaseModel.updatedAt as Date,
 		})
 	}
 
 	static fromDatabaseColletion(databaseModels: any[]) {
 		this.profileDataModels = databaseModels.map(databaseModel => {
 			return new ProfileDataModel({
-				id: databaseModel['id'] as string,
-				company: databaseModel['company'] as string,
-				website: databaseModel['website'] as string,
-				location: databaseModel['location'] as string,
-				status: databaseModel['status'] as string,
-				skills: databaseModel['skills'] as string[],
-				bio: databaseModel['bio'] as string,
-				githubusername: databaseModel['githubusername'] as string,
-				experience: databaseModel['experience'] as Profile.Experience[],
-				education: databaseModel['education'] as Profile.Education[],
-				social: databaseModel['social'] as Profile.Social,
-				user: databaseModel['user'] as string,
-				created_at: databaseModel['createdAt'] as Date,
-				update_at: databaseModel['updatedAt'] as Date,
+				id: databaseModel.id as string,
+				company: databaseModel.company as string,
+				website: databaseModel.website as string,
+				location: databaseModel.location as string,
+				status: databaseModel.status as string,
+				skills: databaseModel.skills as string[],
+				bio: databaseModel.bio as string,
+				githubusername: databaseModel.githubusername as string,
+				experience: databaseModel.experience as Profile.Experience[],
+				education: databaseModel.education as Profile.Education[],
+				social: databaseModel.social as Profile.Social,
+				user: databaseModel.user as string,
+				created_at: databaseModel.createdAt as Date,
+				update_at: databaseModel.updatedAt as Date,
 			})
 		})
 
