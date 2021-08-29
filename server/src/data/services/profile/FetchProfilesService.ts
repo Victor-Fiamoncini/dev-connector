@@ -1,5 +1,4 @@
 import { FetchProfilesRepository } from '@data/contracts'
-import { FetchProfilesMapper } from '@data/mappers'
 
 import { FetchProfilesUseCase } from '@domain/usecases'
 
@@ -9,8 +8,6 @@ export class FetchProfilesService implements FetchProfilesUseCase {
 	) {}
 
 	async fetchProfiles() {
-		const profiles = await this.fetchProfilesRepository.fetchProfiles()
-
-		return FetchProfilesMapper.toDomainColletion(profiles)
+		return this.fetchProfilesRepository.fetchProfiles()
 	}
 }

@@ -10,8 +10,8 @@ export namespace FetchProfilesUseCase {
 		skills: string[]
 		bio: string
 		githubusername: string
-		experience: Profile.Experience
-		education: Profile.Education
+		experience: Profile['experience'][]
+		education: Profile['education'][]
 		social: Profile.Social
 		user: {
 			name: string

@@ -1,6 +1,5 @@
 export namespace Profile {
 	export type Experience = {
-		id?: string
 		title: string
 		company: string
 		location: string
@@ -43,7 +42,7 @@ export class Profile {
 		public readonly education: Profile.Education[],
 		public readonly social: Profile.Social,
 		public readonly user: string,
-		public readonly created_at: Date,
-		public readonly update_at: Date
+		public readonly createdAt: Date,
+		public readonly updateAt: Date
 	) {}
 }

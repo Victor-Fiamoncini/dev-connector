@@ -1,8 +1,4 @@
-import { Document, Model, model, Schema } from 'mongoose'
-
-import { PostDataModel } from '@data/data-models'
-
-type PostDocument = Document & PostDataModel.Props
+import { Model, model, Schema } from 'mongoose'
 
 const PostSchema = new Schema(
 	{
@@ -62,7 +58,4 @@ const PostSchema = new Schema(
 	}
 )
 
-export const PostMongoDataSource: Model<PostDocument> = model(
-	'Post',
-	PostSchema
-)
+export const PostMongoDataSource: Model<any> = model('Post', PostSchema)

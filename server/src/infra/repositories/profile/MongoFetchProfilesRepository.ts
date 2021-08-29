@@ -1,5 +1,4 @@
 import { FetchProfilesRepository } from '@data/contracts'
-import { FetchProfilesMapper } from '@data/mappers'
 
 import { ProfileMongoDataSource } from '@infra/databases/mongo'
 
@@ -10,6 +9,19 @@ export class MongoFetchProfilesRepository implements FetchProfilesRepository {
 			.populate('user', ['name', 'avatar'])
 			.sort({ date: -1 })
 
-		return FetchProfilesMapper.fromInfraCollection(profiles)
+		return profiles.map(profile => ({
+			id: profile.id,
+			company: profile.company,
+			website: profile.website,
+			location: profile.location,
+			status: profile.status,
+			skills: profile.skills,
+			bio: profile.bio,
+			githubusername: profile.githubusername,
+			experience: profile.experience,
+			education: profile.education,
+			social: profile.social,
+			user: profile.user,
+		})) as FetchProfilesRepository.Return[]
 	}
 }

@@ -1,6 +1,7 @@
 import { FetchProfilesUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse } from '@presentation/contracts'
+import { FetchProfilesViewModel } from '@presentation/view-models'
 
 export class FetchProfilesController implements Controller {
 	constructor(private readonly fetchProfilesUseCase: FetchProfilesUseCase) {}
@@ -9,7 +10,7 @@ export class FetchProfilesController implements Controller {
 		try {
 			const profiles = await this.fetchProfilesUseCase.fetchProfiles()
 
-			return HttpResponse.ok(profiles)
+			return HttpResponse.ok(FetchProfilesViewModel.mapColletion(profiles))
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

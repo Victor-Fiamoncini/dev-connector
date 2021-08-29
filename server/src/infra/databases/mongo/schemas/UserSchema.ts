@@ -1,8 +1,4 @@
-import { Document, Model, model, Schema } from 'mongoose'
-
-import { UserDataModel } from '@data/data-models'
-
-type UserDocument = Document & UserDataModel.Props
+import { Model, model, Schema } from 'mongoose'
 
 const UserSchema = new Schema(
 	{
@@ -30,7 +26,4 @@ const UserSchema = new Schema(
 	}
 )
 
-export const UserMongoDataSource: Model<UserDocument> = model(
-	'User',
-	UserSchema
-)
+export const UserMongoDataSource: Model<any> = model('User', UserSchema)

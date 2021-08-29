@@ -55,7 +55,7 @@ export class PostDataModel {
 		)
 	}
 
-	static toDomainColletion() {
+	static toDomainCollection() {
 		return this.postDataModels.map(profileDataModel => {
 			return new Post(
 				profileDataModel.props.id,

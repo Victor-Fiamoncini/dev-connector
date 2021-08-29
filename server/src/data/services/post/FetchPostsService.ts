@@ -9,6 +9,6 @@ export class FetchPostsService implements FetchPostsUseCase {
 	async fetchPosts() {
 		const posts = await this.fetchPostsRepository.fetchPosts()
 
-		return PostDataModel.fromDatabaseColletion(posts).toDomainColletion()
+		return PostDataModel.fromDatabaseColletion(posts).toDomainCollection()
 	}
 }

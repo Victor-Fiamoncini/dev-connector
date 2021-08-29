@@ -23,8 +23,8 @@ export class ProfileDataModel {
 			education: databaseModel.education as Profile.Education[],
 			social: databaseModel.social as Profile.Social,
 			user: databaseModel.user as string,
-			created_at: databaseModel.createdAt as Date,
-			update_at: databaseModel.updatedAt as Date,
+			createdAt: databaseModel.createdAt as Date,
+			updateAt: databaseModel.updatedAt as Date,
 		})
 	}
 
@@ -43,8 +43,8 @@ export class ProfileDataModel {
 				education: databaseModel.education as Profile.Education[],
 				social: databaseModel.social as Profile.Social,
 				user: databaseModel.user as string,
-				created_at: databaseModel.createdAt as Date,
-				update_at: databaseModel.updatedAt as Date,
+				createdAt: databaseModel.createdAt as Date,
+				updateAt: databaseModel.updatedAt as Date,
 			})
 		})
 
@@ -65,12 +65,12 @@ export class ProfileDataModel {
 			this.props.education,
 			this.props.social,
 			this.props.user,
-			this.props.created_at,
-			this.props.update_at
+			this.props.createdAt,
+			this.props.updateAt
 		)
 	}
 
-	static toDomainColletion() {
+	static toDomainCollection() {
 		return this.profileDataModels.map(profileDataModel => {
 			return new Profile(
 				profileDataModel.props.id,
@@ -85,8 +85,8 @@ export class ProfileDataModel {
 				profileDataModel.props.education,
 				profileDataModel.props.social,
 				profileDataModel.props.user,
-				profileDataModel.props.created_at,
-				profileDataModel.props.update_at
+				profileDataModel.props.createdAt,
+				profileDataModel.props.updateAt
 			)
 		})
 	}
