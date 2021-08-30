@@ -35,12 +35,10 @@ export class CreateOrUpdateProfileController implements Controller {
 		const { body } = httpResquest
 
 		try {
-			const profile = await this.createOrUpdateProfileUseCase.createOrUpdateProfile(
-				{
-					...body,
-					user: body.user.id,
-				}
-			)
+			const profile = await this.createOrUpdateProfileUseCase.run({
+				...body,
+				user: body.user.id,
+			})
 
 			return HttpResponse.ok(profile)
 		} catch (err) {

@@ -2,7 +2,6 @@ import {
 	CreateExperienceRepository,
 	FindProfileByUserRepository,
 } from '@data/contracts'
-import { ProfileDataModel } from '@data/data-models'
 
 import { ExperienceCreateError, ProfileNotFoundError } from '@domain/errors'
 import { CreateExperienceUseCase } from '@domain/usecases'
@@ -13,21 +12,17 @@ export class CreateExperienceService implements CreateExperienceUseCase {
 		private readonly createExperienceRepository: CreateExperienceRepository
 	) {}
 
-	async createExperience(data: CreateExperienceUseCase.Params) {
-		const profile = await this.findProfileByUserRepository.findProfileByUser(
-			data.user
-		)
+	async run(data: CreateExperienceUseCase.Params) {
+		const profile = await this.findProfileByUserRepository.execute(data.user)
 
 		if (!profile) {
 			throw new ProfileNotFoundError()
 		}
 
-		const profileEntity = ProfileDataModel.fromDatabase(profile).toDomain()
-
-		const profileWithNewExperience = await this.createExperienceRepository.createExperience(
+		const profileWithNewExperience = await this.createExperienceRepository.execute(
 			{
 				...data,
-				id: profileEntity.id,
+				id: profile.id,
 			}
 		)
 
@@ -35,6 +30,6 @@ export class CreateExperienceService implements CreateExperienceUseCase {
 			throw new ExperienceCreateError()
 		}
 
-		return ProfileDataModel.fromDatabase(profileWithNewExperience).toDomain()
+		return profileWithNewExperience
 	}
 }

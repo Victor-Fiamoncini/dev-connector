@@ -8,8 +8,10 @@ export class DeleteProfileService implements DeleteProfileUseCase {
 		private readonly deleteUserRepository: DeleteUserRepository
 	) {}
 
-	async deleteProfile(user: string) {
-		await this.deleteProfileRepository.deleteProfile(user)
-		await this.deleteUserRepository.deleterUser(user)
+	async run(user: string) {
+		await Promise.all([
+			this.deleteProfileRepository.execute(user),
+			this.deleteUserRepository.deleterUser(user),
+		])
 	}
 }

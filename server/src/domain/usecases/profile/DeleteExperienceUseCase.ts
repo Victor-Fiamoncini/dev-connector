@@ -6,5 +6,5 @@ export namespace DeleteExperienceUseCase {
 }
 
 export interface DeleteExperienceUseCase {
-	deleteExperience(data: DeleteExperienceUseCase.Params): Promise<void>
+	run(data: DeleteExperienceUseCase.Params): Promise<void>
 }

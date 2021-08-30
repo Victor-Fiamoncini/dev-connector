@@ -11,8 +11,25 @@ export namespace CreateExperienceUseCase {
 		description: string
 		user: string
 	}
+
+	export type Return = {
+		id: string
+		company: string
+		website: string
+		location: string
+		status: string
+		skills: string[]
+		bio: string
+		githubusername: string
+		experience: Profile.Experience[]
+		education: Profile.Education[]
+		social: Profile.Social
+		user: string
+	}
 }
 
 export interface CreateExperienceUseCase {
-	createExperience(data: CreateExperienceUseCase.Params): Promise<Profile>
+	run(
+		data: CreateExperienceUseCase.Params
+	): Promise<CreateExperienceUseCase.Return>
 }

@@ -7,7 +7,7 @@ export class FetchProfilesService implements FetchProfilesUseCase {
 		private readonly fetchProfilesRepository: FetchProfilesRepository
 	) {}
 
-	async fetchProfiles() {
-		return this.fetchProfilesRepository.fetchProfiles()
+	async run() {
+		return this.fetchProfilesRepository.execute()
 	}
 }

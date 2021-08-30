@@ -1,6 +1,6 @@
-import { FetchProfilesUseCase } from '@domain/usecases'
+import { Profile } from '@domain/entities'
 
-export namespace FetchProfilesViewModel {
+export namespace CreateOrUpdateProfileViewModel {
 	export type Experience = {
 		title: string
 		company: string
@@ -28,14 +28,9 @@ export namespace FetchProfilesViewModel {
 		facebook: string
 		twitter: string
 	}
-
-	export type User = {
-		name: string
-		avatar: string
-	}
 }
 
-export class FetchProfilesViewModel {
+export class CreateOrUpdateProfileViewModel {
 	id: string
 	company: string
 	website: string
@@ -44,13 +39,13 @@ export class FetchProfilesViewModel {
 	skills: string[]
 	bio: string
 	githubusername: string
-	experience: FetchProfilesViewModel.Experience[]
-	education: FetchProfilesViewModel.Education[]
-	social: FetchProfilesViewModel.Social
-	user: FetchProfilesViewModel.User
+	experience: CreateOrUpdateProfileViewModel.Experience[]
+	education: CreateOrUpdateProfileViewModel.Education[]
+	social: Profile.Social
+	user: string
 
-	static mapColletion(profiles: FetchProfilesUseCase.Return[]) {
-		return profiles.map(profile => ({
+	static map(profile: Profile): CreateOrUpdateProfileViewModel {
+		return {
 			id: profile.id,
 			company: profile.company,
 			website: profile.website,
@@ -59,13 +54,16 @@ export class FetchProfilesViewModel {
 			skills: profile.skills,
 			bio: profile.bio,
 			githubusername: profile.githubusername,
-			social: profile.social,
+			social: {
+				youtube: profile.social.youtube,
+				instagram: profile.social.instagram,
+				linkedin: profile.social.linkedin,
+				facebook: profile.social.facebook,
+				twitter: profile.social.twitter,
+			},
 			education: profile.education,
 			experience: profile.experience,
-			user: {
-				name: profile.user.name,
-				avatar: profile.user.avatar,
-			},
-		}))
+			user: profile.user,
+		}
 	}
 }

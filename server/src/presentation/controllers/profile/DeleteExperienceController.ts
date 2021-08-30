@@ -28,7 +28,7 @@ export class DeleteExperienceController implements Controller {
 		const { body, params } = httpResquest
 
 		try {
-			await this.deleteExperienceUseCase.deleteExperience({
+			await this.deleteExperienceUseCase.run({
 				experience: params.id,
 				user: body.user.id,
 			})

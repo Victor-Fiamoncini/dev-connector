@@ -8,7 +8,7 @@ export class FetchProfilesController implements Controller {
 
 	async handle() {
 		try {
-			const profiles = await this.fetchProfilesUseCase.fetchProfiles()
+			const profiles = await this.fetchProfilesUseCase.run()
 
 			return HttpResponse.ok(FetchProfilesViewModel.mapColletion(profiles))
 		} catch (err) {

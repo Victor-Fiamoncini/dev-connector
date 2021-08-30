@@ -15,7 +15,7 @@ export class FetchProfileController implements Controller {
 		const { id } = httpRequest.params
 
 		try {
-			const profile = await this.fetchProfileUseCase.fetchProfile(id)
+			const profile = await this.fetchProfileUseCase.run(id)
 
 			return HttpResponse.ok(profile)
 		} catch (err) {

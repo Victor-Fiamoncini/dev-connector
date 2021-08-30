@@ -18,10 +18,25 @@ export namespace CreateProfileRepository {
 		}
 		user: string
 	}
+
+	export type Return = {
+		id: string
+		company: string
+		website: string
+		location: string
+		status: string
+		skills: string[]
+		bio: string
+		githubusername: string
+		experience: ProfileDataModel.Props['experience']
+		education: ProfileDataModel.Props['education']
+		social: ProfileDataModel.Props['social']
+		user: string
+	}
 }
 
 export interface CreateProfileRepository {
-	createProfile(
+	execute(
 		data: CreateProfileRepository.Params
-	): Promise<ProfileDataModel.Props>
+	): Promise<CreateProfileRepository.Return>
 }

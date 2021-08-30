@@ -26,12 +26,10 @@ export class CreateExperienceController implements Controller {
 		const { body } = httpResquest
 
 		try {
-			const profileWithNewExperience = await this.createExperienceUseCase.createExperience(
-				{
-					...body,
-					user: body.user.id,
-				}
-			)
+			const profileWithNewExperience = await this.createExperienceUseCase.run({
+				...body,
+				user: body.user.id,
+			})
 
 			return HttpResponse.created(profileWithNewExperience)
 		} catch (err) {

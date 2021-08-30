@@ -3,22 +3,16 @@ import { UpdateProfileRepository } from '@data/contracts'
 import { ProfileMongoDataSource } from '@infra/databases/mongo'
 
 export class MongoUpdateProfileRepository implements UpdateProfileRepository {
-	async updateProfile(data: UpdateProfileRepository.Params) {
+	async execute(data: UpdateProfileRepository.Params) {
 		const { id, ...updateData } = data
 
-		const updatedProfile = await ProfileMongoDataSource.findByIdAndUpdate(
-			id,
-			updateData,
-			{
+		try {
+			return ProfileMongoDataSource.findByIdAndUpdate(id, updateData, {
 				new: true,
 				runValidators: true,
-			}
-		)
-
-		if (!updatedProfile) {
+			})
+		} catch {
 			return null
 		}
-
-		return updatedProfile
 	}
 }

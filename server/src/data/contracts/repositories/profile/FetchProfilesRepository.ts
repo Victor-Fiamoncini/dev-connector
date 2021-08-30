@@ -10,8 +10,8 @@ export namespace FetchProfilesRepository {
 		skills: string[]
 		bio: string
 		githubusername: string
-		experience: ProfileDataModel.Props['experience'][]
-		education: ProfileDataModel.Props['education'][]
+		experience: ProfileDataModel.Props['experience']
+		education: ProfileDataModel.Props['education']
 		social: ProfileDataModel.Props['social']
 		user: {
 			name: string
@@ -21,5 +21,5 @@ export namespace FetchProfilesRepository {
 }
 
 export interface FetchProfilesRepository {
-	fetchProfiles(): Promise<FetchProfilesRepository.Return[]>
+	execute(): Promise<FetchProfilesRepository.Return[]>
 }

@@ -1,3 +1,3 @@
 export interface DeleteProfileRepository {
-	deleteProfile(user: string): Promise<void>
+	execute(user: string): Promise<void>
 }

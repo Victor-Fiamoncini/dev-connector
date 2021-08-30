@@ -10,8 +10,8 @@ export namespace FetchProfilesUseCase {
 		skills: string[]
 		bio: string
 		githubusername: string
-		experience: Profile['experience'][]
-		education: Profile['education'][]
+		experience: Profile.Experience[]
+		education: Profile.Education[]
 		social: Profile.Social
 		user: {
 			name: string
@@ -21,5 +21,5 @@ export namespace FetchProfilesUseCase {
 }
 
 export interface FetchProfilesUseCase {
-	fetchProfiles(): Promise<FetchProfilesUseCase.Return[]>
+	run(): Promise<FetchProfilesUseCase.Return[]>
 }

@@ -17,7 +17,7 @@ export class DeleteProfileController implements Controller {
 		const { body } = httpResquest
 
 		try {
-			await this.deleteProfileUseCase.deleteProfile(body.user.id)
+			await this.deleteProfileUseCase.run(body.user.id)
 
 			return HttpResponse.noContent()
 		} catch (err) {

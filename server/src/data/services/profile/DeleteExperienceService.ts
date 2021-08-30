@@ -12,10 +12,8 @@ export class DeleteExperienceService implements DeleteExperienceUseCase {
 		private readonly deleteExperienceRepository: DeleteExperienceRepository
 	) {}
 
-	async deleteExperience(data: DeleteExperienceUseCase.Params) {
-		const profile = await this.findProfileByUserRepository.findProfileByUser(
-			data.user
-		)
+	async run(data: DeleteExperienceUseCase.Params) {
+		const profile = await this.findProfileByUserRepository.execute(data.user)
 
 		if (!profile) {
 			throw new ProfileNotFoundError()
@@ -29,8 +27,8 @@ export class DeleteExperienceService implements DeleteExperienceUseCase {
 			throw new ExperienceNotFoundError()
 		}
 
-		await this.deleteExperienceRepository.deleteExperience({
-			id: data.experience,
+		await this.deleteExperienceRepository.execute({
+			experience: data.experience,
 			user: data.user,
 		})
 	}

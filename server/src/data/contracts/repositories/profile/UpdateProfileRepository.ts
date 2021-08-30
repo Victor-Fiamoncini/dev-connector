@@ -18,10 +18,25 @@ export namespace UpdateProfileRepository {
 			twitter: string
 		}
 	}
+
+	export type Return = {
+		id: string
+		company: string
+		website: string
+		location: string
+		status: string
+		skills: string[]
+		bio: string
+		githubusername: string
+		experience: ProfileDataModel.Props['experience']
+		education: ProfileDataModel.Props['education']
+		social: ProfileDataModel.Props['social']
+		user: string
+	}
 }
 
 export interface UpdateProfileRepository {
-	updateProfile(
+	execute(
 		data: UpdateProfileRepository.Params
-	): Promise<ProfileDataModel.Props | null>
+	): Promise<UpdateProfileRepository.Return | null>
 }

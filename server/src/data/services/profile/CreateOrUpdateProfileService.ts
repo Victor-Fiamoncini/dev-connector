@@ -3,7 +3,6 @@ import {
 	FindProfileByUserRepository,
 	UpdateProfileRepository,
 } from '@data/contracts'
-import { ProfileDataModel } from '@data/data-models'
 
 import { ProfileUpdateError } from '@domain/errors'
 import { CreateOrUpdateProfileUseCase } from '@domain/usecases'
@@ -16,7 +15,7 @@ export class CreateOrUpdateProfileService implements CreateOrUpdateProfileUseCas
 		private readonly createProfileRepository: CreateProfileRepository
 	) {}
 
-	async createOrUpdateProfile(data: CreateOrUpdateProfileUseCase.Params) {
+	async run(data: CreateOrUpdateProfileUseCase.Params) {
 		const { skills } = data
 
 		let serializedSkills: string[] = []
@@ -25,16 +24,14 @@ export class CreateOrUpdateProfileService implements CreateOrUpdateProfileUseCas
 			serializedSkills = skills.split(',').map(skill => skill.trim())
 		}
 
-		const profile = await this.findProfileByUserRepository.findProfileByUser(
+		const profile = await this.findProfileByUserRepository.execute(
 			data.user
 		)
 
 		if (profile) {
-			const profileEntity = ProfileDataModel.fromDatabase(profile).toDomain()
-
-			const updatedProfile = await this.updateProfileRepository.updateProfile({
+			const updatedProfile = await this.updateProfileRepository.execute({
 				...data,
-				id: profileEntity.id,
+				id: profile.id,
 				skills: serializedSkills,
 			})
 
@@ -42,14 +39,14 @@ export class CreateOrUpdateProfileService implements CreateOrUpdateProfileUseCas
 				throw new ProfileUpdateError()
 			}
 
-			return ProfileDataModel.fromDatabase(updatedProfile).toDomain()
+			return updatedProfile
 		}
 
-		const createdProfile = await this.createProfileRepository.createProfile({
+		const createdProfile = await this.createProfileRepository.execute({
 			...data,
 			skills: serializedSkills,
 		})
 
-		return ProfileDataModel.fromDatabase(createdProfile).toDomain()
+		return createdProfile
 	}
 }

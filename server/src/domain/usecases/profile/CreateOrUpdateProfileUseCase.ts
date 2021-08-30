@@ -18,10 +18,25 @@ export namespace CreateOrUpdateProfileUseCase {
 		}
 		user: string
 	}
+
+	export type Return = {
+		id: string
+		company: string
+		website: string
+		location: string
+		status: string
+		skills: string[]
+		bio: string
+		githubusername: string
+		experience: Profile.Experience[]
+		education: Profile.Education[]
+		social: Profile.Social
+		user: string
+	}
 }
 
 export interface CreateOrUpdateProfileUseCase {
-	createOrUpdateProfile(
+	run(
 		data: CreateOrUpdateProfileUseCase.Params
-	): Promise<Profile>
+	): Promise<CreateOrUpdateProfileUseCase.Return>
 }

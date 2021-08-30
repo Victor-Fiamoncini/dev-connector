@@ -4,19 +4,23 @@ import { ProfileMongoDataSource } from '@infra/databases/mongo'
 
 // prettier-ignore
 export class MongoCreateExperienceRepository implements CreateExperienceRepository {
-	async createExperience(data: CreateExperienceRepository.Params) {
-		const { id, ...experienceData } = data
+	async execute(data: CreateExperienceRepository.Params) {
+		try {
+			const { id, ...experienceData } = data
 
-		const profile = await ProfileMongoDataSource.findById(id)
+			const profile = await ProfileMongoDataSource.findById(id)
 
-		if (!profile) {
+			if (!profile) {
+				return null
+			}
+
+			profile.experience.unshift(experienceData)
+
+			await profile.save()
+
+			return profile
+		} catch {
 			return null
 		}
-
-		profile.experience.unshift(experienceData)
-
-		await profile.save()
-
-		return profile
 	}
 }
