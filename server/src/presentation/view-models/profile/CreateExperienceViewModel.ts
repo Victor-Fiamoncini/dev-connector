@@ -1,6 +1,6 @@
-import { CreateOrUpdateProfileUseCase } from '@domain/usecases'
+import { CreateExperienceUseCase } from '@domain/usecases'
 
-export namespace CreateOrUpdateProfileViewModel {
+export namespace CreateExperienceViewModel {
 	export type Experience = {
 		title: string
 		company: string
@@ -30,7 +30,7 @@ export namespace CreateOrUpdateProfileViewModel {
 	}
 }
 
-export class CreateOrUpdateProfileViewModel {
+export class CreateExperienceViewModel {
 	constructor(
 		public readonly id: string,
 		public readonly company: string,
@@ -40,14 +40,14 @@ export class CreateOrUpdateProfileViewModel {
 		public readonly skills: string[],
 		public readonly bio: string,
 		public readonly githubusername: string,
-		public readonly experience: CreateOrUpdateProfileViewModel.Experience[],
-		public readonly education: CreateOrUpdateProfileViewModel.Education[],
-		public readonly social: CreateOrUpdateProfileViewModel.Social,
+		public readonly experience: CreateExperienceViewModel.Experience[],
+		public readonly education: CreateExperienceViewModel.Education[],
+		public readonly social: CreateExperienceViewModel.Social,
 		public readonly user: string
 	) {}
 
-	static map(profile: CreateOrUpdateProfileUseCase.Return) {
-		return new CreateOrUpdateProfileViewModel(
+	static map(profile: CreateExperienceUseCase.Return) {
+		return new CreateExperienceViewModel(
 			profile.id,
 			profile.company,
 			profile.website,

@@ -1,6 +1,6 @@
-import { CreateOrUpdateProfileUseCase } from '@domain/usecases'
+import { FetchUserProfileUseCase } from '@domain/usecases'
 
-export namespace CreateOrUpdateProfileViewModel {
+export namespace FetchUserProfileViewModel {
 	export type Experience = {
 		title: string
 		company: string
@@ -28,9 +28,14 @@ export namespace CreateOrUpdateProfileViewModel {
 		facebook: string
 		twitter: string
 	}
+
+	export type User = {
+		name: string
+		avatar: string
+	}
 }
 
-export class CreateOrUpdateProfileViewModel {
+export class FetchUserProfileViewModel {
 	constructor(
 		public readonly id: string,
 		public readonly company: string,
@@ -40,14 +45,14 @@ export class CreateOrUpdateProfileViewModel {
 		public readonly skills: string[],
 		public readonly bio: string,
 		public readonly githubusername: string,
-		public readonly experience: CreateOrUpdateProfileViewModel.Experience[],
-		public readonly education: CreateOrUpdateProfileViewModel.Education[],
-		public readonly social: CreateOrUpdateProfileViewModel.Social,
-		public readonly user: string
+		public readonly experience: FetchUserProfileViewModel.Experience[],
+		public readonly education: FetchUserProfileViewModel.Education[],
+		public readonly social: FetchUserProfileViewModel.Social,
+		public readonly user: FetchUserProfileViewModel.User
 	) {}
 
-	static map(profile: CreateOrUpdateProfileUseCase.Return) {
-		return new CreateOrUpdateProfileViewModel(
+	static map(profile: FetchUserProfileUseCase.Return) {
+		return new FetchUserProfileViewModel(
 			profile.id,
 			profile.company,
 			profile.website,
@@ -59,7 +64,10 @@ export class CreateOrUpdateProfileViewModel {
 			profile.experience,
 			profile.education,
 			profile.social,
-			profile.user
+			{
+				name: profile.user.name,
+				avatar: profile.user.avatar,
+			}
 		)
 	}
 }

@@ -1,6 +1,7 @@
 import { CreateOrUpdateProfileUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
+import { CreateOrUpdateProfileViewModel } from '@presentation/view-models'
 
 namespace CreateOrUpdateProfileController {
 	export type Params = {
@@ -40,7 +41,7 @@ export class CreateOrUpdateProfileController implements Controller {
 				user: body.user.id,
 			})
 
-			return HttpResponse.ok(profile)
+			return HttpResponse.ok(CreateOrUpdateProfileViewModel.map(profile))
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}

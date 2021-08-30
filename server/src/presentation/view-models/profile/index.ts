@@ -1,2 +1,5 @@
+export * from '@presentation/view-models/profile/CreateExperienceViewModel'
 export * from '@presentation/view-models/profile/CreateOrUpdateProfileViewModel'
+export * from '@presentation/view-models/profile/FetchProfileViewModel'
 export * from '@presentation/view-models/profile/FetchProfilesViewModel'
+export * from '@presentation/view-models/profile/FetchUserProfileViewModel'

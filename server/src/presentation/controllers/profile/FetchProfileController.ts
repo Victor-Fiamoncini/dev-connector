@@ -1,6 +1,7 @@
 import { FetchProfileUseCase } from '@domain/usecases'
 
 import { Controller, HttpResponse, HttpResquest } from '@presentation/contracts'
+import { FetchProfileViewModel } from '@presentation/view-models'
 
 namespace FetchProfileController {
 	export type Params = {
@@ -17,7 +18,7 @@ export class FetchProfileController implements Controller {
 		try {
 			const profile = await this.fetchProfileUseCase.run(id)
 
-			return HttpResponse.ok(profile)
+			return HttpResponse.ok(FetchProfileViewModel.map(profile))
 		} catch (err) {
 			return HttpResponse.serverError(err)
 		}
