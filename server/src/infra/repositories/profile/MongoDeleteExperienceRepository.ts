@@ -5,16 +5,19 @@ import { ProfileMongoDataSource } from '@infra/databases/mongo'
 // prettier-ignore
 export class MongoDeleteExperienceRepository implements DeleteExperienceRepository {
 	async execute(data: DeleteExperienceRepository.Params) {
-		const query: any = {
-			$pull: {
-				experience: {
-					id: data.experience,
-				},
-			},
-		}
+		try {
+			const profile = await ProfileMongoDataSource.findOne({ user: data.user })
 
-		await ProfileMongoDataSource.findOneAndUpdate({ user: data.user }, query, {
-			new: true,
-		})
+			if (!profile) {
+				return false
+			}
+
+			await profile.experience.id(data.experience).remove()
+			await profile.save()
+
+			return true
+		} catch {
+			return false
+		}
 	}
 }

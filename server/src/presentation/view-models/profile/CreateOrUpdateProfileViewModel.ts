@@ -56,8 +56,24 @@ export class CreateOrUpdateProfileViewModel {
 			profile.skills,
 			profile.bio,
 			profile.githubusername,
-			profile.experience,
-			profile.education,
+			profile.experience.map(experience => ({
+				title: experience.title,
+				company: experience.company,
+				location: experience.location,
+				from: experience.from,
+				to: experience.to,
+				current: experience.current,
+				description: experience.description,
+			})),
+			profile.education.map(education => ({
+				school: education.school,
+				degree: education.degree,
+				fieldofstudy: education.fieldofstudy,
+				from: education.from,
+				to: education.to,
+				current: education.current,
+				description: education.description,
+			})),
 			profile.social,
 			profile.user
 		)

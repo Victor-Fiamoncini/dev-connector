@@ -6,8 +6,12 @@ import { ValidatorError } from '@utils/errors'
 export class CreateExperienceValidator implements Validator {
 	async validate(data: object) {
 		const validationSchema = Yup.object().shape({
-			title: Yup.string().required().typeError('Invalid title'),
-			company: Yup.string().required().typeError('Invalid company'),
+			title: Yup.string()
+				.required('Title is required')
+				.typeError('Invalid title'),
+			company: Yup.string()
+				.required('Company is required')
+				.typeError('Invalid company'),
 			location: Yup.string()
 				.nullable()
 				.notRequired()

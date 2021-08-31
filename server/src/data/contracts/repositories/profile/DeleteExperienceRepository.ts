@@ -6,5 +6,5 @@ export namespace DeleteExperienceRepository {
 }
 
 export interface DeleteExperienceRepository {
-	execute(data: DeleteExperienceRepository.Params): Promise<void>
+	execute(data: DeleteExperienceRepository.Params): Promise<boolean>
 }

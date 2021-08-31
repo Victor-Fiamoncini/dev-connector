@@ -3,7 +3,11 @@ import {
 	FindProfileByUserRepository,
 } from '@data/contracts'
 
-import { ExperienceNotFoundError, ProfileNotFoundError } from '@domain/errors'
+import {
+	ExperienceDeleteError,
+	ExperienceNotFoundError,
+	ProfileNotFoundError,
+} from '@domain/errors'
 import { DeleteExperienceUseCase } from '@domain/usecases'
 
 export class DeleteExperienceService implements DeleteExperienceUseCase {
@@ -19,17 +23,21 @@ export class DeleteExperienceService implements DeleteExperienceUseCase {
 			throw new ProfileNotFoundError()
 		}
 
-		const indexToRemoveExperience = profile.experience.findIndex(
+		const experienceToDelete = profile.experience.find(
 			experience => experience.id === data.experience
 		)
 
-		if (indexToRemoveExperience === -1) {
+		if (!experienceToDelete) {
 			throw new ExperienceNotFoundError()
 		}
 
-		await this.deleteExperienceRepository.execute({
-			experience: data.experience,
+		const hasBeenDeleted = await this.deleteExperienceRepository.execute({
+			experience: experienceToDelete.id,
 			user: data.user,
 		})
+
+		if (!hasBeenDeleted) {
+			throw new ExperienceDeleteError()
+		}
 	}
 }
