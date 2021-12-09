@@ -1,8 +1,24 @@
-# DevConnector 👨‍💻
+# README
 
-Social network dashboard to show developers/programmers profiles - Built with MongoDB, Express, React/Redux... 
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-----------
-Released in 2020. This project is under the MIT license.
+Things you may want to cover:
 
-By [Victor B. Fiamoncini](https://github.com/Victor-Fiamoncini) 🚀
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
